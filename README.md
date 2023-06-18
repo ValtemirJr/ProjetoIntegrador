@@ -1,6 +1,6 @@
 # Projeto Integrador  - Ciências da Computação - UFFS 2023
 ## Dupla:
-`Lucas Smaniotto Schuch - 2121101016`
+`Lucas Smaniotto Schuch - 2121101016` <br>
 `Valtemir Junior Gomes da Silva - 2121101043`
 
 ## Organização do Projeto

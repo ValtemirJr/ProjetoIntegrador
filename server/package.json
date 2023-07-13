@@ -1,0 +1,41 @@
+{
+  "name": "api-cetac",
+  "version": "1.0.0",
+  "description": "API REST para a administração da clínica CETAC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "start": "node dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ValtemirJr/ProjetoIntegrador.git"
+  },
+  "author": "Lucas Smaniotto Schuch e Valtemir Junior",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ValtemirJr/ProjetoIntegrador/issues"
+  },
+  "homepage": "https://github.com/ValtemirJr/ProjetoIntegrador#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.43.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "nodemon": "^3.0.1",
+    "sequelize": "^6.32.1",
+    "sequelize-cli": "^6.6.1",
+    "sucrase": "^3.32.0"
+  }
+}

@@ -60,7 +60,7 @@ const NavBar = styled.nav`
   .nav__header--title h1 {
     font-family: ${titleFont};
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 400;
     margin-bottom: 0.25rem;
   }
 

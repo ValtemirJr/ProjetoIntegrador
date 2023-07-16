@@ -4,6 +4,8 @@ import Carousel from '../../components/Carousel';
 import Section from '../../components/Section';
 import Button from '../../components/Button';
 
+import { greyColor } from '../../components/UI/variables';
+
 export default function Contact() {
   return (
     <>
@@ -18,7 +20,7 @@ export default function Contact() {
       <Section>
         <div
           className="section-container"
-          style={{ backgroundColor: '#F0F0F0' }}
+          style={{ backgroundColor: greyColor }}
         >
           <h2 className="section-title__home">Sobre a Clínica</h2>
           <p className="section-subtitle__home">
@@ -43,6 +45,23 @@ export default function Contact() {
             </Button>
             <Button to="/contact" className="section-button__about">
               Entre em contato
+            </Button>
+          </div>
+        </div>
+      </Section>
+      <Section style={{ backgroundColor: greyColor }}>
+        <div className="section-work-schedule-container">
+          <div className="section-work-schedule">
+            <h2>Horário</h2>
+            <p>Venha nos visitar!</p>
+            <p>Segunda a Sexta: 08:30 - 21:00</p>
+            <p>Sábado: 09:00 - 14:00</p>
+            <p>Domingo: Fechado</p>
+            <p>Telefone: (49) 3329-2006</p>
+          </div>
+          <div className="section-button-wrapper__work-schedule">
+            <Button to="/contact" className="section-button__work-schedule">
+              Agende sua consulta
             </Button>
           </div>
         </div>

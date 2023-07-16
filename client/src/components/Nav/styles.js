@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {
+  primaryColor,
   backgroundColor,
   textColor,
   iconColor,
@@ -24,6 +25,18 @@ const NavBar = styled.nav`
   .nav__header--button {
     display: flex;
     justify-self: flex-end;
+    background-color: #ffffff;
+    color: ${primaryColor};
+    border: solid 1px ${primaryColor};
+
+    &:hover {
+      background-color: ${primaryColor};
+      color: #ffffff;
+    }
+
+    &:focus {
+      outline: none;
+    }
   }
 
   .div__menu--mobile {

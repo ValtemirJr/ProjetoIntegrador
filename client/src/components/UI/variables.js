@@ -5,6 +5,7 @@ export const backgroundColor = '#FFFFFF';
 export const textColor = '#000000';
 export const iconColor = '#292929';
 export const blackColor = '#0F0F0F';
+export const whiteColor = '#FFFFFF';
 export const whiteGreyColor = '#EEEAEA';
 
 export const titleFont = "'Poppins', sans-serif";

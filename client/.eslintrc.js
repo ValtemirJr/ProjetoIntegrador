@@ -26,5 +26,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'react/prop-types': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'global-require': 'off',
   },
 };

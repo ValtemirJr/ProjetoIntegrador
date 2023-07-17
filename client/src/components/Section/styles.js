@@ -147,6 +147,7 @@ const SectionStyled = styled.section`
     align-items: center;
     background: ${greyColor};
     padding: 3rem 0;
+    width: 100%;
   }
 
   .section-contact__info {

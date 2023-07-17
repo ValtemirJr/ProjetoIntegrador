@@ -6,6 +6,7 @@ import {
   blackColor,
   bodyFont,
   whiteColor,
+  greyColor,
 } from '../UI/variables';
 
 const SectionStyled = styled.section`
@@ -138,6 +139,48 @@ const SectionStyled = styled.section`
 
   .section-work-schedule p:nth-of-type(5) {
     margin: 2.5rem;
+  }
+
+  .section-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: ${greyColor};
+    padding: 3rem 0;
+  }
+
+  .section-contact__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 0 2rem;
+
+    h2 {
+      line-height: 1.35em;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 40px;
+      font-family: ${titleFont};
+      font-weight: 300;
+    }
+
+    p,
+    a {
+      text-align: justify;
+      line-height: 1.875em;
+      font-size: 14px;
+      font-family: ${bodyFont};
+      font-weight: 300;
+    }
+  }
+
+  @media screen and (max-width: 1080px) {
+    .section-contact {
+      flex-direction: column;
+      padding: 2rem;
+    }
   }
 
   @media (max-width: 768px) {

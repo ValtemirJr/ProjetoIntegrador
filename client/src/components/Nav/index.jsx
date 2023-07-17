@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { AiOutlineInstagram, AiFillFacebook } from 'react-icons/ai';
-import { SiLinktree } from 'react-icons/si';
-import { MdLocationPin } from 'react-icons/md';
 import { ReactComponent as Logo } from '../../assets/logo.svg';
 
 import Ancor from '../Ancor';
@@ -11,6 +8,7 @@ import Button from '../Button';
 import Menu from '../Menu';
 
 import NavBar from './styles';
+import SocialList from '../SocialList';
 
 function Nav() {
   return (
@@ -40,20 +38,7 @@ function Nav() {
           </ul>
         </div>
         <div className="nav__social">
-          <ul className="nav__social--list">
-            <a href="https://www.instagram.com/cetacchapeco/">
-              <AiOutlineInstagram className="nav__social--icon" />
-            </a>
-            <a href="https://www.facebook.com/cetacchapeco">
-              <AiFillFacebook className="nav__social--icon" />
-            </a>
-            <a href="https://linktr.ee/Cetacchapeco">
-              <SiLinktree className="nav__social--icon" />
-            </a>
-            <a href="https://goo.gl/maps/5Qaes7QoZaEqzLLL9">
-              <MdLocationPin className="nav__social--icon" />
-            </a>
-          </ul>
+          <SocialList />
         </div>
       </div>
     </NavBar>

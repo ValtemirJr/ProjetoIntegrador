@@ -4,6 +4,10 @@ import { blackColor, whiteGreyColor } from '../UI/variables';
 
 const MenuHamburguer = styled.div`
   z-index: 5;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  position: fixed;
 
   .icon {
     position: absolute;
@@ -21,8 +25,8 @@ const MenuHamburguer = styled.div`
     height: 4px;
     background-color: ${blackColor};
     position: absolute;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: 0.5s;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 1);
+    transition: ease-in-out 0.5s;
   }
 
   .hamburguer:before {
@@ -32,7 +36,7 @@ const MenuHamburguer = styled.div`
     width: 32px;
     height: 4px;
     background-color: ${blackColor};
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 1);
     transition: 0.5s;
   }
 
@@ -43,7 +47,7 @@ const MenuHamburguer = styled.div`
     width: 32px;
     height: 4px;
     background-color: ${blackColor};
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 1);
     transition: 0.5s;
   }
 

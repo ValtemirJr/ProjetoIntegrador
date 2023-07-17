@@ -6,6 +6,14 @@
   background-size: cover;
 }
 
+.section-contact-container {
+  position: relative;
+  background-image: url('../../assets/images/entry.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .section-work-schedule-container::after {
   content: '';
   position: absolute;

@@ -79,4 +79,5 @@ Para executar o cliente, execute o comando `npm start` na pasta `client` e o cli
   - [Eslint](https://eslint.org/): utilizado para padronizar o código.
   - [Prettier](https://prettier.io/): utilizado para padronizar o código.
   - [React Slick](https://react-slick.neostack.com/), [Slick Carousel](https://kenwheeler.github.io/slick/), [Framer Motion](https://www.framer.com/motion/): utilizado para criar o carrossel de imagens.
+  - [React Google Maps API](https://react-google-maps-api-docs.netlify.app/): utilizado para criar o mapa de localização da clínica.
 - [PostgreSQL](https://www.postgresql.org/): SGBD utilizado para armazenar os dados do projeto.

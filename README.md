@@ -39,11 +39,12 @@ A pasta `server` contém as seguintes pastas:
   - `app.js`: Arquivo de configuração do servidor.
   - `server.js`: Arquivo de inicialização do servidor.
 
-A pasta `frontend` contém as seguintes pastas:
+A pasta `client` contém as seguintes pastas:
 - `src`: Contém o código do cliente.
   - `assets`: Contém as imagens dos componentes e do carousel.  
   - `components`: Contém os componentes do cliente.
   - `pages`: Contém as páginas do cliente.
+  - `util`: Contém scripts de utilidade do cliente.
   - `services`: Contém os serviços do cliente.
     - `api`: Contém os serviços de comunicação com o servidor.
 - `public`: Contém os arquivos públicos do cliente.

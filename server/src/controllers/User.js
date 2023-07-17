@@ -14,6 +14,30 @@ class UserController {
         .json({ error: error.message, message: 'User was not created' });
     }
   }
+
+  async delete(req, res) {
+    const { id } = req.params;
+    if (!id) {
+      return res.status(400).json({ errors: ['ID not provided'] });
+    }
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(400).json({ errors: ['User not found'] });
+    }
+    await user.destroy();
+    return res.json({
+      deleted: true,
+      message: 'User deleted',
+    });
+  }
+
+  catch(error) {
+    // eslint-disable-next-line no-undef
+    return res.status(400).json({
+      deleted: false,
+      errors: error.errors.map((err) => err.message),
+    });
+  }
 }
 
 export default new UserController();

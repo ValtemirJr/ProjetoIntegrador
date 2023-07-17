@@ -46,11 +46,11 @@ export default class User extends Model {
           defaultValue: '',
           validate: {
             notEmpty: {
-              msg: 'Name cannot be empty',
+              msg: 'Password cannot be empty',
             },
             len: {
               args: [6, 50],
-              msg: 'Name must have between 3 and 100 characters',
+              msg: 'Password must have between 6 and 50 characters',
             },
           },
         },

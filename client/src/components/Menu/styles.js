@@ -60,11 +60,7 @@ const MenuHamburguer = styled.div`
     font-size: 1.2rem;
     font-weight: 600;
     z-index: 3;
-    background: linear-gradient(
-      185deg,
-      ${whiteGreyColor} 90%,
-      rgba(255, 255, 255, 0) 100%
-    );
+    background: ${whiteGreyColor};
   }
 
   .menu__links--list {

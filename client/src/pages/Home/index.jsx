@@ -3,6 +3,7 @@ import Banner from '../../components/Banner';
 import Carousel from '../../components/Carousel';
 import Section from '../../components/Section';
 import Button from '../../components/Button';
+import Map from '../../components/Map';
 
 import { greyColor } from '../../components/UI/variables';
 
@@ -65,6 +66,7 @@ export default function Contact() {
             </Button>
           </div>
         </div>
+        <Map />
       </Section>
     </>
   );

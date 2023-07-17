@@ -146,13 +146,13 @@ const NavBar = styled.nav`
     }
 
     .div__menu--mobile {
-      position: absolute;
-      top: 0;
+      position: fixed;
+      top: 0.25rem;
       right: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 50px;
+      width: 55px;
       height: 50px;
     }
 

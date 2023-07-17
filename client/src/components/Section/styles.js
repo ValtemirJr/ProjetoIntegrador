@@ -158,6 +158,11 @@ const SectionStyled = styled.section`
     .section-work-schedule {
       font-size: 18px;
     }
+
+    .section-container,
+    .section-work-schedule-container {
+      padding: 2rem;
+    }
   }
 
   @media (max-width: 480px) {

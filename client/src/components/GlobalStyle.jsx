@@ -8,6 +8,10 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
     }
 
+    a {
+      color: inherit; 
+    }
+
     html, body, #root, .App {
         position: relative;
         min-height: 100vh;

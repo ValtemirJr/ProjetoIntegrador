@@ -16,27 +16,30 @@ class UserController {
   }
 
   async delete(req, res) {
-    const { id } = req.params;
-    if (!id) {
-      return res.status(400).json({ errors: ['ID not provided'] });
+    try {
+      const user = await User.findByPk(req.userId);
+      if (!user) {
+        return res.status(400).json({
+          errors: ['User not found'],
+        });
+      }
+      await user.destroy();
+      return res.status(200).json({
+        deleted: true,
+        message: 'User deleted',
+      });
+    } catch (error) {
+      if (error.errors) {
+        return res.status(400).json({
+          deleted: false,
+          errors: error.errors.map((err) => err.message),
+        });
+      }
+      return res.status(500).json({
+        deleted: false,
+        errors: ['An unexpected error occurred.'],
+      });
     }
-    const user = await User.findByPk(id);
-    if (!user) {
-      return res.status(400).json({ errors: ['User not found'] });
-    }
-    await user.destroy();
-    return res.json({
-      deleted: true,
-      message: 'User deleted',
-    });
-  }
-
-  catch(error) {
-    // eslint-disable-next-line no-undef
-    return res.status(400).json({
-      deleted: false,
-      errors: error.errors.map((err) => err.message),
-    });
   }
 }
 

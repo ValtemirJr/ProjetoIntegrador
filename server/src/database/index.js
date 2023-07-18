@@ -1,9 +1,9 @@
 import Sequelize from 'sequelize';
 import databaseConfig from '../config/database';
 import User from '../models/User';
-import Cliente from '../models/Cliente';
+import Client from '../models/Client';
 
-const models = [User, Cliente];
+const models = [User, Client];
 const connection = new Sequelize(databaseConfig);
 
 // Inicializa os models e associa as tabelas do banco de dados com os models do Sequelize

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import clienteController from '../controllers/Cliente';
+import clientController from '../controllers/Client';
 /*
   import loginRequired from '../middlewares/loginRequired';
 
@@ -9,6 +9,9 @@ import clienteController from '../controllers/Cliente';
 */
 const routes = new Router();
 
-routes.post('/', clienteController.create);
-routes.delete('/:id', clienteController.delete);
+routes.post('/', clientController.create);
+routes.delete('/:id', clientController.delete);
+routes.get('/', clientController.index);
+routes.get('/:id', clientController.show);
+routes.put('/:id', clientController.update);
 export default routes;

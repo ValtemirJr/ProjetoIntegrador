@@ -3,7 +3,6 @@ import {
   primaryColor,
   backgroundColor,
   textColor,
-  iconColor,
   titleFont,
   subitleFont,
 } from '../UI/variables';
@@ -11,7 +10,7 @@ import {
 const NavBar = styled.nav`
   background-color: ${backgroundColor};
   color: ${textColor};
-  padding: 2rem 5rem 0;
+  padding: 2rem 5rem 1rem;
 
   .nav__header {
     display: grid;
@@ -82,8 +81,7 @@ const NavBar = styled.nav`
     align-items: center;
   }
 
-  .nav__links,
-  .nav__social {
+  .nav__links {
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -94,17 +92,15 @@ const NavBar = styled.nav`
   .nav__social--list {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
     list-style: none;
     margin: 0;
     padding: 0;
   }
 
   .nav__social--list a > svg {
-    margin: 0 0.5rem;
-  }
-
-  .nav__social--list a {
-    color: ${iconColor};
+    margin: 1rem 0.5rem;
   }
 
   .nav__social--icon {
@@ -146,13 +142,12 @@ const NavBar = styled.nav`
     }
 
     .div__menu--mobile {
-      position: absolute;
-      top: 0;
+      position: fixed;
       right: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 50px;
+      width: 55px;
       height: 50px;
     }
 
@@ -163,14 +158,6 @@ const NavBar = styled.nav`
 
     .nav__content {
       display: none;
-    }
-
-    .nav__social--list {
-      margin-top: 1rem;
-    }
-
-    .nav__social--list a {
-      margin: 0.5rem;
     }
   }
 

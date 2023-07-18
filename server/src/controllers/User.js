@@ -14,6 +14,33 @@ class UserController {
         .json({ error: error.message, message: 'User was not created' });
     }
   }
+
+  async delete(req, res) {
+    try {
+      const user = await User.findByPk(req.userId);
+      if (!user) {
+        return res.status(400).json({
+          errors: ['User not found'],
+        });
+      }
+      await user.destroy();
+      return res.status(200).json({
+        deleted: true,
+        message: 'User deleted',
+      });
+    } catch (error) {
+      if (error.errors) {
+        return res.status(400).json({
+          deleted: false,
+          errors: error.errors.map((err) => err.message),
+        });
+      }
+      return res.status(500).json({
+        deleted: false,
+        errors: ['An unexpected error occurred.'],
+      });
+    }
+  }
 }
 
 export default new UserController();

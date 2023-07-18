@@ -3,6 +3,8 @@ import Banner from '../../components/Banner';
 import Section from '../../components/Section';
 import Button from '../../components/Button';
 import Professional from '../../components/Professional';
+import { greyColor } from '../../components/UI/variables';
+import AboutCarousel from '../../components/Carousel/AboutCarousel';
 
 export default function About() {
   const handleClick = () => {
@@ -34,7 +36,35 @@ export default function About() {
           text="Ana Carolina é a profissional responsável por atuar em Terapias Integrativas Complementares de forma profissional, responsável e atenciosa, visando no bem estar físico, psíquico e energético do cliente. Ana cursa Psicologia na Universidade do Oeste de Santa Catarina (Chapecó/SC) e é formada em Massagem com Conchas e Bamboo, Massagem Bioenergética, Cromoterapia, Aromaterapia, Florais de Bach e de Minas e Arteterapia pelo Instituto Fisiomar (Chapecó/SC - 2018)."
         />
       </Section>
-      <Section id="clinic">Conheça a clínica</Section>
+      <Section id="clinic">
+        <div
+          className="section-container"
+          style={{ backgroundColor: greyColor }}
+        >
+          <h2 className="section-title__about">Conheça a Clínica</h2>
+          <p className="section-text__about">
+            O CETAC Chapecó é um centro especializado em Terapias Alternativas,
+            complementares e estética que está no mercado desde 2020, localizado
+            em Chapecó (Santa Catarina), contamos com uma equipe especializada e
+            formada por profissionais capacitados para um melhor desempenho e
+            segurança. Partindo de uma abordagem centrada no paciente,
+            priorizando o conforto e bem-estar, oferecemos cuidados de
+            excelência, com tecnologias de ponta e tratamentos de qualidade que
+            abrangem desde a Medicina Tradicional Chinesa, Terapias Alternativas
+            e Yoga, Massoterapia e Estética Corporal & Facial, até Consultas
+            Psicológicas, Assistência Psicossocial e Tratamento para Dependentes
+            Químicos. Para saber mais, marque uma consulta com um dos
+            experientes membros da nossa equipe ou simplesmente passe aqui para
+            nos conhecer.
+          </p>
+          <div className="section-button-wrapper__about">
+            <Button to="/contact" className="section-button__about">
+              Entre em contato
+            </Button>
+          </div>
+        </div>
+      </Section>
+      <AboutCarousel />
     </>
   );
 }

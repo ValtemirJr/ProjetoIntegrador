@@ -1,6 +1,6 @@
 import React from 'react';
 import Banner from '../../components/Banner';
-import Carousel from '../../components/Carousel';
+import HomeCarousel from '../../components/Carousel/HomeCarousel';
 import Section from '../../components/Section';
 import Button from '../../components/Button';
 import Map from '../../components/Map';
@@ -17,7 +17,7 @@ export default function Home() {
           confiável!
         </p>
       </Banner>
-      <Carousel />
+      <HomeCarousel />
       <Section>
         <div
           className="section-container"

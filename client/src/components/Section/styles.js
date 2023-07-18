@@ -12,7 +12,7 @@ import {
 const SectionStyled = styled.section`
   background-color: ${whiteColor};
   color: ${textColor};
-  padding: 7.5rem 5rem;
+  padding: 3.5rem 5rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,15 +26,23 @@ const SectionStyled = styled.section`
     flex-direction: column;
   }
 
-  .section-title__home {
+  .section-title__home,
+  .section-title__about {
     font-family: ${titleFont};
     font-size: 40px;
     font-weight: 200;
     line-height: 1.35em;
     margin-bottom: 3rem;
     text-transform: uppercase;
-    text-align: left;
     color: ${blackColor};
+  }
+
+  .section-title__home {
+    text-align: left;
+  }
+
+  .section-title__about {
+    text-align: center;
   }
 
   .section-subtitle__home {
@@ -44,7 +52,8 @@ const SectionStyled = styled.section`
     line-height: 1.75em;
   }
 
-  .section-text__home {
+  .section-text__home,
+  .section-text__about {
     font-family: ${bodyFont};
     font-size: 15px;
     font-weight: 300;
@@ -60,9 +69,17 @@ const SectionStyled = styled.section`
     margin-bottom: 1.75rem;
   }
 
-  .section-button-wrapper__home {
+  .section-button-wrapper__home,
+  .section-button-wrapper__about {
     display: flex;
+  }
+
+  .section-button-wrapper__home {
     justify-content: left;
+  }
+
+  .section-button-wrapper__about {
+    justify-content: center;
   }
 
   .section-button__about {

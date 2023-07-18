@@ -13,7 +13,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('/token', {
+      const response = await fetch('http://localhost:3333/token/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import express from 'express';
 import homeRoutes from './routes/home';
-import userRoutes from './routes/user';
 import clientRoutes from './routes/client';
 import tokenRoutes from './routes/token';
 
@@ -30,7 +29,6 @@ class App {
   routes() {
     // Define as rotas da aplicação
     this.app.use('/', homeRoutes);
-    this.app.use('/users/', userRoutes);
     this.app.use('/client/', clientRoutes);
     this.app.use('/token/', tokenRoutes);
   }

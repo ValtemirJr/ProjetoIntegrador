@@ -39,6 +39,19 @@ export default class User extends Model {
           type: Sequelize.STRING(100),
           defaultValue: '',
         },
+        user_type: {
+          type: Sequelize.STRING(1),
+          defaultValue: 'S',
+          validate: {
+            notEmpty: {
+              msg: 'User type cannot be empty',
+            },
+            isIn: {
+              args: [['S', 'T']],
+              msg: 'User type must be S (Secretária) or T (Terapeuta)',
+            },
+          },
+        },
         // Campo virtual que não existe no banco de dados
         // Serve apenas para receber a senha do usuário antes de criptografá-la
         password: {

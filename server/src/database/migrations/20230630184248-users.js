@@ -19,6 +19,10 @@ module.exports = {
       allowNull: false,
       type: Sequelize.STRING(100),
     },
+    user_type: {
+      allowNull: false,
+      type: Sequelize.STRING(1),
+    },
   }),
 
   down: (queryInterface) => queryInterface.dropTable('users'),

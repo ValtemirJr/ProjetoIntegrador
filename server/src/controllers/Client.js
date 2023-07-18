@@ -7,10 +7,10 @@ class ClientController {
     try {
       const date = new Date(Date.now() - 3 * 60 * 60 * 1000).toUTCString();
       req.body.date_request = date;
-      const user = await Client.create(req.body);
+      const client = await Client.create(req.body);
       const {
         id, name, email, phonenumber, goal, date_request,
-      } = user;
+      } = client;
       return res.status(200).json({
         id,
         name,

@@ -13,3 +13,8 @@ models.forEach((model) => model.init(connection));
 models.forEach(
   (model) => model.associate && model.associate(connection.models),
 );
+
+// Passos para criar o banco de dados:
+// npx sequelize db:create : cria o banco de dados
+// npx sequelize db:migrate : cria as tabelas do banco de dados
+// npx sequelize db:seed:all : insere os dados das usuárias nas tabelas do banco de dados

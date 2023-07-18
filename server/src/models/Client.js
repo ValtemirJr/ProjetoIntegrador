@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-// Model que representa a tabela de usuários no banco de dados
+// Model que representa a tabela de clientes no banco de dados
 export default class Client extends Model {
   static init(sequelize) {
     super.init(

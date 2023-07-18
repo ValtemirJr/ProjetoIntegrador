@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {
   bodyFont,
   primaryColor,
-  subitleFont,
+  subtitleFont,
   titleFont,
 } from '../UI/variables';
 
@@ -40,7 +40,7 @@ const ProfessionalStyled = styled.div`
     text-align: left;
     line-height: 1.75em;
     font-size: 18px;
-    font-family: ${subitleFont};
+    font-family: ${subtitleFont};
   }
 
   p:last-of-type {

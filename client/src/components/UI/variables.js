@@ -9,5 +9,5 @@ export const whiteColor = '#FFFFFF';
 export const whiteGreyColor = '#EEEAEA';
 
 export const titleFont = "'Poppins', sans-serif";
-export const subitleFont = "'Martel', serif";
+export const subtitleFont = "'Martel', serif";
 export const bodyFont = "'Biryani', sans-serif";

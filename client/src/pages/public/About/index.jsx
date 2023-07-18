@@ -1,10 +1,10 @@
 import React from 'react';
-import Banner from '../../components/Banner';
-import Section from '../../components/Section';
-import Button from '../../components/Button';
-import Professional from '../../components/Professional';
-import { greyColor } from '../../components/UI/variables';
-import AboutCarousel from '../../components/Carousel/AboutCarousel';
+import Banner from '../../../components/Banner';
+import Section from '../../../components/Section';
+import Button from '../../../components/Button';
+import Professional from '../../../components/Professional';
+import { greyColor } from '../../../components/UI/variables';
+import AboutCarousel from '../../../components/Carousel/AboutCarousel';
 
 export default function About() {
   const handleClick = () => {

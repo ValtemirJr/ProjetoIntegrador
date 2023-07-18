@@ -3,7 +3,7 @@ import {
   primaryColor,
   textColor,
   titleFont,
-  subitleFont,
+  subtitleFont,
   blackColor,
   whiteColor,
 } from '../UI/variables';
@@ -39,7 +39,7 @@ const BannerStyled = styled.header`
   }
 
   .header-subtitle__home {
-    font-family: ${subitleFont};
+    font-family: ${subtitleFont};
     font-size: 18px;
     font-weight: 400;
     color: ${textColor};

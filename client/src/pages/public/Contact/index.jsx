@@ -1,8 +1,8 @@
 import React from 'react';
-import Map from '../../components/Map';
-import Section from '../../components/Section';
-import SocialList from '../../components/SocialList';
-import Form from '../../components/Form/Contact';
+import Map from '../../../components/Map';
+import Section from '../../../components/Section';
+import SocialList from '../../../components/SocialList';
+import Form from '../../../components/Form/Contact';
 
 export default function Contact() {
   return (

@@ -1,11 +1,11 @@
 import React from 'react';
-import Banner from '../../components/Banner';
-import HomeCarousel from '../../components/Carousel/HomeCarousel';
-import Section from '../../components/Section';
-import Button from '../../components/Button';
-import Map from '../../components/Map';
+import Banner from '../../../components/Banner';
+import HomeCarousel from '../../../components/Carousel/HomeCarousel';
+import Section from '../../../components/Section';
+import Button from '../../../components/Button';
+import Map from '../../../components/Map';
 
-import { greyColor } from '../../components/UI/variables';
+import { greyColor } from '../../../components/UI/variables';
 
 export default function Home() {
   return (

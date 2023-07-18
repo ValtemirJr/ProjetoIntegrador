@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import {
   textColor,
   titleFont,
-  subitleFont,
+  primaryColor,
+  subtitleFont,
   blackColor,
   bodyFont,
   whiteColor,
@@ -46,7 +47,7 @@ const SectionStyled = styled.section`
   }
 
   .section-subtitle__home {
-    font-family: ${subitleFont};
+    font-family: ${subtitleFont};
     font-size: 18px;
     font-weight: 300;
     line-height: 1.75em;
@@ -191,6 +192,21 @@ const SectionStyled = styled.section`
       font-size: 14px;
       font-family: ${bodyFont};
       font-weight: 300;
+    }
+  }
+  .section-button__404 {
+    background-color: ${greyColor};
+    color: ${primaryColor};
+    border: solid 1px ${primaryColor};
+    margin: 1rem 0 2rem;
+
+    &:hover {
+      background-color: ${primaryColor};
+      color: ${whiteColor};
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 

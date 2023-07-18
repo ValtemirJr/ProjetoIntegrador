@@ -4,7 +4,8 @@ import {
   backgroundColor,
   textColor,
   titleFont,
-  subitleFont,
+  subtitleFont,
+  whiteColor,
 } from '../UI/variables';
 
 const NavBar = styled.nav`
@@ -24,13 +25,13 @@ const NavBar = styled.nav`
   .nav__header--button {
     display: flex;
     justify-self: flex-end;
-    background-color: #ffffff;
+    background-color: ${whiteColor};
     color: ${primaryColor};
     border: solid 1px ${primaryColor};
 
     &:hover {
       background-color: ${primaryColor};
-      color: #ffffff;
+      color: ${whiteColor};
     }
 
     &:focus {
@@ -64,7 +65,7 @@ const NavBar = styled.nav`
   }
 
   .nav__header--title p {
-    font-family: ${subitleFont};
+    font-family: ${subtitleFont};
     font-size: 0.8rem;
     font-weight: 400;
   }

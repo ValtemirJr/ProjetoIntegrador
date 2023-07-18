@@ -5,14 +5,19 @@ class ClientController {
   // o body deve conter name, email e password
   async create(req, res) {
     try {
-      const date = new Date(Date.now()).toUTCString();
+      const date = new Date(Date.now() - 3 * 60 * 60 * 1000).toUTCString();
       req.body.date_request = date;
       const user = await Client.create(req.body);
       const {
         id, name, email, phonenumber, goal, date_request,
       } = user;
       return res.status(200).json({
-        id, name, email, phonenumber, goal, date_request,
+        id,
+        name,
+        email,
+        phonenumber,
+        goal,
+        date_request,
       });
     } catch (error) {
       return res

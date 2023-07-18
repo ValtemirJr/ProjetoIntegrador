@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { bodyFont } from './UI/variables';
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -6,10 +7,11 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
         text-decoration: none;
+        font-family: ${bodyFont};
     }
 
     a {
-      color: inherit; 
+      color: inherit;
     }
 
     html, body, #root, .App {

@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import cors from 'cors';
 import express from 'express';
 import homeRoutes from './routes/home';
 import userRoutes from './routes/user';
@@ -21,6 +22,7 @@ class App {
 
   middlewares() {
     // Permite que a aplicação receba requisições em JSON
+    this.app.use(cors());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
   }

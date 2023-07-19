@@ -6,10 +6,11 @@ const SideNav = styled.aside`
   flex-direction: column;
   align-items: center;
   height: 100vh;
-  width: 275px;
+  width: 300px;
   background-color: ${whiteColor};
   border-right: 1px solid ${whiteGreyColor};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
 
   h1 {
     font-size: 1.2rem;

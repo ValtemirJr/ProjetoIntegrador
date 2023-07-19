@@ -107,7 +107,7 @@ export default function ClientCreate() {
     <Section>
       <h1>
         <PiUserList />
-        Clientes - Editar
+        Clientes - Cadastro
       </h1>
       <ClientForm
         client={client}

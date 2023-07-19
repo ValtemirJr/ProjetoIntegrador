@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   primaryColor,
@@ -23,14 +24,31 @@ const H2 = styled.h2`
   color: ${primaryColor};
 `;
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: ${greyColor};
+`;
+
 export default function NotFound() {
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
-    <Section style={{ backgroundColor: `${greyColor}` }}>
-      <H1>404</H1>
-      <H2>Página não encontrada</H2>
-      <Button to="/" className="section-button__404">
-        Voltar para a página inicial
-      </Button>
-    </Section>
+    <Container>
+      <Section style={{ backgroundColor: `${greyColor}` }}>
+        <H1>404</H1>
+        <H2>Página não encontrada</H2>
+        <Button onClick={handleGoBack} className="section-button__404">
+          Voltar para a página anterior
+        </Button>
+      </Section>
+    </Container>
   );
 }

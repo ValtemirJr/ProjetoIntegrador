@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BsFillTrashFill } from 'react-icons/bs';
-import { FaUserEdit } from 'react-icons/fa';
+import { FiEdit } from 'react-icons/fi';
 import Swal from 'sweetalert2';
 import { PiUserList } from 'react-icons/pi';
 import Button from '../../../../components/Button';
@@ -15,8 +15,8 @@ import {
   TableDataCell,
 } from './styles';
 
-export default function ClientList() {
-  const [clients, setClients] = useState([]);
+export default function ServiceList() {
+  const [services, setServices] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
@@ -24,114 +24,117 @@ export default function ClientList() {
     setSearchTerm(event.target.value);
   };
 
-  const fetchClients = async () => {
+  const fetchServices = async () => {
     try {
-      const response = await fetch('http://localhost:3333/client');
+      const response = await fetch('http://localhost:3333/service');
       if (!response.ok) {
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível carregar os clientes.',
+          text: 'Não foi possível carregar os serviços.',
         });
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      setClients(data);
+      setServices(data);
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Erro',
-        text: 'Não foi possível carregar os clientes.',
+        text: 'Não foi possível carregar os serviços.',
       });
     }
   };
 
   const handleEditClient = (id) => {
-    navigate(`/secure/clients/update?id=${id}`);
+    navigate(`/secure/service/update?id=${id}`);
   };
 
   const handleDeleteClient = async (id) => {
     try {
-      await fetch(`http://localhost:3333/client/${id}`, {
+      await fetch(`http://localhost:3333/service/${id}`, {
         method: 'DELETE',
       });
       Swal.fire({
         icon: 'success',
         title: 'Sucesso',
-        text: 'Cliente excluído com sucesso.',
+        text: 'Serviço excluído com sucesso.',
       });
-      fetchClients();
+      fetchServices();
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Erro',
-        text: 'Não foi possível excluir o Cliente.',
+        text: 'Não foi possível excluir o Serviço.',
       });
     }
   };
 
   useEffect(() => {
-    fetchClients();
+    fetchServices();
   }, []);
 
   return (
     <Section>
       <h1>
         <PiUserList />
-        Clientes
+        Serviços
       </h1>
       <div className="actions">
         <input
           type="text"
           value={searchTerm}
           onChange={handleSearchChange}
-          placeholder="Buscar cliente..."
+          placeholder="Buscar serviço..."
         />
-        <Button
-          type="button"
-          to="/secure/clients/create"
-          className="button__crud"
-        >
-          Novo Cliente
-        </Button>
+        <div className="actions__buttons">
+          <Button
+            type="button"
+            to="/secure/services/create"
+            className="button__crud"
+          >
+            Novo Serviço
+          </Button>
+          <Button
+            type="button"
+            to="/secure/servicesType/create"
+            className="button__crud"
+          >
+            Novo Tipo de Serviço
+          </Button>
+        </div>
       </div>
       <TableWrapper>
         <TableHeader>
           <TableRow>
-            <TableHeaderCell>CPF</TableHeaderCell>
-            <TableHeaderCell>Nome</TableHeaderCell>
-            <TableHeaderCell>E-mail</TableHeaderCell>
-            <TableHeaderCell>Telefone</TableHeaderCell>
-            <TableHeaderCell>Endereço</TableHeaderCell>
-            <TableHeaderCell>Data de Nascimento</TableHeaderCell>
+            <TableHeaderCell>Descrição</TableHeaderCell>
+            <TableHeaderCell>Tipo</TableHeaderCell>
+            <TableHeaderCell>Preço</TableHeaderCell>
             <TableHeaderCell>Ações</TableHeaderCell>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {clients
-            .filter((client) =>
-              Object.values(client).some((value) =>
+          {services
+            .filter((service) =>
+              Object.values(service).some((value) =>
                 String(value).toLowerCase().includes(searchTerm.toLowerCase()),
               ),
             )
-            .map((client) => (
-              <TableRow key={client.id}>
-                <TableDataCell>{client.cpf}</TableDataCell>
-                <TableDataCell>{client.name}</TableDataCell>
-                <TableDataCell>{client.email}</TableDataCell>
-                <TableDataCell>{client.phonenumber}</TableDataCell>
-                <TableDataCell>{client.address}</TableDataCell>
-                <TableDataCell>{client.date_birth}</TableDataCell>
+            .map((service) => (
+              <TableRow key={service.id}>
+                <TableDataCell>{service.description}</TableDataCell>
+                <TableDataCell>{service.service_type_id}</TableDataCell>
+                <TableDataCell>{service.price}</TableDataCell>
                 <TableDataCell>
                   <button
                     type="button"
-                    onClick={() => handleEditClient(client.id)}
+                    onClick={() => handleEditClient(service.id)}
                   >
-                    <FaUserEdit />
+                    <FiEdit />
                   </button>
                   <button
                     type="button"
-                    onClick={() => handleDeleteClient(client.id)}
+                    onClick={() => handleDeleteClient(service.id)}
                   >
                     <BsFillTrashFill />
                   </button>

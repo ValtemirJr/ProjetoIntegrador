@@ -1,4 +1,5 @@
 module.exports = {
+  // Cria a tabela de clients no banco de dados com os campos abaixo
   up: (queryInterface, Sequelize) => queryInterface.createTable('client', {
     id: {
       type: Sequelize.INTEGER,

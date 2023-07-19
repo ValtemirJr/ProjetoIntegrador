@@ -13,20 +13,20 @@ class TokenController {
 
     if (!email || !password) {
       return res.status(401).json({
-        errors: ['Wrong credentials.'],
+        errors: ['Credenciais inválidas.'],
       });
     }
 
     if (!user) {
       return res.status(401).json({
-        errors: ['User does not exist.'],
+        errors: ['Usuário não existe.'],
       });
     }
 
     // Verifica se a senha informada é válida
     if (!(await user.isPasswordValid(password))) {
       return res.status(401).json({
-        errors: ['Wrong credentials.'],
+        errors: ['Senha inválida.'],
       });
     }
 
@@ -51,7 +51,7 @@ class TokenController {
     if (!token) {
       return res.status(401).json({
         valid: false,
-        errors: ['Token not found.'],
+        errors: ['Token não encontrado.'],
       });
     }
 
@@ -64,7 +64,7 @@ class TokenController {
       if (!user) {
         return res.status(401).json({
           valid: false,
-          errors: ['Invalid token.'],
+          errors: ['Token inválido.'],
         });
       }
 
@@ -74,7 +74,7 @@ class TokenController {
     } catch (error) {
       return res.status(401).json({
         valid: false,
-        errors: ['Invalid token.'],
+        errors: ['Token inválido.'],
       });
     }
   }

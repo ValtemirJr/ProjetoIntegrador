@@ -11,11 +11,11 @@ export default class User extends Model {
           defaultValue: '',
           validate: {
             notEmpty: {
-              msg: 'Name cannot be empty',
+              msg: 'Nome não pode ser vazio',
             },
             len: {
               args: [3, 100],
-              msg: 'Name must have between 3 and 100 characters',
+              msg: 'Nome deve ter entre 3 e 100 caracteres',
             },
           },
         },
@@ -23,14 +23,14 @@ export default class User extends Model {
           type: Sequelize.STRING(100),
           defaultValue: '',
           unique: {
-            msg: 'Email already exists',
+            msg: 'E-mail ja existe',
           },
           validate: {
             notEmpty: {
-              msg: 'Name cannot be empty',
+              msg: 'Nome não pode ser vazio',
             },
             isEmail: {
-              msg: 'Invalid email',
+              msg: 'E-mail inválido',
             },
           },
         },
@@ -39,16 +39,19 @@ export default class User extends Model {
           type: Sequelize.STRING(100),
           defaultValue: '',
         },
+        // Campo que armazena o tipo de usuário
+        // S = Secretária
+        // T = Terapeuta
         user_type: {
           type: Sequelize.STRING(1),
           defaultValue: 'S',
           validate: {
             notEmpty: {
-              msg: 'User type cannot be empty',
+              msg: 'Usuário não pode ser vazio'
             },
             isIn: {
               args: [['S', 'T']],
-              msg: 'User type must be S (Secretária) or T (Terapeuta)',
+              msg: 'Usuário deve ser S (Secretária) ou T (Terapeuta)'
             },
           },
         },
@@ -59,11 +62,11 @@ export default class User extends Model {
           defaultValue: '',
           validate: {
             notEmpty: {
-              msg: 'Password cannot be empty',
+              msg: 'Senha não pode ser vazia',
             },
             len: {
               args: [6, 50],
-              msg: 'Password must have between 6 and 50 characters',
+              msg: 'Senha deve ter entre 6 e 50 caracteres',
             },
           },
         },

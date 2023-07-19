@@ -1,31 +1,34 @@
 import Service from '../models/Service';
 
 class ServiceController {
-  // Cria um novo usuário no banco de dados e retorna os dados do usuário criado
-  // o body deve conter name, email e password
+  // Cria um serviço para agendar
   async create(req, res) {
     try {
+      // Cria um serviço no banco de dados e retorna os dados do serviço criado
       const service = await Service.create(req.body);
       return res.status(200).json(service);
     } catch (error) {
       return res
         .status(400)
-        .json({ error: error.message, message: 'Service was not created' });
+        .json({ error: error.message, message: 'Serviço não foi criado' });
     }
   }
 
+  // Deleta um serviço
   async delete(req, res) {
     try {
+      // Busca o serviço pelo id passado na requisição pelo parâmetro da rota url
       const service = await Service.findByPk(req.params.id);
       if (!service) {
         return res.status(400).json({
-          errors: ['Service not found'],
+          errors: ['Serviço não encontrado'],
         });
       }
+      // Deleta o serviço
       await service.destroy();
       return res.status(200).json({
         deleted: true,
-        message: 'Service deleted',
+        message: 'Serviço deletado',
       });
     } catch (error) {
       if (error.errors) {
@@ -36,13 +39,15 @@ class ServiceController {
       }
       return res.status(500).json({
         deleted: false,
-        errors: ['An unexpected error occurred.'],
+        errors: ['Erro interno no servidor'],
       });
     }
   }
 
+  // Lista todos os serviços
   async index(req, res) {
     try {
+      // Busca todos os serviços e retorna os dados deles
       const service = await Service.findAll();
       return res.json(service);
     } catch (error) {
@@ -50,32 +55,40 @@ class ServiceController {
     }
   }
 
+  // Lista um serviço
   async show(req, res) {
     try {
+      // Pega o id no parâmetro da rota
       const { id } = req.params;
       if (!id) {
         return res.status(400).json({ errors: ['ID not provided'] });
       }
+      // Busca o serviço pelo id
       const service = await Service.findByPk(id);
       if (!service) {
         return res.status(400).json({ errors: ['Service type not found'] });
       }
+      // Retorna os dados do serviço
       return res.json(service);
     } catch (error) {
       return res.status(400).json({ error: error.message });
     }
   }
 
+  // Atualiza um serviço
   async update(req, res) {
     try {
+      // Pega o id no parâmetro da rota
       const { id } = req.params;
       if (!id) {
         return res.status(400).json({ errors: ['ID not provided'] });
       }
+      // Busca o serviço pelo id
       const service = await Service.findByPk(id);
       if (!service) {
         return res.status(400).json({ errors: ['Service type not found'] });
       }
+      // Atualiza o serviço
       const updatedService = await service.update(req.body);
       return res.json(updatedService);
     } catch (error) {

@@ -5,16 +5,17 @@ export default class Client extends Model {
   static init(sequelize) {
     super.init(
       {
+        // Atributos obrigatórios
         name: {
           type: Sequelize.STRING(100),
           defaultValue: '',
           validate: {
             notEmpty: {
-              msg: 'Name cannot be empty',
+              msg: 'Nome não pode ser vazio',
             },
             len: {
               args: [3, 100],
-              msg: 'Name must have between 3 and 100 characters',
+              msg: 'Nome deve ter entre 3 e 100 caracteres',
             },
           },
         },
@@ -22,14 +23,14 @@ export default class Client extends Model {
           type: Sequelize.STRING(100),
           defaultValue: '',
           unique: {
-            msg: 'Email already exists',
+            msg: 'E-mail já existe',
           },
           validate: {
             notEmpty: {
-              msg: 'Email cannot be empty',
+              msg: 'E-mail não pode ser vazio',
             },
             isEmail: {
-              msg: 'Invalid Email',
+              msg: 'E-mail inválido',
             },
           },
         },
@@ -37,14 +38,15 @@ export default class Client extends Model {
           type: Sequelize.STRING(20),
           defaultValue: '',
           unique: {
-            msg: 'Phonenumber already exists',
+            msg: 'Telefone já existe',
           },
           validate: {
             notEmpty: {
-              msg: 'Phonenumber cannot be empty',
+              msg: 'Telefone não pode ser vazio',
             },
           },
         },
+        // Atributos opcionais
         cpf: {
           type: Sequelize.STRING(11),
           defaultValue: '',
@@ -91,6 +93,8 @@ export default class Client extends Model {
     return this;
   }
 
+  // Associação entre tabelas
+  // Um cliente pode ter vários agendamentos
   static associate(models) {
     this.hasMany(models.Scheduling, { foreignKey: 'client_id' });
   }

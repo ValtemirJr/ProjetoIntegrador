@@ -6,7 +6,9 @@ import ServiceType from '../models/ServiceType';
 import Service from '../models/Service';
 import Scheduling from '../models/Scheduling';
 
+// Array com todos os models da aplicação para inicializar o Sequelize
 const models = [User, Client, ServiceType, Service, Scheduling];
+// Inicializa o Sequelize com as configurações do banco de dados
 const connection = new Sequelize(databaseConfig);
 
 // Inicializa os models e associa as tabelas do banco de dados com os models do Sequelize

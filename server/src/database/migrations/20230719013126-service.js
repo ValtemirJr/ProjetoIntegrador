@@ -1,4 +1,5 @@
 module.exports = {
+  // Cria a tabela de tipos de serviço no banco de dados com os campos abaixo
   up: (queryInterface, Sequelize) => queryInterface.createTable('service', {
     id: {
       type: Sequelize.INTEGER,
@@ -11,6 +12,7 @@ module.exports = {
       type: Sequelize.STRING(255),
       unique: true,
     },
+    // Se o tipo de serviço for excluído, exclui também todos os serviços relacionados a ele
     service_type_id: {
       type: Sequelize.INTEGER,
       references: { model: 'service_type', key: 'id' },

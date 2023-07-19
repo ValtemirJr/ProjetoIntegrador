@@ -1,5 +1,6 @@
 const bcryptjs = require('bcryptjs');
 
+// Popula a tabela users com os dados abaixo
 module.exports = {
   up: async (queryInterface) => queryInterface.bulkInsert(
     'users',

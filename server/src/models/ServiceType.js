@@ -10,11 +10,11 @@ export default class ServiceType extends Model {
           defaultValue: '',
           validate: {
             notEmpty: {
-              msg: 'Description cannot be empty',
+              msg: 'Descrição não pode ser vazia',
             },
             len: {
               args: [5, 255],
-              msg: 'Description must have between 5 and 255 characters',
+              msg: 'Descrição deve ter entre 5 e 255 caracteres',
             },
           },
         },
@@ -28,6 +28,8 @@ export default class ServiceType extends Model {
     return this;
   }
 
+  // Associação entre models
+  // Um tipo de serviço pode ter vários serviços
   static associate(models) {
     this.hasMany(models.Service, { foreignKey: 'service_type_id' });
   }

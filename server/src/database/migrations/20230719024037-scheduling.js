@@ -1,4 +1,5 @@
 module.exports = {
+  // Cria a tabela de clientes no banco de dados com os campos abaixo
   up: (queryInterface, Sequelize) => queryInterface.createTable('scheduling', {
     id: {
       type: Sequelize.INTEGER,
@@ -6,6 +7,7 @@ module.exports = {
       autoIncrement: true,
       primaryKey: true,
     },
+    // Se o cliente for excluído, exclui também todos os agendamentos relacionados a ele
     client_id: {
       type: Sequelize.INTEGER,
       references: { model: 'client', key: 'id' },

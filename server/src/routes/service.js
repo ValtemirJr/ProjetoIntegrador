@@ -1,13 +1,9 @@
 import { Router } from 'express';
 import serviceController from '../controllers/Service';
-/*
-  import loginRequired from '../middlewares/loginRequired';
 
-  - Import dos middleware de autenticação para as rotas que precisam do usuário logado
-  - Exemplo: rota de atualização de informações do usuário (PUT /users)
-      routes.put('/', loginRequired, userController.update);
-*/
 const routes = new Router();
+
+// Rotas para o CRUD de serviços
 
 routes.post('/', serviceController.create);
 routes.delete('/:id', serviceController.delete);

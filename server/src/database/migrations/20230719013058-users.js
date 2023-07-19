@@ -1,4 +1,5 @@
 module.exports = {
+  // Cria a tabela de usuários no banco de dados com os campos abaixo
   up: (queryInterface, Sequelize) => queryInterface.createTable('users', {
     id: {
       type: Sequelize.INTEGER,

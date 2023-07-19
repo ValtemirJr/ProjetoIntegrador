@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-// Model que representa a tabela de serrvices no banco de dados
+// Model que representa a tabela de services no banco de dados
 export default class Service extends Model {
   static init(sequelize) {
     super.init(
@@ -10,11 +10,11 @@ export default class Service extends Model {
           defaultValue: '',
           validate: {
             notEmpty: {
-              msg: 'Description cannot be empty',
+              msg: 'Descrição não pode ser vazia',
             },
             len: {
               args: [5, 255],
-              msg: 'Description must have between 5 and 255 characters',
+              msg: 'Descrição deve ter entre 5 e 255 caracteres',
             },
           },
         },
@@ -23,7 +23,7 @@ export default class Service extends Model {
           defaultValue: '',
           validate: {
             notEmpty: {
-              msg: 'Price cannot be zero or less',
+              msg: 'Preço não pode ser vazio',
             },
           },
         },
@@ -38,6 +38,8 @@ export default class Service extends Model {
     return this;
   }
 
+  // Associação entre models
+  // Um serviço pode ter vários agendamentos
   static associate(models) {
     this.hasMany(models.Scheduling, { foreignKey: 'service_id' });
   }

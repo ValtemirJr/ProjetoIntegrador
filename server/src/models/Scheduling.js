@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-// Model que representa a tabela de serrvices no banco de dados
+// Model que representa a tabela de agendamentos no banco de dados
 export default class Scheduling extends Model {
   static init(sequelize) {
     super.init(

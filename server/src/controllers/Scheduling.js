@@ -1,8 +1,7 @@
 import Scheduling from '../models/Scheduling';
 
 class SchedulingController {
-  // Cria um novo usuário no banco de dados e retorna os dados do usuário criado
-  // o body deve conter name, email e password
+  // Cria um agendamento
   async create(req, res) {
     try {
       const date = new Date(Date.now() - 3 * 60 * 60 * 1000).toUTCString();

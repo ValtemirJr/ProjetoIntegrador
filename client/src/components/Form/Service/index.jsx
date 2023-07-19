@@ -2,6 +2,12 @@ import React from 'react';
 import Button from '../../Button';
 import FormStyled from './styles';
 
+// Componente de formulário para cadastro e atualização de serviços
+// Recebe como props o objeto serviço com os dados vindos
+// do banco de dados,
+// a função para lidar com a mudança de dados nos inputs,
+// a função para lidar com o envio do formulário
+// e a função para lidar com o cancelamentodo envio do formulário.
 function ServiceForm({
   service,
   handleInputChange,

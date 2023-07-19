@@ -3,6 +3,12 @@ import Button from '../../Button';
 import FormStyled from './styles';
 import formatPhone from '../../../util/formatPhone';
 
+// Componente de formulário para cadastro e atualização de clientes
+// Recebe como props o objeto cliente com os dados vindos
+// do banco de dados,
+// a função para lidar com a mudança de dados nos inputs,
+// a função para lidar com o envio do formulário
+// e a função para lidar com o cancelamentodo envio do formulário.
 function ClientForm({ client, handleInputChange, handleSubmit, handleCancel }) {
   return (
     <FormStyled>

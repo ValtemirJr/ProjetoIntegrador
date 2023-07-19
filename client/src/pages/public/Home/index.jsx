@@ -7,6 +7,7 @@ import Map from '../../../components/Map';
 
 import { greyColor } from '../../../components/UI/variables';
 
+// Página inicial
 export default function Home() {
   return (
     <>

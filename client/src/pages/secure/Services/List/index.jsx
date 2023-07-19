@@ -15,17 +15,23 @@ import {
   TableDataCell,
 } from './styles';
 
+// Página de listagem de clientes
 export default function ServiceList() {
+  // Estado para armazenar os clientes
   const [services, setServices] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  // Hook para navegar entre as páginas
   const navigate = useNavigate();
 
+  // Função para buscar a inserção no filtro de busca
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
+  // Função para buscar os clientes no backend
   const fetchServices = async () => {
     try {
+      // Requisição para buscar os clientes no backend
       const response = await fetch('http://localhost:3333/service');
       if (!response.ok) {
         Swal.fire({
@@ -35,6 +41,7 @@ export default function ServiceList() {
         });
         throw new Error('Network response was not ok');
       }
+      // Conversão dos dados para JSON e armazenamento no estado
       const data = await response.json();
       setServices(data);
     } catch (error) {
@@ -46,12 +53,15 @@ export default function ServiceList() {
     }
   };
 
-  const handleEditClient = (id) => {
+  // Função para navegar para a página de edição de serviços
+  const handleEditServices = (id) => {
     navigate(`/secure/service/update?id=${id}`);
   };
 
-  const handleDeleteClient = async (id) => {
+  //  Função para excluir um serviço
+  const handleDeleteServices = async (id) => {
     try {
+      // Requisição para excluir um serviço no backend enviando o ID como parâmetro
       await fetch(`http://localhost:3333/service/${id}`, {
         method: 'DELETE',
       });
@@ -60,6 +70,7 @@ export default function ServiceList() {
         title: 'Sucesso',
         text: 'Serviço excluído com sucesso.',
       });
+      // Busca novamente os serviços
       fetchServices();
     } catch (error) {
       Swal.fire({
@@ -70,6 +81,7 @@ export default function ServiceList() {
     }
   };
 
+  // Hook para buscar os serviços e atualizar a tabela
   useEffect(() => {
     fetchServices();
   }, []);
@@ -81,6 +93,11 @@ export default function ServiceList() {
         Serviços
       </h1>
       <div className="actions">
+        {/*
+         O filtro de busca filtra os dados
+         da tabela por qualquer campo e coluna
+        da tabela
+         */}
         <input
           type="text"
           value={searchTerm}
@@ -115,11 +132,14 @@ export default function ServiceList() {
         </TableHeader>
         <TableBody>
           {services
+            // Filtro de busca nos dados da tabela por qualquer campo e coluna
             .filter((service) =>
+              // Verifica se algum valor do objeto inclui o termo de busca
               Object.values(service).some((value) =>
                 String(value).toLowerCase().includes(searchTerm.toLowerCase()),
               ),
             )
+            // Mapeamento dos dados para a tabela de serviços
             .map((service) => (
               <TableRow key={service.id}>
                 <TableDataCell>{service.description}</TableDataCell>
@@ -128,13 +148,13 @@ export default function ServiceList() {
                 <TableDataCell>
                   <button
                     type="button"
-                    onClick={() => handleEditClient(service.id)}
+                    onClick={() => handleEditServices(service.id)}
                   >
                     <FiEdit />
                   </button>
                   <button
                     type="button"
-                    onClick={() => handleDeleteClient(service.id)}
+                    onClick={() => handleDeleteServices(service.id)}
                   >
                     <BsFillTrashFill />
                   </button>

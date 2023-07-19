@@ -5,7 +5,9 @@ import { PiUserList } from 'react-icons/pi';
 import { Section } from './styles';
 import ClientForm from '../../../../components/Form/Client';
 
+// Página de cadastro de clientes
 export default function ClientCreate() {
+  // Estado para armazenar os dados do cliente
   const [client, setClient] = useState({
     id: '',
     name: '',
@@ -22,9 +24,12 @@ export default function ClientCreate() {
     date_request: '',
   });
 
+  // Hook para navegar entre as páginas
   const navigate = useNavigate();
 
+  // Função para criar um cliente e enviar para o backend
   const createClient = async (bodyData) => {
+    // Desestruturação dos dados do cliente
     const {
       name,
       email,
@@ -41,11 +46,13 @@ export default function ClientCreate() {
     } = bodyData;
 
     try {
+      // Requisição para criar um cliente
       const response = await fetch('http://localhost:3333/client', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        // Corpo da requisição com os dados do cliente desestruturados
         body: JSON.stringify({
           name,
           email,
@@ -61,6 +68,7 @@ export default function ClientCreate() {
           date_request,
         }),
       });
+      // Verifica se a resposta da requisição é ok
       if (!response.ok) {
         Swal.fire({
           icon: 'error',
@@ -86,11 +94,13 @@ export default function ClientCreate() {
     }
   };
 
+  // Função para lidar com o envio do formulário
   const handleSubmit = (event) => {
     event.preventDefault();
     createClient(client);
   };
 
+  // Função para lidar com a mudança de dados nos inputs
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setClient((prevClient) => ({
@@ -99,6 +109,7 @@ export default function ClientCreate() {
     }));
   };
 
+  // Função para lidar com o cancelamento do envio do formulário
   const handleCancel = () => {
     navigate('/secure/clients');
   };
@@ -109,6 +120,11 @@ export default function ClientCreate() {
         <PiUserList />
         Clientes - Cadastro
       </h1>
+      {/*
+        Formulário para cadastro de clientes
+        Recebe como props o objeto cliente com os dados vindos
+        e as funções para lidar com a mudança de dados.
+      */}
       <ClientForm
         client={client}
         handleInputChange={handleInputChange}

@@ -10,6 +10,7 @@ import Menu from '../../Menu';
 import NavBar from './styles';
 import SocialList from '../../SocialList';
 
+// Componente de navegação para páginas públicas
 function Nav() {
   return (
     <NavBar>

@@ -5,7 +5,9 @@ import { PiUserList } from 'react-icons/pi';
 import { Section } from './styles';
 import ClientForm from '../../../../components/Form/Client';
 
+// Página de edição de clientes
 export default function ClientUpdate() {
+  // Estado para armazenar os dados do cliente
   const [client, setClient] = useState({
     id: '',
     name: '',
@@ -22,13 +24,18 @@ export default function ClientUpdate() {
     date_request: '',
   });
 
+  // Hook para navegar entre as páginas
   const navigate = useNavigate();
+  // Hook para pegar os dados da URL
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
+  // Guarda o ID do cliente dos parâmetros da URL
   const id = searchParams.get('id');
 
+  // Função para buscar um cliente no backend
   const fetchClient = async (clientId) => {
     try {
+      // Requisição para buscar um cliente no backend enviando o ID como parâmetro
       const response = await fetch(`http://localhost:3333/client/${clientId}`);
       if (!response.ok) {
         Swal.fire({
@@ -38,7 +45,9 @@ export default function ClientUpdate() {
         });
         throw new Error('Network response was not ok');
       }
+      // Conversão dos dados para JSON
       const data = await response.json();
+      // Armazenamento dos dados no estado
       setClient(data);
     } catch (error) {
       Swal.fire({
@@ -49,7 +58,9 @@ export default function ClientUpdate() {
     }
   };
 
+  // Função para atualizar um cliente no backend
   const putClient = async (clientId, bodyData) => {
+    // Desestruturação dos dados do cliente
     const {
       name,
       email,
@@ -66,11 +77,13 @@ export default function ClientUpdate() {
     } = bodyData;
 
     try {
+      // Requisição para atualizar um cliente enviando o ID como parâmetro
       const response = await fetch(`http://localhost:3333/client/${clientId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
+        // Corpo da requisição com os dados do cliente desestruturados
         body: JSON.stringify({
           name,
           email,
@@ -95,6 +108,7 @@ export default function ClientUpdate() {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
+      // Armazenamento dos dados no estado
       setClient(data);
       Swal.fire({
         icon: 'success',
@@ -111,12 +125,14 @@ export default function ClientUpdate() {
     }
   };
 
-  // faz o update do cliente
+  // Função para enviar os dados do formulário
   const handleSubmit = (event) => {
     event.preventDefault();
     putClient(id, client);
   };
 
+  // Função para atualizar os dados do cliente
+  // no estado conforme o usuário digita no formulário
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setClient((prevClient) => ({
@@ -125,10 +141,12 @@ export default function ClientUpdate() {
     }));
   };
 
+  // Renderiza os dados do cliente na página
   useEffect(() => {
     fetchClient(id);
   }, [id]);
 
+  // Função para cancelar a edição e voltar para a página de listagem de clientes
   const handleCancel = () => {
     navigate('/secure/solicitations');
   };

@@ -14,13 +14,18 @@ import {
 } from './styles';
 import formatDate from '../../../util/formatDate';
 
+// Página de listagem de solicitações de contato
 export default function Solicitations() {
   const [solicitations, setSolicitations] = useState([]);
   const [dateFilter, setDateFilter] = useState('');
   const navigate = useNavigate();
 
+  // Função para buscar os clientes no backend
+  // que solicitarão contato na página pública
+  // de Entrar em Contato
   const fetchSolicitations = async () => {
     try {
+      // Requisição para buscar os clientes no backend
       const response = await fetch('http://localhost:3333/client');
       if (!response.ok) {
         Swal.fire({
@@ -41,12 +46,15 @@ export default function Solicitations() {
     }
   };
 
+  // Função para navegar para a página de edição de clientes
   const handleAcceptSolicitation = (id) => {
     navigate(`/secure/clients/update?id=${id}`);
   };
 
+  // Função para excluir um cliente no backend
   const handleDeleteSolicitation = async (id) => {
     try {
+      // Requisição para excluir um cliente no backend enviando o ID como parâmetro
       await fetch(`http://localhost:3333/client/${id}`, {
         method: 'DELETE',
       });
@@ -65,17 +73,22 @@ export default function Solicitations() {
     }
   };
 
+  // Função para filtrar as solicitações de contato por data
   const filteredSolicitations = solicitations.filter((solicitation) => {
     if (!dateFilter) {
       return true;
     }
 
+    // Formatação da data para o formato YYYY-MM-DD
     const formattedDate = new Date(solicitation.date_request)
       .toISOString()
       .substr(0, 10);
+    // Comparação da data formatada com a data do filtro
+    // e retorno do resultado da comparação
     return formattedDate === dateFilter;
   });
 
+  // Função para atualizar as solicitações de contato
   useEffect(() => {
     fetchSolicitations();
   }, []);
@@ -109,6 +122,7 @@ export default function Solicitations() {
           </TableRow>
         </TableHeader>
         <TableBody>
+          {/* Mapeamento dos clientes para exibição na tabela */}
           {filteredSolicitations.map((solicitation) => (
             <TableRow key={solicitation.id}>
               <TableDataCell>{solicitation.name}</TableDataCell>
@@ -116,6 +130,7 @@ export default function Solicitations() {
               <TableDataCell>{solicitation.phonenumber}</TableDataCell>
               <TableDataCell>{solicitation.goal}</TableDataCell>
               <TableDataCell>
+                {/* Formatação da data para o formato DD/MM/YYYY as HH:mm:ss */}
                 {formatDate(solicitation.date_request)}
               </TableDataCell>
               <TableDataCell>

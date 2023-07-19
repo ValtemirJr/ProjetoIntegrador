@@ -4,6 +4,7 @@ import Section from '../../../components/Section';
 import SocialList from '../../../components/SocialList';
 import Form from '../../../components/Form/Contact';
 
+// Página de contato
 export default function Contact() {
   return (
     <Section className="section-contact-container">
@@ -25,6 +26,10 @@ export default function Contact() {
             <SocialList className="nav__social--list" />
           </div>
         </div>
+        {/*
+          Formulário de contato
+          Dentro dele ocorre os envios para o backend
+        */}
         <Form />
       </div>
       <Map />

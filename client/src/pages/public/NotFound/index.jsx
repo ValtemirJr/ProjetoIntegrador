@@ -23,6 +23,7 @@ const H2 = styled.h2`
   color: ${primaryColor};
 `;
 
+// Componente para tratar páginas não encontradas
 export default function NotFound() {
   return (
     <Section style={{ backgroundColor: `${greyColor}` }}>

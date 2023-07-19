@@ -33,9 +33,11 @@ const Container = styled.div`
   background-color: ${greyColor};
 `;
 
+// Componente para tratar páginas não encontradas
 export default function NotFound() {
   const navigate = useNavigate();
 
+  // Função para voltar para a página anterior
   const handleGoBack = () => {
     navigate(-1);
   };

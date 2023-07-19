@@ -4,6 +4,7 @@ import { MdLocationPin } from 'react-icons/md';
 import { SiLinktree } from 'react-icons/si';
 import SocialListStyled from './styles';
 
+// Componente de lista de redes sociais para páginas
 export default function SocialList() {
   return (
     <SocialListStyled className="social-list">

@@ -3,17 +3,21 @@ import Swal from 'sweetalert2';
 import { ContactForm, Input, TextArea, SubmitButton } from './styles';
 import formatPhone from '../../../util/formatPhone';
 
+// Componente de formulário para contato
 export default function Contact() {
+  // Estados para os dados do formulário
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
   const [goal, setGoal] = useState('');
 
+  // Função para lidar com a mudança de dados nos inputs
   const handlePhoneChange = (event) => {
     event.preventDefault();
     setPhonenumber(formatPhone(event.target.value));
   };
 
+  // Função para lidar com o envio do formulário
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -24,6 +28,7 @@ export default function Contact() {
       goal,
     };
 
+    // Envia os dados do formulário para o backend
     fetch('http://localhost:3333/client/', {
       method: 'POST',
       headers: {
@@ -32,7 +37,9 @@ export default function Contact() {
       body: JSON.stringify(formData),
     })
       .then((response) => {
+        // Verifica se a resposta da requisição é ok
         if (!response.ok) {
+          // Caso não seja, exibe um alerta de erro
           Swal.fire({
             title: 'Erro!',
             text: 'Ocorreu um erro ao enviar sua solicitação! Verique os dados e tente novamente, todos são obrigatórios.',
@@ -42,8 +49,10 @@ export default function Contact() {
 
           throw new Error('Erro ao enviar solicitação');
         }
+        // Caso seja, retorna a resposta em json
         return response.json();
       })
+      // Caso a resposta seja retornada, exibe um alerta de sucesso
       .then(() => {
         Swal.fire({
           title: 'Sucesso!',
@@ -52,6 +61,7 @@ export default function Contact() {
           confirmButtonText: 'Ok',
         });
       })
+      // Caso ocorra algum erro, exibe um alerta de erro
       .catch(() => {
         Swal.fire({
           title: 'Erro!',
@@ -61,12 +71,14 @@ export default function Contact() {
         });
       });
 
+    // Limpa os dados do formulário
     setName('');
     setEmail('');
     setPhonenumber('');
     setGoal('');
   };
 
+  // Retorna o formulário de contato com os inputs e botão de envio
   return (
     <ContactForm onSubmit={handleSubmit}>
       <Input

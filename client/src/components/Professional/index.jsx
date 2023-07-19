@@ -1,6 +1,7 @@
 import React from 'react';
 import ProfessionalStyled from './style';
 
+// Componente que renderiza as profissionais da clínica na página Sobre
 export default function Professional({ photo, name, subtitle, text }) {
   return (
     <ProfessionalStyled>

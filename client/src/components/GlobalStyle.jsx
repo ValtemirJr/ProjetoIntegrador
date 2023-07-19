@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import { bodyFont } from './UI/variables';
 
+// Componente de estilo global para todas as páginas
 const GlobalStyle = createGlobalStyle`
     * {
         box-sizing: border-box;

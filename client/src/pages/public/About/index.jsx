@@ -6,7 +6,9 @@ import Professional from '../../../components/Professional';
 import { greyColor } from '../../../components/UI/variables';
 import AboutCarousel from '../../../components/Carousel/AboutCarousel';
 
+// Página Sobre
 export default function About() {
+  // Função para rolar a página até a seção Conheça a Clínica
   const handleClick = () => {
     const element = document.querySelector('#clinic');
     if (element) {

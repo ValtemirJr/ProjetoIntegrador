@@ -44,9 +44,9 @@ A pasta `client` contém as seguintes pastas:
   - `assets`: Contém as imagens dos componentes e do carousel.  
   - `components`: Contém os componentes do cliente.
   - `pages`: Contém as páginas do cliente.
+    - `public`: Contém as páginas públicas do cliente.
+    - `secure`: Contém as páginas privadas do cliente.
   - `util`: Contém scripts de utilidade do cliente.
-  - `services`: Contém os serviços do cliente.
-    - `api`: Contém os serviços de comunicação com o servidor.
 - `public`: Contém os arquivos públicos do cliente.
 
 ### Configuração do Projeto ⚙️
@@ -81,4 +81,5 @@ Para executar o cliente, execute o comando `npm start` na pasta `client` e o cli
   - [Prettier](https://prettier.io/): utilizado para padronizar o código.
   - [React Slick](https://react-slick.neostack.com/), [Slick Carousel](https://kenwheeler.github.io/slick/), [Framer Motion](https://www.framer.com/motion/): utilizado para criar o carrossel de imagens.
   - [React Google Maps API](https://react-google-maps-api-docs.netlify.app/): utilizado para criar o mapa de localização da clínica.
+  - [Sweet Alert2](https://sweetalert2.github.io/): utilizado para criar as mensagens de alerta estilizadas.
 - [PostgreSQL](https://www.postgresql.org/): SGBD utilizado para armazenar os dados do projeto.

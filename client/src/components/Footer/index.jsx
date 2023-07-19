@@ -4,6 +4,8 @@ import { SiLinktree } from 'react-icons/si';
 import { MdLocationPin } from 'react-icons/md';
 import FooterWrapper from './styles';
 
+// Componente de footer para páginas
+// com informações de contato e redes sociais
 export default function Footer() {
   return (
     <FooterWrapper>

@@ -5,7 +5,9 @@ import { PiUserList } from 'react-icons/pi';
 import Section from './styles';
 import ServiceForm from '../../../../components/Form/Service';
 
+// Página de edição de serviços
 export default function ClientUpdate() {
+  // Estado para armazenar os dados do serviço
   const [service, setService] = useState({
     id: '',
     description: '',
@@ -13,14 +15,18 @@ export default function ClientUpdate() {
     price: '',
   });
 
+  // Hook para navegar entre as páginas
   const navigate = useNavigate();
+  // Hook para pegar os dados da URL e salvar o ID do serviço
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get('id');
 
+  // Função para buscar um serviço no backend
   const fetchService = async (serviceId) => {
     try {
       const response = await fetch(
+        // Requisição para buscar um serviço no backend enviando o ID como parâmetro
         `http://localhost:3333/service/${serviceId}`,
       );
       if (!response.ok) {
@@ -31,6 +37,7 @@ export default function ClientUpdate() {
         });
         throw new Error('Network response was not ok');
       }
+      // Conversão dos dados para JSON e armazenamento no estado
       const data = await response.json();
       setService(data);
     } catch (error) {
@@ -42,11 +49,13 @@ export default function ClientUpdate() {
     }
   };
 
+  // Função para atualizar um serviço no backend
   const putService = async (serviceId, bodyData) => {
     const { description, service_type_id, price } = bodyData;
 
     try {
       const response = await fetch(
+        // Requisição para atualizar um serviço no backend enviando o ID como parâmetro
         `http://localhost:3333/service/${serviceId}`,
         {
           method: 'PUT',
@@ -68,6 +77,7 @@ export default function ClientUpdate() {
         });
         throw new Error('Network response was not ok');
       }
+      // Conversão dos dados para JSON e armazenamento no estado
       const data = await response.json();
       setService(data);
       Swal.fire({
@@ -85,11 +95,13 @@ export default function ClientUpdate() {
     }
   };
 
+  // Função para enviar os dados do formulário para a função de atualizar
   const handleSubmit = (event) => {
     event.preventDefault();
     putService(id, service);
   };
 
+  // Função para atualizar os dados do serviço no estado
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setService((prevService) => ({
@@ -98,10 +110,12 @@ export default function ClientUpdate() {
     }));
   };
 
+  // Busca o serviço ao carregar a página
   useEffect(() => {
     fetchService(id);
   }, [id]);
 
+  // Função para cancelar a edição e voltar para a listagem de serviços
   const handleCancel = () => {
     navigate('/secure/services');
   };

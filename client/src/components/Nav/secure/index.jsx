@@ -7,6 +7,7 @@ import { TfiAgenda } from 'react-icons/tfi';
 import SideNav from './styles';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
 
+// Componente de navegação para páginas privadas
 export default function Nav() {
   return (
     <SideNav>

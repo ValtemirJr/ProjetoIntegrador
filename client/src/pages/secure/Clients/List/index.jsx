@@ -15,18 +15,25 @@ import {
   TableDataCell,
 } from './styles';
 
+// Página de listagem de clientes
 export default function ClientList() {
+  // Estado para armazenar os clientes
   const [clients, setClients] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  // Hook para navegar entre as páginas
   const navigate = useNavigate();
 
+  // Função para buscar a inserção no filtro de busca
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
+  // Função para buscar os clientes no backend
   const fetchClients = async () => {
     try {
+      // Requisição para buscar os clientes no backend
       const response = await fetch('http://localhost:3333/client');
+      // Verificação de erro na requisição
       if (!response.ok) {
         Swal.fire({
           icon: 'error',
@@ -35,7 +42,9 @@ export default function ClientList() {
         });
         throw new Error('Network response was not ok');
       }
+      // Conversão dos dados para JSON
       const data = await response.json();
+      // Armazenamento dos dados no estado
       setClients(data);
     } catch (error) {
       Swal.fire({
@@ -46,10 +55,12 @@ export default function ClientList() {
     }
   };
 
+  // Função para navegar para a página de edição de clientes
   const handleEditClient = (id) => {
     navigate(`/secure/clients/update?id=${id}`);
   };
 
+  // Função para deletar um cliente
   const handleDeleteClient = async (id) => {
     try {
       await fetch(`http://localhost:3333/client/${id}`, {
@@ -70,6 +81,7 @@ export default function ClientList() {
     }
   };
 
+  // Hook para buscar os clientes no backend ao carregar a página
   useEffect(() => {
     fetchClients();
   }, []);
@@ -108,12 +120,16 @@ export default function ClientList() {
           </TableRow>
         </TableHeader>
         <TableBody>
+          {/* Mapeamento dos clientes para exibição na tabela */}
           {clients
+            // Filtra os clientes de acordo com o termo de busca
             .filter((client) =>
               Object.values(client).some((value) =>
                 String(value).toLowerCase().includes(searchTerm.toLowerCase()),
               ),
             )
+            // Mapeia os clientes filtrados para exibição na tabela
+            // Caso nõa haja filtro, exibe todos os clientes
             .map((client) => (
               <TableRow key={client.id}>
                 <TableDataCell>{client.cpf}</TableDataCell>

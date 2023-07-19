@@ -6,24 +6,32 @@ import Swal from 'sweetalert2';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
 import { LoginContainer, LoginForm } from './styles';
 
+// Página de login
 export default function Login() {
+  // Estados para armazenar os dados do formulário
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  // Hook para navegar entre as páginas
   const navigate = useNavigate();
 
+  // Função para fazer login
   const handleLogin = async () => {
     try {
+      // Requisição para fazer login
       const response = await fetch('http://localhost:3333/token/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        // Corpo da requisição com os dados do formulário
         body: JSON.stringify({ email, password }),
       });
 
       if (response.ok) {
         const data = await response.json();
+        // Armazenar o token no localStorage para manter o usuário logado
         localStorage.setItem('token', data.token);
+        // Redirecionar para a página de listagem de clientes
         navigate('/secure/solicitations');
       } else {
         const data = await response.json();

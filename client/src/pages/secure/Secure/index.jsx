@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import Nav from '../../../components/Nav/secure';
 import Main from './styles';
 
+// Componente de página privada que verifica o token no localStorage
 export default function SecureHome() {
   const navigate = useNavigate();
 

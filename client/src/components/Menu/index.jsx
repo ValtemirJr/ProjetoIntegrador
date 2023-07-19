@@ -8,8 +8,13 @@ import Ancor from '../Ancor';
 
 import MenuHamburguer from './styles';
 
+// Componente de menu hamburguer para páginas
+// Recebe como props a classe para estilização
+// Ele surge nas telas menores e desaparece nas maiores
 export default function Menu({ className }) {
+  // Estado para controle do menu
   const [active, setMode] = useState(false);
+  // Função para alternar o estado do menu entre aberto e fechado
   const toggleMode = () => {
     setMode(!active);
   };

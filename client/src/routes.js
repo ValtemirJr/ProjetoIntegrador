@@ -17,18 +17,22 @@ import ServiceList from './pages/secure/Services/List';
 import ServiceUpdate from './pages/secure/Services/Update';
 import ServiceCreate from './pages/secure/Services/Create';
 
+// AppRoutes é o componente que define as rotas da aplicação
 function AppRoutes() {
   return (
     <>
-      <GlobalStyle />
+      <GlobalStyle /> {/* Componente que define o estilo global da aplicação */}
+      {/* Componente que define o roteamento da aplicação */}
       <BrowserRouter>
         <Routes>
+          {/* Rotas públicas */}
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFoundPublic />} />
+            <Route path="*" element={<NotFoundPublic />} /> {/* Rota 404 */}
           </Route>
+          {/* Rotas privadas */}
           <Route path="/secure/login" element={<Login />} />
           <Route path="/secure/" element={<SecureHome />}>
             <Route path="/secure/solicitations" element={<Solicitations />} />
@@ -38,6 +42,7 @@ function AppRoutes() {
             <Route path="/secure/services" element={<ServiceList />} />
             <Route path="/secure/services/create" element={<ServiceCreate />} />
             <Route path="/secure/services/:id" element={<ServiceUpdate />} />
+            {/* Rota 404 */}
             <Route path="/secure/*" element={<NotFoundSecure />} />
             <Route path="*" element={<NotFoundSecure />} />
           </Route>

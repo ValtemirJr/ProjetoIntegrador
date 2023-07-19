@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Nav from '../../../components/Nav/secure';
+import Main from './styles';
 
 export default function SecureHome() {
   const navigate = useNavigate();
@@ -41,5 +42,10 @@ export default function SecureHome() {
     checkTokenValidity();
   }, []);
 
-  return <Nav />;
+  return (
+    <Main>
+      <Nav />
+      <Outlet />
+    </Main>
+  );
 }

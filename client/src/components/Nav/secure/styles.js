@@ -5,12 +5,8 @@ const SideNav = styled.aside`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: fixed;
-  height: 100%;
-  left: 0;
-  top: 0;
+  height: 100vh;
   width: 275px;
-  z-index: 1;
   background-color: ${whiteColor};
   border-right: 1px solid ${whiteGreyColor};
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -39,6 +35,7 @@ const SideNav = styled.aside`
     align-items: center;
     padding: 10px 20px;
     transition: all 0.2s ease-in-out;
+    cursor: pointer;
 
     svg {
       margin-right: 15px;
@@ -56,6 +53,61 @@ const SideNav = styled.aside`
 
     &:hover {
       color: ${primaryColor};
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    height: 100px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+
+    .logo {
+      display: none;
+    }
+
+    h1 {
+      display: none;
+    }
+
+    hr {
+      display: none;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      align-content: center;
+    }
+
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      border-bottom: 3px solid transparent;
+
+      &:first-child {
+        padding-top: 0;
+      }
+
+      svg {
+        margin-right: 0;
+        margin-bottom: 5px;
+      }
+
+      a {
+        font-size: 0.8rem;
+      }
     }
   }
 `;

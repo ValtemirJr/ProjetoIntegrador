@@ -28,5 +28,6 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off',
     'react/jsx-props-no-spreading': 'off',
     'global-require': 'off',
+    'jsx-a11y/label-has-associated-control': 'off',
   },
 };

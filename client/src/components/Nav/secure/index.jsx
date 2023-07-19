@@ -3,14 +3,17 @@ import { Link } from 'react-router-dom';
 import { PiUserList } from 'react-icons/pi';
 import { RiServiceLine } from 'react-icons/ri';
 import { BsStar } from 'react-icons/bs';
-import { GrSchedules } from 'react-icons/gr';
+import { TfiAgenda } from 'react-icons/tfi';
 import SideNav from './styles';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
 
 export default function Nav() {
   return (
     <SideNav>
-      <Logo style={{ width: '100px', height: '100px', marginTop: '20px' }} />
+      <Logo
+        style={{ width: '100px', height: '100px', marginTop: '20px' }}
+        className="logo"
+      />
       <h1>Dashboard</h1>
       <hr />
       <ul>
@@ -27,7 +30,7 @@ export default function Nav() {
           <Link to="/secure/services">Serviços</Link>
         </li>
         <li>
-          <GrSchedules />
+          <TfiAgenda />
           <Link to="/secure/schedules">Agendamentos</Link>
         </li>
       </ul>

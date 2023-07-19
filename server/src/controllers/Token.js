@@ -43,6 +43,41 @@ class TokenController {
       token,
     });
   }
+
+  // Verifica se o token de autenticação está com a data de expiração válida
+  async checkToken(req, res) {
+    const { token } = req.body;
+
+    if (!token) {
+      return res.status(401).json({
+        valid: false,
+        errors: ['Token not found.'],
+      });
+    }
+
+    try {
+      const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
+      const { id, email } = decoded;
+
+      const user = await User.findOne({ where: { id, email } });
+
+      if (!user) {
+        return res.status(401).json({
+          valid: false,
+          errors: ['Invalid token.'],
+        });
+      }
+
+      return res.json({
+        valid: true,
+      });
+    } catch (error) {
+      return res.status(401).json({
+        valid: false,
+        errors: ['Invalid token.'],
+      });
+    }
+  }
 }
 
 export default new TokenController();

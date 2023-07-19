@@ -6,7 +6,7 @@ import {
   titleFont,
   subtitleFont,
   whiteColor,
-} from '../UI/variables';
+} from '../../UI/variables';
 
 const NavBar = styled.nav`
   background-color: ${backgroundColor};

@@ -7,6 +7,7 @@ import About from './pages/public/About';
 import Contact from './pages/public/Contact';
 import NotFound from './pages/public/NotFound';
 import Login from './pages/secure/Login';
+import Solicitations from './pages/secure/Solicitations';
 
 function AppRoutes() {
   return (
@@ -21,6 +22,7 @@ function AppRoutes() {
             <Route path="*" element={<NotFound />} />
           </Route>
           <Route path="/secure/login" element={<Login />} />
+          <Route path="/secure/solicitations" element={<Solicitations />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

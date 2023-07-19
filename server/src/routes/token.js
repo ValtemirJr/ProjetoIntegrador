@@ -7,5 +7,6 @@ const routes = new Router();
 // O body deve conter email e password válidos
 // É retornado o usuário e o token
 routes.post('/', tokenController.store);
+routes.post('/check', tokenController.checkToken);
 
 export default routes;

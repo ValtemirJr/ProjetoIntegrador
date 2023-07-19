@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { ReactComponent as Logo } from '../../assets/logo.svg';
+import { ReactComponent as Logo } from '../../../assets/logo.svg';
 
-import Ancor from '../Ancor';
-import Button from '../Button';
-import Menu from '../Menu';
+import Ancor from '../../Ancor';
+import Button from '../../Button';
+import Menu from '../../Menu';
 
 import NavBar from './styles';
-import SocialList from '../SocialList';
+import SocialList from '../../SocialList';
 
 function Nav() {
   return (

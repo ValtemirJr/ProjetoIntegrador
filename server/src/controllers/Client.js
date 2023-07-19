@@ -4,7 +4,7 @@ class ClientController {
   // Cria uma solicitação de contato do cliente
   async create(req, res) {
     try {
-      // Cria uma data com 3 horas a menos que a data atual
+      // Cria a data em que o cliente entrou em contato
       const date = new Date(Date.now() - 3 * 60 * 60 * 1000).toUTCString();
       // Adiciona a data de solicitação ao corpo da requisição
       req.body.date_request = date;

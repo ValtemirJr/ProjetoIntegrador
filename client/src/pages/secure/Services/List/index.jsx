@@ -55,7 +55,7 @@ export default function ServiceList() {
 
   // Função para navegar para a página de edição de serviços
   const handleEditServices = (id) => {
-    navigate(`/secure/service/update?id=${id}`);
+    navigate(`/secure/services/update?id=${id}`);
   };
 
   //  Função para excluir um serviço

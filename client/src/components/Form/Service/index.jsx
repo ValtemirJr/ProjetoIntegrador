@@ -52,7 +52,7 @@ function ServiceForm({
         </Button>
         <Button
           type="button"
-          to="/secure/solicitations"
+          to="/secure/services"
           onClick={handleCancel}
           className="button__cancel"
         >

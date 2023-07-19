@@ -30,6 +30,8 @@ export default class Service extends Model {
       },
       {
         sequelize,
+        tableName: 'service',
+
       },
     );
 

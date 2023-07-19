@@ -4,6 +4,7 @@ import express from 'express';
 import homeRoutes from './routes/home';
 import clientRoutes from './routes/client';
 import serviceTypeRoutes from './routes/serviceType';
+import serviceRoutes from './routes/service';
 import tokenRoutes from './routes/token';
 
 // Importa a conexão com o banco de dados
@@ -32,6 +33,7 @@ class App {
     this.app.use('/', homeRoutes);
     this.app.use('/client/', clientRoutes);
     this.app.use('/serviceType/', serviceTypeRoutes);
+    this.app.use('/service/', serviceRoutes);
     this.app.use('/token/', tokenRoutes);
   }
 }

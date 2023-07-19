@@ -11,6 +11,7 @@ import SecureHome from './pages/secure/Secure';
 import Solicitations from './pages/secure/Solicitations';
 import ClientList from './pages/secure/Clients/List';
 import ClientUpdate from './pages/secure/Clients/Update';
+import ClientCreate from './pages/secure/Clients/Create';
 
 function AppRoutes() {
   return (
@@ -29,6 +30,7 @@ function AppRoutes() {
             <Route path="/secure/solicitations" element={<Solicitations />} />
             <Route path="/secure/clients" element={<ClientList />} />
             <Route path="/secure/clients/:id" element={<ClientUpdate />} />
+            <Route path="/secure/clients/create" element={<ClientCreate />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

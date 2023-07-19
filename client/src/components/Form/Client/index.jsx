@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../../Button';
 import FormStyled from './styles';
+import formatPhone from '../../../util/formatPhone';
 
 function ClientForm({ client, handleInputChange, handleSubmit, handleCancel }) {
   return (
@@ -31,7 +32,7 @@ function ClientForm({ client, handleInputChange, handleSubmit, handleCancel }) {
           type="tel"
           id="phonenumber"
           name="phonenumber"
-          value={client.phonenumber}
+          value={formatPhone(client.phonenumber)}
           onChange={handleInputChange}
         />
       </div>

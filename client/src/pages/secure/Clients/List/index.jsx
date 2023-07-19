@@ -89,7 +89,7 @@ export default function ClientList() {
         />
         <Button
           type="button"
-          onClick={() => navigate('/secure/clients/create')}
+          to="/secure/clients/create"
           className="button__crud"
         >
           Novo Cliente

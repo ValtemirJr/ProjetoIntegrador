@@ -3,6 +3,7 @@ import cors from 'cors';
 import express from 'express';
 import homeRoutes from './routes/home';
 import clientRoutes from './routes/client';
+import serviceTypeRoutes from './routes/serviceType';
 import tokenRoutes from './routes/token';
 
 // Importa a conexão com o banco de dados
@@ -30,6 +31,7 @@ class App {
     // Define as rotas da aplicação
     this.app.use('/', homeRoutes);
     this.app.use('/client/', clientRoutes);
+    this.app.use('/serviceType/', serviceTypeRoutes);
     this.app.use('/token/', tokenRoutes);
   }
 }

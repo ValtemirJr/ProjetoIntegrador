@@ -61,7 +61,7 @@ export default class Client extends Model {
           type: Sequelize.STRING(255),
           defaultValue: '',
         },
-        adress: {
+        address: {
           type: Sequelize.STRING(255),
           defaultValue: '',
         },

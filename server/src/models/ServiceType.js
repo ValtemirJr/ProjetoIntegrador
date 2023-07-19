@@ -1,7 +1,7 @@
 import Sequelize, { Model } from 'sequelize';
 
 // Model que representa a tabela de serrvices no banco de dados
-export default class Service extends Model {
+export default class ServiceType extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -18,21 +18,17 @@ export default class Service extends Model {
             },
           },
         },
-        price: {
-          type: Sequelize.STRING(255),
-          defaultValue: '',
-          validate: {
-            notEmpty: {
-              msg: 'Price cannot be zero or less',
-            },
-          },
-        },
       },
       {
         sequelize,
+        tableName: 'service_type',
       },
     );
 
     return this;
+  }
+
+  static associate(models) {
+    this.hasMany(models.Service, { foreignKey: 'service_type_id' });
   }
 }

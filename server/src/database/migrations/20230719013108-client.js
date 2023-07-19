@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('clients', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('client', {
     id: {
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -35,7 +35,7 @@ module.exports = {
       allowNull: true,
       type: Sequelize.STRING(255),
     },
-    adress: {
+    address: {
       allowNull: true,
       type: Sequelize.STRING(100),
     },

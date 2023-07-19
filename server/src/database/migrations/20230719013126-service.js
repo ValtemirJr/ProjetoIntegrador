@@ -1,5 +1,5 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('services', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('service', {
     id: {
       type: Sequelize.INTEGER,
       allowNull: false,
@@ -11,9 +11,11 @@ module.exports = {
       type: Sequelize.STRING(255),
       unique: true,
     },
-    services_types_id: {
+    service_type_id: {
       type: Sequelize.INTEGER,
-      references: { model: 'services_types', key: 'id' },
+      references: { model: 'service_type', key: 'id' },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
       allowNull: false,
     },
     price: {
@@ -22,5 +24,5 @@ module.exports = {
     },
   }),
 
-  down: (queryInterface) => queryInterface.dropTable('services'),
+  down: (queryInterface) => queryInterface.dropTable('service'),
 };

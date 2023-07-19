@@ -9,6 +9,7 @@ import NotFound from './pages/public/NotFound';
 import Login from './pages/secure/Login';
 import SecureHome from './pages/secure/Secure';
 import Solicitations from './pages/secure/Solicitations';
+import ClientList from './pages/secure/Clients/List';
 
 function AppRoutes() {
   return (
@@ -25,6 +26,7 @@ function AppRoutes() {
           <Route path="/secure/login" element={<Login />} />
           <Route path="/secure/" element={<SecureHome />}>
             <Route path="/secure/solicitations" element={<Solicitations />} />
+            <Route path="/secure/clients" element={<ClientList />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

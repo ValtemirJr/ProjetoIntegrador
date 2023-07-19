@@ -90,4 +90,8 @@ export default class Client extends Model {
 
     return this;
   }
+
+  static associate(models) {
+    this.hasMany(models.Scheduling, { foreignKey: 'client_id' });
+  }
 }

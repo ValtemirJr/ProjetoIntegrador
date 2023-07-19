@@ -122,8 +122,8 @@ class ClientController {
       if (!client) {
         return res.status(400).json({ errors: ['Client not found'] });
       }
-      const updatedMovie = await client.update(req.body);
-      return res.json(updatedMovie);
+      const updatedClient = await client.update(req.body);
+      return res.json(updatedClient);
     } catch (error) {
       return res.status(400).json({
         errors: error.errors.map((err) => err.message),

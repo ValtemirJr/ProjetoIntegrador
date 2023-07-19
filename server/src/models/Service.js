@@ -37,4 +37,8 @@ export default class Service extends Model {
 
     return this;
   }
+
+  static associate(models) {
+    this.hasMany(models.Scheduling, { foreignKey: 'service_id' });
+  }
 }

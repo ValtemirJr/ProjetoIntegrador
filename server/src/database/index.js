@@ -4,8 +4,9 @@ import User from '../models/User';
 import Client from '../models/Client';
 import ServiceType from '../models/ServiceType';
 import Service from '../models/Service';
+import Scheduling from '../models/Scheduling';
 
-const models = [User, Client, ServiceType, Service];
+const models = [User, Client, ServiceType, Service, Scheduling];
 const connection = new Sequelize(databaseConfig);
 
 // Inicializa os models e associa as tabelas do banco de dados com os models do Sequelize

@@ -83,8 +83,8 @@ class ServiceTypeController {
       if (!servicesType) {
         return res.status(400).json({ errors: ['Service type not found'] });
       }
-      const updatedMovie = await servicesType.update(req.body);
-      return res.json(updatedMovie);
+      const updatedServiceType = await servicesType.update(req.body);
+      return res.json(updatedServiceType);
     } catch (error) {
       return res.status(400).json({
         errors: error.errors.map((err) => err.message),

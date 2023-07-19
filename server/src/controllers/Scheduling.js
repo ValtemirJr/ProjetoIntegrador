@@ -1,31 +1,33 @@
-import Service from '../models/Service';
+import Scheduling from '../models/Scheduling';
 
-class ServiceController {
+class SchedulingController {
   // Cria um novo usuário no banco de dados e retorna os dados do usuário criado
   // o body deve conter name, email e password
   async create(req, res) {
     try {
-      const service = await Service.create(req.body);
-      return res.status(200).json(service);
+      const date = new Date(Date.now() - 3 * 60 * 60 * 1000).toUTCString();
+      req.body.date_request = date;
+      const scheduling = await Scheduling.create(req.body);
+      return res.status(200).json(scheduling);
     } catch (error) {
       return res
         .status(400)
-        .json({ error: error.message, message: 'Service was not created' });
+        .json({ error: error.message, message: 'Scheduling was not created' });
     }
   }
 
   async delete(req, res) {
     try {
-      const service = await Service.findByPk(req.params.id);
-      if (!service) {
+      const scheduling = await Scheduling.findByPk(req.params.id);
+      if (!scheduling) {
         return res.status(400).json({
-          errors: ['Service not found'],
+          errors: ['Scheduling not found'],
         });
       }
-      await service.destroy();
+      await scheduling.destroy();
       return res.status(200).json({
         deleted: true,
-        message: 'Service deleted',
+        message: 'Scheduling deleted',
       });
     } catch (error) {
       if (error.errors) {
@@ -43,8 +45,8 @@ class ServiceController {
 
   async index(req, res) {
     try {
-      const service = await Service.findAll();
-      return res.json(service);
+      const scheduling = await Scheduling.findAll();
+      return res.json(scheduling);
     } catch (error) {
       return res.status(400).json({ error: error.message });
     }
@@ -56,11 +58,11 @@ class ServiceController {
       if (!id) {
         return res.status(400).json({ errors: ['ID not provided'] });
       }
-      const service = await Service.findByPk(id);
-      if (!service) {
-        return res.status(400).json({ errors: ['Service type not found'] });
+      const scheduling = await Scheduling.findByPk(id);
+      if (!scheduling) {
+        return res.status(400).json({ errors: ['Scheduling type not found'] });
       }
-      return res.json(service);
+      return res.json(scheduling);
     } catch (error) {
       return res.status(400).json({ error: error.message });
     }
@@ -72,12 +74,12 @@ class ServiceController {
       if (!id) {
         return res.status(400).json({ errors: ['ID not provided'] });
       }
-      const service = await Service.findByPk(id);
-      if (!service) {
-        return res.status(400).json({ errors: ['Service type not found'] });
+      const scheduling = await Scheduling.findByPk(id);
+      if (!scheduling) {
+        return res.status(400).json({ errors: ['Scheduling type not found'] });
       }
-      const updatedService = await service.update(req.body);
-      return res.json(updatedService);
+      const updatedScheduling = await scheduling.update(req.body);
+      return res.json(updatedScheduling);
     } catch (error) {
       return res.status(400).json({
         errors: error.errors.map((err) => err.message),
@@ -86,4 +88,4 @@ class ServiceController {
   }
 }
 
-export default new ServiceController();
+export default new SchedulingController();

@@ -29,5 +29,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'global-require': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
+    camelcase: 'off',
   },
 };

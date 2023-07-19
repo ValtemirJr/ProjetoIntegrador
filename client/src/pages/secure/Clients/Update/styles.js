@@ -44,6 +44,22 @@ const Section = styled.section`
     }
   }
 
+  .button__cancel {
+    background-color: ${whiteColor};
+    color: red;
+    border: solid 1px red;
+    margin: 1rem 1rem 2rem;
+
+    &:hover {
+      background-color: red;
+      color: ${whiteColor};
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
   .actions {
     display: flex;
     align-items: baseline;
@@ -72,6 +88,20 @@ const Section = styled.section`
     }
   }
 
+  .date-filter-label {
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  .date-filter {
+    padding: 0.5rem;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0 5rem 1rem 1rem;
+  }
+
   @media screen and (max-width: 768px) {
     h1 {
       color: transparent;
@@ -82,6 +112,14 @@ const Section = styled.section`
       align-self: flex-start;
       flex-direction: row-reverse;
       margin: 0 0 0 1rem;
+    }
+
+    .date-filter {
+      margin: 0 0 1rem 0;
+    }
+
+    .date-filter-label {
+      display: none;
     }
   }
 `;
@@ -189,8 +227,8 @@ const TableDataCell = styled.td`
   }
 
   button > svg {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     transition: all 0.2s ease-in-out;
 
     &:hover {

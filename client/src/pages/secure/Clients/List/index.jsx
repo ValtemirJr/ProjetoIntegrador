@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BsFillCheckSquareFill, BsFillTrashFill } from 'react-icons/bs';
+import { BsFillTrashFill } from 'react-icons/bs';
+import { FaUserEdit } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { PiUserList } from 'react-icons/pi';
 import Button from '../../../../components/Button';
@@ -46,7 +47,7 @@ export default function ClientList() {
   };
 
   const handleEditClient = (id) => {
-    navigate(`/secure/clients/create?id=${id}`);
+    navigate(`/secure/clients/update?id=${id}`);
   };
 
   const handleDeleteClient = async (id) => {
@@ -120,13 +121,13 @@ export default function ClientList() {
                 <TableDataCell>{client.email}</TableDataCell>
                 <TableDataCell>{client.phonenumber}</TableDataCell>
                 <TableDataCell>{client.address}</TableDataCell>
-                <TableDataCell>{client.birthdate}</TableDataCell>
+                <TableDataCell>{client.date_birth}</TableDataCell>
                 <TableDataCell>
                   <button
                     type="button"
                     onClick={() => handleEditClient(client.id)}
                   >
-                    <BsFillCheckSquareFill />
+                    <FaUserEdit />
                   </button>
                   <button
                     type="button"

@@ -42,7 +42,7 @@ export default function Solicitations() {
   };
 
   const handleAcceptSolicitation = (id) => {
-    navigate(`/secure/clients/create?id=${id}`);
+    navigate(`/secure/clients/update?id=${id}`);
   };
 
   const handleDeleteSolicitation = async (id) => {

@@ -1,23 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { PiUserList } from 'react-icons/pi';
+import { RiServiceLine } from 'react-icons/ri';
+import { BsStar } from 'react-icons/bs';
+import { GrSchedules } from 'react-icons/gr';
+import SideNav from './styles';
+import { ReactComponent as Logo } from '../../../assets/logo.svg';
 
 export default function Nav() {
   return (
-    <nav>
+    <SideNav>
+      <Logo style={{ width: '100px', height: '100px', marginTop: '20px' }} />
+      <h1>Dashboard</h1>
+      <hr />
       <ul>
         <li>
+          <RiServiceLine />
           <Link to="/secure/solicitations">Solicitações de Contato</Link>
         </li>
         <li>
-          <Link to="/secure/contacts">Clientes</Link>
+          <PiUserList />
+          <Link to="/secure/clients">Clientes</Link>
         </li>
         <li>
+          <BsStar />
           <Link to="/secure/services">Serviços</Link>
         </li>
         <li>
+          <GrSchedules />
           <Link to="/secure/schedules">Agendamentos</Link>
         </li>
       </ul>
-    </nav>
+    </SideNav>
   );
 }

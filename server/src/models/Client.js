@@ -84,6 +84,7 @@ export default class Client extends Model {
       },
       {
         sequelize,
+        tableName: 'client',
       },
     );
 

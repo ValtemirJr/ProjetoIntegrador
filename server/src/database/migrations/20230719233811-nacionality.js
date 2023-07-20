@@ -1,3 +1,4 @@
+// Arquivo responsável pela criação da tabela de nacionalidades no banco de dados
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('nacionality', {
     id: {

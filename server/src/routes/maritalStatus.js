@@ -4,7 +4,7 @@ import loginRequired from '../middlewares/loginRequired';
 
 const routes = new Router();
 
-// Rotas para o CRUD de tipos de serviços
+// Rotas para buscar os tipos de estado civil
 
 routes.get('/', loginRequired, maritalStatusController.index);
 

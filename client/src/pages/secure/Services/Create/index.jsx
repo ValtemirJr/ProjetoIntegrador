@@ -95,8 +95,8 @@ export default function ServiceCreate() {
     navigate('/secure/services');
   };
 
+  // Hook para carregar os dados do serviço
   const [serviceTypes, setServiceTypes] = useState([]);
-
   useEffect(() => {
     const fetchServiceTypes = async () => {
       try {
@@ -118,6 +118,7 @@ export default function ServiceCreate() {
       }
     };
 
+    // Chamar a função para carregar os tipos de serviço
     fetchServiceTypes();
   }, []);
 
@@ -156,6 +157,8 @@ export default function ServiceCreate() {
             value={service.service_type_id}
             onChange={handleSelectChange}
           >
+            {/* Mapeamento dos tipos de serviço */}
+            <option value="">Selecione um tipo de serviço</option>
             {serviceTypes.map((type) => (
               <option key={type.id} value={type.id}>
                 {type.description}

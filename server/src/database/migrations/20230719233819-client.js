@@ -1,3 +1,4 @@
+// Arquivo responsável pela criação da tabela cliente no banco de dados
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('client', {
     id: {

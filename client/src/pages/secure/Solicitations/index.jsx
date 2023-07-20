@@ -88,8 +88,7 @@ export default function Solicitations() {
     if (!dateFilter) {
       return true;
     }
-
-    // Formatação da data para o formato YYYY-MM-DD
+    // Formatação da data para o formato YYYY-MM-DD padrão do input date
     const formattedDate = new Date(solicitation.date_request)
       .toISOString()
       .substr(0, 10);

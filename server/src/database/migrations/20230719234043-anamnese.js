@@ -1,3 +1,4 @@
+// Cria a tabela de anamneses no banco de dados
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('anamnese', {
     id: {

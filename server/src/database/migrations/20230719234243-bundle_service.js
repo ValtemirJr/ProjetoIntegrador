@@ -1,3 +1,4 @@
+// Cria a tabela de relacionamento entre pacotes e serviços no banco de dados
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('bundle_service', {
     id: {

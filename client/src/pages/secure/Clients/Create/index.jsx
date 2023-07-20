@@ -97,6 +97,7 @@ export default function ClientCreate() {
     }
   };
 
+  // Carrega as nacionalidades no select
   const fetchNacionality = async () => {
     try {
       const response = await fetch('http://localhost:3333/nacionality', {
@@ -120,6 +121,7 @@ export default function ClientCreate() {
     }
   };
 
+  // Carrega os estados civis no select
   const fetchMaritalStatus = async () => {
     try {
       const response = await fetch('http://localhost:3333/maritalStatus', {

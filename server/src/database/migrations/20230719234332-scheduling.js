@@ -1,3 +1,4 @@
+// Arquivo responsável pela criação da tabela de agendamento no banco de dados
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('scheduling', {
     id: {

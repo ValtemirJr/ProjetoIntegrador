@@ -1,5 +1,5 @@
-// Arquivo responsável pela inserção de dados na tabela service_type
-// Para definir os tipos de serviços que serão cadastrados no sistema
+// Arquivo responsável pela inserção de dados na tabela de nacionalidades no banco de dados
+// Para definir os tipos de nacionalidade que serão cadastrados no sistema
 module.exports = {
   up: async (queryInterface) => queryInterface.bulkInsert(
     'nacionality',

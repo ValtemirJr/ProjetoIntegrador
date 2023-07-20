@@ -1,20 +1,14 @@
 import React from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {
-  CarouselSlider,
-  CarouselImage,
-  CustomPrevArrow,
-  CustomNextArrow,
-} from './styles';
+import { CarouselSlider, CarouselImage } from './styles';
 
 // Configurações do carousel
 const settings = {
   arrows: true,
   dots: true,
-  prevArrow: <CustomPrevArrow />,
-  nextArrow: <CustomNextArrow />,
   infinite: true,
+  autoplay: true,
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -34,7 +28,7 @@ const settings = {
   ],
 };
 
-// Imagens do carousel que vem da pasta assets
+// Imagens do carousel que vêm da pasta assets
 const images = [
   { id: 1, src: require('../../../assets/images/entry_carousel.jpg') },
   { id: 2, src: require('../../../assets/images/reception_carousel.jpg') },

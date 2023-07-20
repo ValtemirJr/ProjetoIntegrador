@@ -156,6 +156,24 @@ class ClientController {
       });
     }
   }
+
+  // Checa através do cpf se o cliente já existe
+  async checkCPF(req, res) {
+    try {
+      // Busca o cliente pelo cpf passado na requisição pelo parâmetro da rota url
+      const { cpf } = req.params;
+      if (!cpf) {
+        return res.status(400).json({ errors: ['CPF não providenciado'] });
+      }
+      const client = await Client.findOne({
+        where: { cpf },
+      });
+      // Retorna os dados do cliente
+      return res.json(client);
+    } catch (error) {
+      return res.status(400).json({ error: error.message });
+    }
+  }
 }
 
 export default new ClientController();

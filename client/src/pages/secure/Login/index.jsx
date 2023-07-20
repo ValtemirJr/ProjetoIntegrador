@@ -62,6 +62,7 @@ export default function Login() {
             placeholder="Usuário"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            autoComplete="on"
           />
         </div>
         <div className="input-group">
@@ -71,6 +72,7 @@ export default function Login() {
             placeholder="Senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete="on"
           />
         </div>
         <button type="button" onClick={handleLogin}>

@@ -42,10 +42,11 @@ export default function ScheduleList() {
         },
       });
       if (!response.ok) {
+        const data = await response.json();
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível carregar os agendamentos.',
+          text: data.errors[0],
         });
         throw new Error('Network response was not ok');
       }
@@ -130,7 +131,7 @@ export default function ScheduleList() {
         <TableHeader>
           <TableRow>
             <TableHeaderCell>Data da Consulta</TableHeaderCell>
-            <TableHeaderCell>Data da Requisição</TableHeaderCell>
+            <TableHeaderCell>Data da Registro</TableHeaderCell>
             <TableHeaderCell>Serviço</TableHeaderCell>
             <TableHeaderCell>Cliente</TableHeaderCell>
             <TableHeaderCell>Status</TableHeaderCell>

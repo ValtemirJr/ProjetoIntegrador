@@ -11,5 +11,6 @@ routes.delete('/:id', loginRequired, clientController.delete);
 routes.get('/', loginRequired, clientController.index);
 routes.get('/:id', loginRequired, clientController.show);
 routes.put('/:id', loginRequired, clientController.update);
+routes.get('/checkCPF/:cpf', loginRequired, clientController.checkCPF);
 
 export default routes;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { PiUserList } from 'react-icons/pi';
 import { RiServiceLine } from 'react-icons/ri';
 import { BsStar } from 'react-icons/bs';
@@ -10,6 +10,10 @@ import { ReactComponent as Logo } from '../../../assets/logo.svg';
 
 // Componente de navegação para páginas privadas
 export default function Nav() {
+  const handleLogout = () => {
+    localStorage.clear();
+  };
+
   return (
     <SideNav>
       <Logo
@@ -20,26 +24,34 @@ export default function Nav() {
       <hr />
       <ul>
         <li>
-          <RiServiceLine />
-          <Link to="/secure/solicitations">Solicitações de Contato</Link>
+          <NavLink to="/secure/solicitations">
+            <RiServiceLine />
+            <span>Solicitações de Contato</span>
+          </NavLink>
         </li>
         <li>
-          <PiUserList />
-          <Link to="/secure/clients">Clientes</Link>
+          <NavLink to="/secure/clients">
+            <PiUserList />
+            <span>Clientes</span>
+          </NavLink>
         </li>
         <li>
-          <BsStar />
-          <Link to="/secure/services">Serviços</Link>
+          <NavLink to="/secure/services">
+            <BsStar />
+            <span>Serviços</span>
+          </NavLink>
         </li>
         <li>
-          <TfiAgenda />
-          <Link to="/secure/schedules">Agendamentos</Link>
+          <NavLink to="/secure/schedules">
+            <TfiAgenda />
+            <span>Agendamentos</span>
+          </NavLink>
         </li>
         <li>
-          <FiLogOut />
-          <Link to="/" onClick={() => localStorage.clear()}>
-            Sair
-          </Link>
+          <NavLink to="/" onClick={handleLogout}>
+            <FiLogOut />
+            <span>Sair</span>
+          </NavLink>
         </li>
       </ul>
     </SideNav>

@@ -32,13 +32,15 @@ const SideNav = styled.aside`
 
   li {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr;
     align-items: center;
     padding: 10px 20px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
 
     svg {
+      position: relative;
+      top: 5px;
       margin-right: 15px;
       width: 20px;
       height: 20px;
@@ -88,9 +90,10 @@ const SideNav = styled.aside`
     }
 
     li {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr;
       align-items: center;
+      justify-items: center;
       padding: 0;
       margin: 0;
       width: 100%;
@@ -101,9 +104,21 @@ const SideNav = styled.aside`
         padding-top: 0;
       }
 
+      a {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+      }
+
+      span {
+        display: none;
+      }
+
       svg {
         margin-right: 0;
         margin-bottom: 5px;
+        width: 25px;
+        height: 25px;
       }
 
       a {

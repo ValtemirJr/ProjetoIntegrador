@@ -1,112 +1,77 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { BsStar } from 'react-icons/bs';
-import { FormStyled, Section } from './styles';
+import { TfiAgenda } from 'react-icons/tfi';
+import { Section, FormStyled } from './styles';
 import Button from '../../../../components/Button';
 
-// Página de edição de serviços
-export default function ClientUpdate() {
+// Página de cadastro de serviços
+export default function ScheduleCreate() {
   // Estado para armazenar os dados do serviço
   const [service, setService] = useState({
-    id: '',
     description: '',
-    service_type_id: '',
+    service_type_id: '1', // Valor padrão definido para 1
     price: '',
   });
 
   // Hook para navegar entre as páginas
   const navigate = useNavigate();
-  // Hook para pegar os dados da URL e salvar o ID do serviço
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const id = searchParams.get('id');
 
-  // Função para buscar um serviço no backend
-  const fetchService = async (serviceId) => {
+  // Função para criar um serviço e enviar para o backend
+  const createService = async (bodyData) => {
     try {
-      const response = await fetch(
-        `http://localhost:3333/service/${serviceId}`,
-        {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
+      // Requisição para criar um serviço
+      const response = await fetch('http://localhost:3333/service', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
-      );
-      if (!response.ok) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Erro',
-          text: 'Não foi possível carregar o serviço.',
-        });
-        throw new Error('Network response was not ok');
-      }
-      // Conversão dos dados para JSON e armazenamento no estado
-      const data = await response.json();
-      setService(data);
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Erro',
-        text: 'Não foi possível carregar o serviço.',
+        // Corpo da requisição com os dados do serviço
+        body: JSON.stringify(bodyData),
       });
-    }
-  };
-
-  // Função para atualizar um serviço no backend
-  const putService = async (serviceId, bodyData) => {
-    const { description, service_type_id, price } = bodyData;
-
-    try {
-      const response = await fetch(
-        `http://localhost:3333/service/${serviceId}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            description,
-            service_type_id,
-            price,
-          }),
-        },
-      );
       if (!response.ok) {
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível atualizar o Serviço.',
+          text: 'Não foi possível criar o serviço.',
         });
         throw new Error('Network response was not ok');
       }
-      // Conversão dos dados para JSON e armazenamento no estado
+      // Armazenamento dos dados no estado
       const data = await response.json();
       setService(data);
       Swal.fire({
         icon: 'success',
         title: 'Sucesso',
-        text: 'Serviço atualizado com sucesso.',
+        text: 'Serviço criado com sucesso.',
       });
       navigate('/secure/services');
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Erro',
-        text: 'Não foi possível atualizar o Serviço.',
+        text: 'Não foi possível criar o serviço.',
       });
     }
   };
 
-  // Função para enviar os dados do formulário para a função de atualizar
+  // Função para enviar os dados do formulário
   const handleSubmit = (event) => {
     event.preventDefault();
-    putService(id, service);
+    if (!service.service_type_id) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Por favor, selecione um tipo de serviço.',
+      });
+    } else {
+      createService(service);
+    }
   };
 
-  // Função para atualizar os dados do serviço no estado
+  // Função para atualizar os dados do formulário
+  // conforme o usuário digita nos inputs
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setService((prevService) => ({
@@ -115,26 +80,22 @@ export default function ClientUpdate() {
     }));
   };
 
-  // Busca o serviço ao carregar a página
-  useEffect(() => {
-    fetchService(id);
-  }, [id]);
-
-  // Função para cancelar a edição e voltar para a listagem de serviços
-  const handleCancel = () => {
-    navigate('/secure/services');
-  };
-
-  const [serviceTypes, setServiceTypes] = useState([]);
-
-  // Função para atuakizar os dados do formulário
+  // Função para atualizar os dados do formulário
   // conforme o usuário seleciona uma opção no select
-  const handleSelectChange = (value) => {
+  const handleSelectChange = (event) => {
+    const { value } = event.target;
     setService((prevService) => ({
       ...prevService,
       service_type_id: value,
     }));
   };
+
+  // Função para cancelar o cadastro e voltar para a listagem
+  const handleCancel = () => {
+    navigate('/secure/services');
+  };
+
+  const [serviceTypes, setServiceTypes] = useState([]);
 
   useEffect(() => {
     const fetchServiceTypes = async () => {
@@ -163,8 +124,8 @@ export default function ClientUpdate() {
   return (
     <Section>
       <h1>
-        <BsStar />
-        Serviços - Editar
+        <TfiAgenda />
+        Agendamentos - Cadastro
       </h1>
       <FormStyled>
         <div className="input__group">
@@ -183,7 +144,7 @@ export default function ClientUpdate() {
             id="service_type_id"
             name="service_type_id"
             value={service.service_type_id}
-            onChange={(event) => handleSelectChange(event.target.value)}
+            onChange={handleSelectChange}
           >
             {serviceTypes.map((type) => (
               <option key={type.id} value={type.id}>

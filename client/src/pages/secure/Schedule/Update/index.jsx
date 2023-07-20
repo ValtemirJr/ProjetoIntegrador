@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { BsStar } from 'react-icons/bs';
+import { TfiAgenda } from 'react-icons/tfi';
 import { FormStyled, Section } from './styles';
 import Button from '../../../../components/Button';
 
 // Página de edição de serviços
-export default function ClientUpdate() {
+export default function ScheduleUpdate() {
   // Estado para armazenar os dados do serviço
   const [service, setService] = useState({
     id: '',
@@ -26,12 +26,12 @@ export default function ClientUpdate() {
   const fetchService = async (serviceId) => {
     try {
       const response = await fetch(
+        // Requisição para buscar um serviço no backend enviando o ID como parâmetro
         `http://localhost:3333/service/${serviceId}`,
         {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         },
       );
@@ -61,6 +61,7 @@ export default function ClientUpdate() {
 
     try {
       const response = await fetch(
+        // Requisição para atualizar um serviço no backend enviando o ID como parâmetro
         `http://localhost:3333/service/${serviceId}`,
         {
           method: 'PUT',
@@ -139,13 +140,7 @@ export default function ClientUpdate() {
   useEffect(() => {
     const fetchServiceTypes = async () => {
       try {
-        const response = await fetch('http://localhost:3333/serviceType', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
+        const response = await fetch('http://localhost:3333/serviceType');
         const data = await response.json();
         setServiceTypes(data);
       } catch (error) {
@@ -163,8 +158,8 @@ export default function ClientUpdate() {
   return (
     <Section>
       <h1>
-        <BsStar />
-        Serviços - Editar
+        <TfiAgenda />
+        Agendamentos - Editar
       </h1>
       <FormStyled>
         <div className="input__group">

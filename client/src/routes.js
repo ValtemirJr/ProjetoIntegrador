@@ -16,6 +16,9 @@ import ClientCreate from './pages/secure/Clients/Create';
 import ServiceList from './pages/secure/Services/List';
 import ServiceUpdate from './pages/secure/Services/Update';
 import ServiceCreate from './pages/secure/Services/Create';
+import ScheduleList from './pages/secure/Schedule/List';
+import ScheduleUpdate from './pages/secure/Schedule/Update';
+import ScheduleCreate from './pages/secure/Schedule/Create';
 
 // AppRoutes é o componente que define as rotas da aplicação
 function AppRoutes() {
@@ -42,6 +45,12 @@ function AppRoutes() {
             <Route path="/secure/services" element={<ServiceList />} />
             <Route path="/secure/services/create" element={<ServiceCreate />} />
             <Route path="/secure/services/:id" element={<ServiceUpdate />} />
+            <Route path="/secure/schedules" element={<ScheduleList />} />
+            <Route
+              path="/secure/schedules/create"
+              element={<ScheduleCreate />}
+            />
+            <Route path="/secure/schedules/:id" element={<ScheduleUpdate />} />
             {/* Rota 404 */}
             <Route path="/secure/*" element={<NotFoundSecure />} />
             <Route path="*" element={<NotFoundSecure />} />

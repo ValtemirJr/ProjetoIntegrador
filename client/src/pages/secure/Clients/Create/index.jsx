@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { PiUserList } from 'react-icons/pi';
@@ -23,6 +23,8 @@ export default function ClientCreate() {
     goal: '',
     date_request: new Date(Date.now() - 3 * 60 * 60 * 1000).toUTCString(),
   });
+  const [nacionality, setNacionality] = useState([]);
+  const [maritalStatus, setMaritalStatus] = useState([]);
 
   // Hook para navegar entre as páginas
   const navigate = useNavigate();
@@ -95,6 +97,52 @@ export default function ClientCreate() {
     }
   };
 
+  const fetchNacionality = async () => {
+    try {
+      const response = await fetch('http://localhost:3333/nacionality', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setNacionality(data);
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Não foi possível carregar as nacionalidades.',
+      });
+    }
+  };
+
+  const fetchMaritalStatus = async () => {
+    try {
+      const response = await fetch('http://localhost:3333/maritalStatus', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setMaritalStatus(data);
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Não foi possível carregar os estados civis.',
+      });
+    }
+  };
+
   // Função para lidar com o envio do formulário
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -110,10 +158,24 @@ export default function ClientCreate() {
     }));
   };
 
+  const handleSelectChange = (event) => {
+    const { name, value } = event.target;
+    setClient((prevClient) => ({
+      ...prevClient,
+      [name]: Number(value),
+    }));
+  };
+
   // Função para lidar com o cancelamento do envio do formulário
   const handleCancel = () => {
     navigate('/secure/clients');
   };
+
+  // Hook para carregar os dados do cliente
+  useEffect(() => {
+    fetchNacionality();
+    fetchMaritalStatus();
+  }, []);
 
   return (
     <Section>
@@ -128,9 +190,12 @@ export default function ClientCreate() {
       */}
       <ClientForm
         client={client}
+        nacionality={nacionality}
+        maritalStatus={maritalStatus}
         handleInputChange={handleInputChange}
         handleSubmit={handleSubmit}
         handleCancel={handleCancel}
+        handleSelectChange={handleSelectChange}
       />
     </Section>
   );

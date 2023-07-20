@@ -125,7 +125,8 @@ const Section = styled.section`
 
 const FormStyled = styled.form`
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  width: 70%;
   padding: 1rem;
   flex-wrap: wrap;
 
@@ -163,6 +164,27 @@ const FormStyled = styled.form`
       border-bottom: 1px solid ${primaryColor};
       color: ${primaryColor};
     }
+  }
+
+  select {
+    width: 80%;
+    padding: 0.5rem;
+    margin: 2rem;
+    border: none;
+    border-bottom: 1px solid ${blackColor};
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  textarea {
+    width: 80%;
+    padding: 0.5rem 0 3rem 0;
+    margin: 2rem;
+    border-bottom: 1px solid ${blackColor};
+    resize: none;
   }
 
   @media screen and (max-width: 768px) {

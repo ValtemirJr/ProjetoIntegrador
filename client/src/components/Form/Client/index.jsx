@@ -9,7 +9,15 @@ import formatPhone from '../../../util/formatPhone';
 // a função para lidar com a mudança de dados nos inputs,
 // a função para lidar com o envio do formulário
 // e a função para lidar com o cancelamentodo envio do formulário.
-function ClientForm({ client, handleInputChange, handleSubmit, handleCancel }) {
+function ClientForm({
+  client,
+  nacionality,
+  maritalStatus,
+  handleInputChange,
+  handleSubmit,
+  handleCancel,
+  handleSelectChange,
+}) {
   return (
     <FormStyled>
       <div className="input__group">
@@ -63,14 +71,20 @@ function ClientForm({ client, handleInputChange, handleSubmit, handleCancel }) {
         />
       </div>
       <div className="input__group">
-        <label htmlFor="marital_status">Estado Civil:</label>
-        <input
-          type="text"
-          id="marital_status"
-          name="marital_status"
-          value={client.marital_status}
-          onChange={handleInputChange}
-        />
+        <label htmlFor="marital_status_id">Estado Civil:</label>
+        <select
+          id="marital_status_id"
+          name="marital_status_id"
+          value={client.marital_status_id}
+          onChange={handleSelectChange}
+        >
+          <option value="">Selecione</option>
+          {maritalStatus.map((status) => (
+            <option key={status.id} value={status.id}>
+              {status.description}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="input__group">
         <label htmlFor="literacy">Escolaridade:</label>
@@ -103,14 +117,21 @@ function ClientForm({ client, handleInputChange, handleSubmit, handleCancel }) {
         />
       </div>
       <div className="input__group">
-        <label htmlFor="nacionality">Nacionalidade:</label>
-        <input
+        <label htmlFor="nacionality_id">Nacionalidade:</label>
+        <select
           type="text"
-          id="nacionality"
-          name="nacionality"
-          value={client.nacionality}
-          onChange={handleInputChange}
-        />
+          id="nacionality_id"
+          name="nacionality_id"
+          value={client.nacionality_id}
+          onChange={handleSelectChange}
+        >
+          <option value="">Selecione</option>
+          {nacionality.map((nation) => (
+            <option key={nation.id} value={nation.id}>
+              {nation.description}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="textarea__group">
         <label htmlFor="goal">Objetivo:</label>

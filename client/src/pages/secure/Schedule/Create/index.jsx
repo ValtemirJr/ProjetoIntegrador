@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { TfiAgenda } from 'react-icons/tfi';
 import { Section, FormStyled } from './styles';
 import Button from '../../../../components/Button';
+import formatDateHour from '../../../../util/formatDateHour';
 
 // Página de cadastro de Agendamentos
 export default function ScheduleCreate() {
@@ -60,6 +61,15 @@ export default function ScheduleCreate() {
   // Função para enviar os dados do formulário
   const handleSubmit = (event) => {
     event.preventDefault();
+    const regex = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2}):(\d{2})$/;
+    if (!regex.test(schedules.consultation_date)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Data inválida. use o formato dd/mm/aaaa hh:mm:ss',
+      });
+      return;
+    }
     createSchedule(schedules);
   };
 
@@ -67,6 +77,14 @@ export default function ScheduleCreate() {
   // conforme o usuário digita nos inputs
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    if (name === 'consultation_date') {
+      const formattedDate = formatDateHour(value);
+      setSchedules((prevSchedule) => ({
+        ...prevSchedule,
+        consultation_date: formattedDate,
+      }));
+      return;
+    }
     setSchedules((prevSchedule) => ({
       ...prevSchedule,
       [name]: value,
@@ -210,7 +228,7 @@ export default function ScheduleCreate() {
           </Button>
           <Button
             type="button"
-            to="/secure/services"
+            to="/secure/schedules"
             onClick={handleCancel}
             className="button__cancel"
           >

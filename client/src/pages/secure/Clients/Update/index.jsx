@@ -23,6 +23,8 @@ export default function ClientUpdate() {
     goal: '',
     date_request: new Date(Date.now() - 3 * 60 * 60 * 1000).toUTCString(),
   });
+  const [nacionality, setNacionality] = useState([]);
+  const [maritalStatus, setMaritalStatus] = useState([]);
 
   // Hook para navegar entre as páginas
   const navigate = useNavigate();
@@ -133,6 +135,52 @@ export default function ClientUpdate() {
     }
   };
 
+  const fetchNacionality = async () => {
+    try {
+      const response = await fetch('http://localhost:3333/nacionality', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setNacionality(data);
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Não foi possível carregar as nacionalidades.',
+      });
+    }
+  };
+
+  const fetchMaritalStatus = async () => {
+    try {
+      const response = await fetch('http://localhost:3333/maritalStatus', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setMaritalStatus(data);
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Não foi possível carregar os estados civis.',
+      });
+    }
+  };
+
   // Função para enviar os dados do formulário
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -159,6 +207,20 @@ export default function ClientUpdate() {
     navigate('/secure/solicitations');
   };
 
+  const handleSelectChange = (event) => {
+    const { name, value } = event.target;
+    setClient((prevClient) => ({
+      ...prevClient,
+      [name]: Number(value),
+    }));
+  };
+
+  // Hook para carregar os dados do cliente
+  useEffect(() => {
+    fetchNacionality();
+    fetchMaritalStatus();
+  }, []);
+
   return (
     <Section>
       <h1>
@@ -167,9 +229,12 @@ export default function ClientUpdate() {
       </h1>
       <ClientForm
         client={client}
+        nacionality={nacionality}
+        maritalStatus={maritalStatus}
         handleInputChange={handleInputChange}
         handleSubmit={handleSubmit}
         handleCancel={handleCancel}
+        handleSelectChange={handleSelectChange}
       />
     </Section>
   );

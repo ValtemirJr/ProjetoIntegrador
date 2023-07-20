@@ -15,6 +15,7 @@ import {
   TableDataCell,
 } from './styles';
 import formatStatusId from '../../../../util/formatStatusId';
+import formatDate from '../../../../util/formatDate';
 
 // Página de listagem de agendamentos
 export default function ScheduleList() {
@@ -149,7 +150,9 @@ export default function ScheduleList() {
             .map((schedule) => (
               <TableRow key={schedule.id}>
                 <TableDataCell>{schedule.consultation_date}</TableDataCell>
-                <TableDataCell>{schedule.date_request}</TableDataCell>
+                <TableDataCell>
+                  {formatDate(schedule.date_request)}
+                </TableDataCell>
                 <TableDataCell>{schedule.service_id}</TableDataCell>
                 <TableDataCell>{schedule.client_id}</TableDataCell>
                 <TableDataCell>

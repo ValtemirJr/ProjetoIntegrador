@@ -139,6 +139,16 @@ export default function ServiceCreate() {
           />
         </div>
         <div className="input__group">
+          <label htmlFor="price">Preço:</label>
+          <input
+            type="text"
+            id="price"
+            name="price"
+            value={service.price}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="input__group">
           <label htmlFor="service_type_id">Tipo de Serviço:</label>
           <select
             id="service_type_id"
@@ -152,16 +162,6 @@ export default function ServiceCreate() {
               </option>
             ))}
           </select>
-        </div>
-        <div className="input__group">
-          <label htmlFor="price">Preço:</label>
-          <input
-            type="text"
-            id="price"
-            name="price"
-            value={service.price}
-            onChange={handleInputChange}
-          />
         </div>
         <div className="button__group">
           <Button type="submit" className="button__crud" onClick={handleSubmit}>

@@ -165,6 +165,19 @@ const FormStyled = styled.form`
     }
   }
 
+  select {
+    width: 80%;
+    padding: 0.5rem;
+    margin: 2rem;
+    border: none;
+    border-bottom: 1px solid ${blackColor};
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     justify-content: center;
   }

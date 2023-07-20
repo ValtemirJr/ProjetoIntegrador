@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { TfiAgenda } from 'react-icons/tfi';
 import { FormStyled, Section } from './styles';
 import Button from '../../../../components/Button';
+import formatDateHour from '../../../../util/formatDateHour';
 
 // Página de edição de Agendamentos
 export default function ScheduleUpdate() {
@@ -110,14 +111,32 @@ export default function ScheduleUpdate() {
   // Função para enviar os dados do formulário para a função de atualizar
   const handleSubmit = (event) => {
     event.preventDefault();
+    const regex = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2}):(\d{2})$/;
+    if (!regex.test(schedules.consultation_date)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Data inválida. use o formato dd/mm/aaaa hh:mm:ss',
+      });
+      return;
+    }
     putSchedule(id, schedules);
   };
 
-  // Função para atualizar os dados do Agendamento no estado
+  // Função para atualizar os dados do formulário
+  // conforme o usuário digita nos inputs
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setSchedules((prevService) => ({
-      ...prevService,
+    if (name === 'consultation_date') {
+      const formattedDate = formatDateHour(value);
+      setSchedules((prevSchedule) => ({
+        ...prevSchedule,
+        consultation_date: formattedDate,
+      }));
+      return;
+    }
+    setSchedules((prevSchedule) => ({
+      ...prevSchedule,
       [name]: value,
     }));
   };
@@ -308,7 +327,7 @@ export default function ScheduleUpdate() {
           </Button>
           <Button
             type="button"
-            to="/secure/services"
+            to="/secure/schedules"
             onClick={handleCancel}
             className="button__cancel"
           >

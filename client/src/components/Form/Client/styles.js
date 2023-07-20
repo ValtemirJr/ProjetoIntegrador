@@ -65,6 +65,19 @@ const FormStyled = styled.form`
     }
   }
 
+  select {
+    padding: 0.5rem;
+    margin: 2rem;
+    border: none;
+    border-bottom: 1px solid ${blackColor};
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
   }

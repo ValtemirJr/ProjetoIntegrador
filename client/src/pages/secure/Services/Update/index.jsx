@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { BsStar } from 'react-icons/bs';
-import Section from './styles';
-import ServiceForm from '../../../../components/Form/Service';
+import { FormStyled, Section } from './styles';
+import Button from '../../../../components/Button';
 
 // Página de edição de serviços
 export default function ClientUpdate() {
@@ -120,18 +120,91 @@ export default function ClientUpdate() {
     navigate('/secure/services');
   };
 
+  const [serviceTypes, setServiceTypes] = useState([]);
+
+  // Função para atuakizar os dados do formulário
+  // conforme o usuário seleciona uma opção no select
+  const handleSelectChange = (value) => {
+    setService((prevService) => ({
+      ...prevService,
+      service_type_id: value,
+    }));
+  };
+
+  useEffect(() => {
+    const fetchServiceTypes = async () => {
+      try {
+        const response = await fetch('http://localhost:3333/serviceType');
+        const data = await response.json();
+        setServiceTypes(data);
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: 'Não foi possível carregar os tipos de serviço.',
+        });
+      }
+    };
+
+    fetchServiceTypes();
+  }, []);
+
   return (
     <Section>
       <h1>
         <BsStar />
         Serviços - Editar
       </h1>
-      <ServiceForm
-        service={service}
-        handleInputChange={handleInputChange}
-        handleSubmit={handleSubmit}
-        handleCancel={handleCancel}
-      />
+      <FormStyled>
+        <div className="input__group">
+          <label htmlFor="description">Descrição:</label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            value={service.description}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="input__group">
+          <label htmlFor="service_type_id">Tipo de Serviço:</label>
+          <select
+            id="service_type_id"
+            name="service_type_id"
+            value={service.service_type_id}
+            onChange={(event) => handleSelectChange(event.target.value)}
+          >
+            {serviceTypes.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.description}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="input__group">
+          <label htmlFor="price">Preço:</label>
+          <input
+            type="text"
+            id="price"
+            name="price"
+            value={service.price}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="button__group">
+          <Button type="submit" className="button__crud" onClick={handleSubmit}>
+            Salvar
+          </Button>
+          <Button
+            type="button"
+            to="/secure/services"
+            onClick={handleCancel}
+            className="button__cancel"
+          >
+            Cancelar
+          </Button>
+        </div>
+      </FormStyled>
     </Section>
   );
 }

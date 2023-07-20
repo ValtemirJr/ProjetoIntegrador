@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { BsFillTrashFill, BsStar } from 'react-icons/bs';
 import { FiEdit } from 'react-icons/fi';
 import Swal from 'sweetalert2';
+import formatPrice from '../../../../util/formatPrice';
+import formatServiceType from '../../../../util/formatServiceType';
 import Button from '../../../../components/Button';
 import {
   Section,
@@ -135,8 +137,10 @@ export default function ServiceList() {
             .map((service) => (
               <TableRow key={service.id}>
                 <TableDataCell>{service.description}</TableDataCell>
-                <TableDataCell>{service.service_type_id}</TableDataCell>
-                <TableDataCell>{service.price}</TableDataCell>
+                <TableDataCell>
+                  {formatServiceType(service.service_type_id)}
+                </TableDataCell>
+                <TableDataCell>{formatPrice(service.price)}</TableDataCell>
                 <TableDataCell>
                   <button
                     type="button"

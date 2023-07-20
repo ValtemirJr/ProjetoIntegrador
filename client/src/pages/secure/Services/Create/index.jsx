@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { BsStar } from 'react-icons/bs';
-import Section from './styles';
-import ServiceForm from '../../../../components/Form/Service';
+import { Section, FormStyled } from './styles';
+import Button from '../../../../components/Button';
 
 // Página de cadastro de serviços
 export default function ServiceCreate() {
   // Estado para armazenar os dados do serviço
   const [service, setService] = useState({
-    id: '',
     description: '',
-    service_type_id: '',
+    service_type_id: '1', // Valor padrão definido para 1
     price: '',
   });
 
@@ -20,9 +19,6 @@ export default function ServiceCreate() {
 
   // Função para criar um serviço e enviar para o backend
   const createService = async (bodyData) => {
-    // Desestruturação dos dados do serviço
-    const { description, service_type_id, price } = bodyData;
-
     try {
       // Requisição para criar um serviço
       const response = await fetch('http://localhost:3333/service', {
@@ -30,12 +26,8 @@ export default function ServiceCreate() {
         headers: {
           'Content-Type': 'application/json',
         },
-        // Corpo da requisição com os dados do serviço desestruturados
-        body: JSON.stringify({
-          description,
-          service_type_id,
-          price,
-        }),
+        // Corpo da requisição com os dados do serviço
+        body: JSON.stringify(bodyData),
       });
       if (!response.ok) {
         Swal.fire({
@@ -45,9 +37,8 @@ export default function ServiceCreate() {
         });
         throw new Error('Network response was not ok');
       }
-      // Conversão dos dados para JSON
-      const data = await response.json();
       // Armazenamento dos dados no estado
+      const data = await response.json();
       setService(data);
       Swal.fire({
         icon: 'success',
@@ -67,7 +58,15 @@ export default function ServiceCreate() {
   // Função para enviar os dados do formulário
   const handleSubmit = (event) => {
     event.preventDefault();
-    createService(service);
+    if (!service.service_type_id) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'Por favor, selecione um tipo de serviço.',
+      });
+    } else {
+      createService(service);
+    }
   };
 
   // Função para atualizar os dados do formulário
@@ -80,10 +79,40 @@ export default function ServiceCreate() {
     }));
   };
 
+  // Função para atualizar os dados do formulário
+  // conforme o usuário seleciona uma opção no select
+  const handleSelectChange = (event) => {
+    const { value } = event.target;
+    setService((prevService) => ({
+      ...prevService,
+      service_type_id: value,
+    }));
+  };
+
   // Função para cancelar o cadastro e voltar para a listagem
   const handleCancel = () => {
     navigate('/secure/services');
   };
+
+  const [serviceTypes, setServiceTypes] = useState([]);
+
+  useEffect(() => {
+    const fetchServiceTypes = async () => {
+      try {
+        const response = await fetch('http://localhost:3333/serviceType');
+        const data = await response.json();
+        setServiceTypes(data);
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: 'Não foi possível carregar os tipos de serviço.',
+        });
+      }
+    };
+
+    fetchServiceTypes();
+  }, []);
 
   return (
     <Section>
@@ -91,12 +120,56 @@ export default function ServiceCreate() {
         <BsStar />
         Serviços - Cadastro
       </h1>
-      <ServiceForm
-        service={service}
-        handleInputChange={handleInputChange}
-        handleSubmit={handleSubmit}
-        handleCancel={handleCancel}
-      />
+      <FormStyled>
+        <div className="input__group">
+          <label htmlFor="description">Descrição:</label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            value={service.description}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="input__group">
+          <label htmlFor="service_type_id">Tipo de Serviço:</label>
+          <select
+            id="service_type_id"
+            name="service_type_id"
+            value={service.service_type_id}
+            onChange={handleSelectChange}
+          >
+            {serviceTypes.map((type) => (
+              <option key={type.id} value={type.id}>
+                {type.description}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="input__group">
+          <label htmlFor="price">Preço:</label>
+          <input
+            type="text"
+            id="price"
+            name="price"
+            value={service.price}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="button__group">
+          <Button type="submit" className="button__crud" onClick={handleSubmit}>
+            Salvar
+          </Button>
+          <Button
+            type="button"
+            to="/secure/services"
+            onClick={handleCancel}
+            className="button__cancel"
+          >
+            Cancelar
+          </Button>
+        </div>
+      </FormStyled>
     </Section>
   );
 }

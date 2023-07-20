@@ -26,7 +26,13 @@ export default function Solicitations() {
   const fetchSolicitations = async () => {
     try {
       // Requisição para buscar os clientes no backend
-      const response = await fetch('http://localhost:3333/client');
+      const response = await fetch('http://localhost:3333/client', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
       if (!response.ok) {
         Swal.fire({
           icon: 'error',
@@ -57,6 +63,10 @@ export default function Solicitations() {
       // Requisição para excluir um cliente no backend enviando o ID como parâmetro
       await fetch(`http://localhost:3333/client/${id}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
       });
       Swal.fire({
         icon: 'success',

@@ -28,6 +28,12 @@ export default function ClientUpdate() {
       const response = await fetch(
         // Requisição para buscar um serviço no backend enviando o ID como parâmetro
         `http://localhost:3333/service/${serviceId}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
       );
       if (!response.ok) {
         Swal.fire({

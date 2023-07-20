@@ -19,9 +19,9 @@ export default function ClientUpdate() {
     literacy: '',
     address: '',
     date_birth: '',
-    nacionality: '',
+    nacionality_id: null,
     goal: '',
-    date_request: '',
+    date_request: new Date(Date.now() - 3 * 60 * 60 * 1000).toUTCString(),
   });
 
   // Hook para navegar entre as páginas
@@ -36,7 +36,14 @@ export default function ClientUpdate() {
   const fetchClient = async (clientId) => {
     try {
       // Requisição para buscar um cliente no backend enviando o ID como parâmetro
-      const response = await fetch(`http://localhost:3333/client/${clientId}`);
+      const response = await fetch(`http://localhost:3333/client/${clientId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      // Verificação de erro na requisição
       if (!response.ok) {
         Swal.fire({
           icon: 'error',
@@ -71,7 +78,7 @@ export default function ClientUpdate() {
       literacy,
       address,
       date_birth,
-      nacionality,
+      nacionality_id,
       goal,
       date_request,
     } = bodyData;
@@ -82,6 +89,7 @@ export default function ClientUpdate() {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
         // Corpo da requisição com os dados do cliente desestruturados
         body: JSON.stringify({
@@ -94,7 +102,7 @@ export default function ClientUpdate() {
           literacy,
           address,
           date_birth,
-          nacionality,
+          nacionality_id,
           goal,
           date_request,
         }),

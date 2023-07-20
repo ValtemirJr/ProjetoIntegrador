@@ -33,7 +33,13 @@ export default function ServiceList() {
   const fetchServices = async () => {
     try {
       // Requisição para buscar os clientes no backend
-      const response = await fetch('http://localhost:3333/service');
+      const response = await fetch('http://localhost:3333/service', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
       if (!response.ok) {
         Swal.fire({
           icon: 'error',
@@ -65,6 +71,10 @@ export default function ServiceList() {
       // Requisição para excluir um serviço no backend enviando o ID como parâmetro
       await fetch(`http://localhost:3333/service/${id}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
       });
       Swal.fire({
         icon: 'success',

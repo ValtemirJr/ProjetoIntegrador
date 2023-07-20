@@ -25,6 +25,7 @@ export default function ServiceCreate() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
         // Corpo da requisição com os dados do serviço
         body: JSON.stringify(bodyData),
@@ -99,7 +100,13 @@ export default function ServiceCreate() {
   useEffect(() => {
     const fetchServiceTypes = async () => {
       try {
-        const response = await fetch('http://localhost:3333/serviceType');
+        const response = await fetch('http://localhost:3333/serviceType', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
         const data = await response.json();
         setServiceTypes(data);
       } catch (error) {

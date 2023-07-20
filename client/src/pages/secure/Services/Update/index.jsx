@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { PiUserList } from 'react-icons/pi';
+import { BsStar } from 'react-icons/bs';
 import Section from './styles';
 import ServiceForm from '../../../../components/Form/Service';
 
@@ -123,7 +123,7 @@ export default function ClientUpdate() {
   return (
     <Section>
       <h1>
-        <PiUserList />
+        <BsStar />
         Serviços - Editar
       </h1>
       <ServiceForm

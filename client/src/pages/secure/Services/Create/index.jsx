@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { PiUserList } from 'react-icons/pi';
+import { BsStar } from 'react-icons/bs';
 import Section from './styles';
 import ServiceForm from '../../../../components/Form/Service';
 
@@ -88,7 +88,7 @@ export default function ServiceCreate() {
   return (
     <Section>
       <h1>
-        <PiUserList />
+        <BsStar />
         Serviços - Cadastro
       </h1>
       <ServiceForm

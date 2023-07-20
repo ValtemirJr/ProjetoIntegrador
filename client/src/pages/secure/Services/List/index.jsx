@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BsFillTrashFill } from 'react-icons/bs';
+import { BsFillTrashFill, BsStar } from 'react-icons/bs';
 import { FiEdit } from 'react-icons/fi';
 import Swal from 'sweetalert2';
-import { PiUserList } from 'react-icons/pi';
 import Button from '../../../../components/Button';
 import {
   Section,
@@ -89,7 +88,7 @@ export default function ServiceList() {
   return (
     <Section>
       <h1>
-        <PiUserList />
+        <BsStar />
         Serviços
       </h1>
       <div className="actions">
@@ -111,13 +110,6 @@ export default function ServiceList() {
             className="button__crud"
           >
             Novo Serviço
-          </Button>
-          <Button
-            type="button"
-            to="/secure/servicesType/create"
-            className="button__crud"
-          >
-            Novo Tipo de Serviço
           </Button>
         </div>
       </div>

@@ -55,7 +55,7 @@ export default class Client extends Model {
           type: Sequelize.STRING(50),
           defaultValue: '',
         },
-        marital_status: {
+        marital_status_id: {
           type: Sequelize.STRING(20),
           defaultValue: '',
         },

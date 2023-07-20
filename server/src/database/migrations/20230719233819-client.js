@@ -27,9 +27,12 @@ module.exports = {
       allowNull: true,
       type: Sequelize.STRING(50),
     },
-    marital_status: {
+    marital_status_id: {
+      type: Sequelize.INTEGER,
+      references: { model: 'marital_status', key: 'id' },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
       allowNull: true,
-      type: Sequelize.STRING(20),
     },
     literacy: {
       allowNull: true,

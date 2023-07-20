@@ -210,7 +210,8 @@ export default function ClientUpdate() {
       const checkCPF = async () => {
         try {
           const response = await fetch(
-            `http://localhost:3333/client/checkCPF/${trimmedCPF}`,
+            // manda o cpf e o id do cliente para verificar se o cpf já existe
+            `http://localhost:3333/client/checkCPF/${trimmedCPF}/${id}`,
             {
               method: 'GET',
               headers: {

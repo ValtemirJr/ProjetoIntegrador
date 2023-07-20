@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import Client from '../models/Client';
 
 class ClientController {
@@ -158,18 +159,25 @@ class ClientController {
   }
 
   // Checa através do cpf se o cliente já existe
+  // Recebendo o cpf e o id do cliente
   async checkCPF(req, res) {
     try {
       // Busca o cliente pelo cpf passado na requisição pelo parâmetro da rota url
-      const { cpf } = req.params;
+      const { cpf, id } = req.params;
       if (!cpf) {
         return res.status(400).json({ errors: ['CPF não providenciado'] });
       }
+
+      // Verifica se já existe algum cliente com o mesmo CPF, mas ID diferente do cliente atual
       const client = await Client.findOne({
-        where: { cpf },
+        where: {
+          cpf,
+          id: { [Op.ne]: id }, // O operador [Op.ne] verifica se o ID é diferente de "id"
+        },
       });
-      // Retorna os dados do cliente
-      return res.json(client);
+
+      // Se o cliente já existir, retorna os dados do cliente, caso contrário, retorna nulo
+      return res.json(client || null);
     } catch (error) {
       return res.status(400).json({ error: error.message });
     }

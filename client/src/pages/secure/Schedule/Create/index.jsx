@@ -62,6 +62,7 @@ export default function ScheduleCreate() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const regex = /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2}):(\d{2})$/;
+    // Verifica se a data está no formato correto
     if (!regex.test(schedules.consultation_date)) {
       Swal.fire({
         icon: 'error',
@@ -70,6 +71,7 @@ export default function ScheduleCreate() {
       });
       return;
     }
+    // Chama a função para criar o Agendamento
     createSchedule(schedules);
   };
 
@@ -140,6 +142,7 @@ export default function ScheduleCreate() {
       }
     };
 
+    // Carrega os clientes cadastrados no banco de dados para o select
     const fetchClients = async () => {
       try {
         const response = await fetch('http://localhost:3333/client', {
@@ -160,6 +163,7 @@ export default function ScheduleCreate() {
       }
     };
 
+    // Atualiza os dados do cliente no estado
     fetchClients();
     fetchServiceTypes();
   }, []);
@@ -198,6 +202,7 @@ export default function ScheduleCreate() {
             value={schedules.service_id}
             onChange={handleServiceChange}
           >
+            {/* Mapeamento dos serviços cadastrados no banco de dados */}
             <option value="">Selecione um serviço</option>
             {service.map((type) => (
               <option key={type.id} value={type.id}>
@@ -214,6 +219,7 @@ export default function ScheduleCreate() {
             value={schedules.client_id}
             onChange={handleClientChange}
           >
+            {/* Mapeamento dos clientes cadastrados no banco de dados */}
             <option value="">Selecione um cliente</option>
             {clients.map((client) => (
               <option key={client.id} value={client.id}>

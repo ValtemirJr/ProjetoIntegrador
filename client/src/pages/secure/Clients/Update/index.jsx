@@ -135,6 +135,7 @@ export default function ClientUpdate() {
     }
   };
 
+  // Carrega as nacionalidades cadastradas no banco de dados
   const fetchNacionality = async () => {
     try {
       const response = await fetch('http://localhost:3333/nacionality', {
@@ -158,6 +159,7 @@ export default function ClientUpdate() {
     }
   };
 
+  // Carrega os estados civis cadastrados no banco de dados
   const fetchMaritalStatus = async () => {
     try {
       const response = await fetch('http://localhost:3333/maritalStatus', {

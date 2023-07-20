@@ -176,11 +176,14 @@ export default function ScheduleUpdate() {
     navigate('/secure/schedules');
   };
 
+  // Estado para armazenar os dados dos serviços, clientes e status de agendamento
   const [service, setService] = useState([]);
   const [clients, setClient] = useState([]);
   const [scheduleStatus, setScheduleStatus] = useState([]);
 
+  // Hook para buscar os serviços, clientes e status de agendamento no backend
   useEffect(() => {
+    // Função para buscar os serviços no backend
     const fetchServiceTypes = async () => {
       try {
         const response = await fetch('http://localhost:3333/service', {
@@ -201,6 +204,7 @@ export default function ScheduleUpdate() {
       }
     };
 
+    // Função para buscar os clientes no backend
     const fetchClients = async () => {
       try {
         const response = await fetch('http://localhost:3333/client', {
@@ -221,6 +225,7 @@ export default function ScheduleUpdate() {
       }
     };
 
+    // Função para buscar os status de agendamento no backend
     const fetchScheduleStatus = async () => {
       try {
         const response = await fetch('http://localhost:3333/schedulingStatus', {
@@ -241,6 +246,7 @@ export default function ScheduleUpdate() {
       }
     };
 
+    // Atualiza os estados com os dados buscados no backend
     fetchClients();
     fetchServiceTypes();
     fetchScheduleStatus();
@@ -281,6 +287,7 @@ export default function ScheduleUpdate() {
             value={schedules.service_id}
             onChange={handleServiceChange}
           >
+            {/* Mapeamento dos serviços para criar as opções do select */}
             <option value="">Selecione um serviço</option>
             {service.map((type) => (
               <option key={type.id} value={type.id}>
@@ -297,6 +304,7 @@ export default function ScheduleUpdate() {
             value={schedules.client_id}
             onChange={handleClientChange}
           >
+            {/* Mapeamento dos nomes dos clientes para criar as opções do select */}
             <option value="">Selecione um cliente</option>
             {clients.map((client) => (
               <option key={client.id} value={client.id}>
@@ -314,6 +322,7 @@ export default function ScheduleUpdate() {
             onChange={handleStatusChange}
           >
             <option value="">Selecione um status</option>
+            {/* Mapeamento dos status para criar as opções do select */}
             {scheduleStatus.map((status) => (
               <option key={status.id} value={status.id}>
                 {status.description}

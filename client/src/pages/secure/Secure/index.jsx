@@ -40,6 +40,7 @@ export default function SecureHome() {
       }
     };
 
+    // Chamar a função para verificar o token
     checkTokenValidity();
   }, []);
 

@@ -150,8 +150,10 @@ export default function ServiceList() {
                 <TableDataCell>{service.id}</TableDataCell>
                 <TableDataCell>{service.description}</TableDataCell>
                 <TableDataCell>
+                  {/* Formatação do tipo de serviço */}
                   {formatServiceType(service.service_type_id)}
                 </TableDataCell>
+                {/* Formatação do preço */}
                 <TableDataCell>{formatPrice(service.price)}</TableDataCell>
                 <TableDataCell>
                   <button

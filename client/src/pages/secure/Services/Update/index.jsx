@@ -137,6 +137,7 @@ export default function ClientUpdate() {
     }));
   };
 
+  // Função para buscar os tipos de serviço no backend e armazenar no estado
   useEffect(() => {
     const fetchServiceTypes = async () => {
       try {
@@ -158,6 +159,7 @@ export default function ClientUpdate() {
       }
     };
 
+    // Atualiza o estado com os tipos de serviço
     fetchServiceTypes();
   }, []);
 
@@ -196,6 +198,7 @@ export default function ClientUpdate() {
             value={service.service_type_id}
             onChange={(event) => handleSelectChange(event.target.value)}
           >
+            {/* Mapeia os tipos de serviço e cria uma opção para cada um */}
             {serviceTypes.map((type) => (
               <option key={type.id} value={type.id}>
                 {type.description}

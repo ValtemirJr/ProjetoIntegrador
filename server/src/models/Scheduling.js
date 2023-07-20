@@ -31,8 +31,8 @@ export default class Scheduling extends Model {
             },
           },
         },
-        status: {
-          type: Sequelize.BOOLEAN,
+        status_id: {
+          type: Sequelize.STRING(255),
           defaultValue: false,
         },
       },

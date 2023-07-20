@@ -8,15 +8,6 @@ export default class Nacionality extends Model {
         description: {
           type: Sequelize.STRING(255),
           defaultValue: '',
-          validate: {
-            notEmpty: {
-              msg: 'Description cannot be empty',
-            },
-            len: {
-              args: [5, 255],
-              msg: 'Description must have between 5 and 255 characters',
-            },
-          },
         },
       },
       {

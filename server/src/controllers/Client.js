@@ -12,7 +12,7 @@ class ClientController {
       const client = await Client.create(req.body);
       // Retorna os dados do cliente criado
       const {
-        id, name, email, phonenumber, goal, date_request,
+        id, name, email, phonenumber, goal, date_request, nacionality_id,
       } = client;
       return res.status(200).json({
         id,
@@ -21,6 +21,7 @@ class ClientController {
         phonenumber,
         goal,
         date_request,
+        nacionality_id,
       });
     } catch (error) {
       return res
@@ -76,7 +77,7 @@ class ClientController {
           'literacy',
           'address',
           'date_birth',
-          'nacionality',
+          'nacionality_id',
           'goal',
           'date_request',
         ],
@@ -110,7 +111,7 @@ class ClientController {
           'literacy',
           'address',
           'date_birth',
-          'nacionality',
+          'nacionality_id',
           'goal',
           'date_request',
         ],

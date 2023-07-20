@@ -32,9 +32,12 @@ module.exports = {
       allowNull: false,
       type: Sequelize.STRING(255),
     },
-    status: {
+    status_id: {
+      type: Sequelize.INTEGER,
+      references: { model: 'scheduling_status', key: 'id' },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
       allowNull: false,
-      type: Sequelize.BOOLEAN,
     },
   }),
 

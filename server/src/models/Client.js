@@ -71,7 +71,7 @@ export default class Client extends Model {
           type: Sequelize.STRING(255),
           defaultValue: '',
         },
-        nacionality: {
+        nacionality_id: {
           type: Sequelize.STRING(255),
           defaultValue: '',
         },

@@ -48,7 +48,7 @@ module.exports = {
       references: { model: 'nacionality', key: 'id' },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
-      allowNull: false,
+      allowNull: true,
     },
     goal: {
       allowNull: false,

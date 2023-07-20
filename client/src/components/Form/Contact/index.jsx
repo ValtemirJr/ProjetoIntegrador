@@ -26,6 +26,7 @@ export default function Contact() {
       email,
       phonenumber,
       goal,
+      nacionality_id: null,
     };
 
     // Envia os dados do formulário para o backend

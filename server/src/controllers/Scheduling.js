@@ -6,6 +6,7 @@ class SchedulingController {
     try {
       const date = new Date(Date.now() - 3 * 60 * 60 * 1000).toUTCString();
       req.body.date_request = date;
+      req.body.status_id = 1;
       const scheduling = await Scheduling.create(req.body);
       return res.status(200).json(scheduling);
     } catch (error) {

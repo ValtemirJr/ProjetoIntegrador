@@ -1,26 +1,9 @@
 import Scheduling from '../models/Scheduling';
 
 class SchedulingController {
-  static async verifyDate(consultation_date) {
-    try {
-      const schedulings = await Scheduling.findAll({
-        where: { consultation_date },
-      });
-      return schedulings.length > 0;
-    } catch (error) {
-      throw new Error('Erro ao verificar o CPF');
-    }
-  }
-
   // Cria um agendamento
   async create(req, res) {
     try {
-      const { consultation_date } = req.body;
-
-      const dateExists = await SchedulingController.verifyDate(consultation_date);
-      if (dateExists) {
-        return res.status(400).json({ error: 'Horário indisponivel' });
-      }
       const date = new Date(Date.now() - 3 * 60 * 60 * 1000).toUTCString();
       req.body.date_request = date;
       req.body.status_id = 1;

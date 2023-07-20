@@ -2,28 +2,8 @@ import Client from '../models/Client';
 
 class ClientController {
   // Cria uma solicitação de contato do cliente
-
-  static async verifyDate(cpf) {
-    try {
-      const clients = await Client.findAll({
-        where: { cpf },
-      });
-      return clients.length > 0;
-    } catch (error) {
-      throw new Error('Erro ao verificar o CPF');
-    }
-  }
-
   async create(req, res) {
     try {
-      const { cpf } = req.body;
-
-      // Verifica se a data de consulta já existe no banco de dados
-      const dateExists = await ClientController.verifyDate(cpf);
-
-      if (dateExists) {
-        return res.status(400).json({ error: 'CPF já cadastrado.' });
-      }
       // Cria a data em que o cliente entrou em contato
       const date = new Date(Date.now() - 3 * 60 * 60 * 1000).toUTCString();
       // Adiciona a data de solicitação ao corpo da requisição

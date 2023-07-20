@@ -39,10 +39,11 @@ export default function ScheduleUpdate() {
         },
       );
       if (!response.ok) {
+        const data = await response.json();
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível carregar o Agendamento.',
+          text: data.errors[0],
         });
         throw new Error('Network response was not ok');
       }
@@ -83,10 +84,11 @@ export default function ScheduleUpdate() {
         },
       );
       if (!response.ok) {
+        const data = await response.json();
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível atualizar o Agendamento.',
+          text: data.errors[0],
         });
         throw new Error('Network response was not ok');
       }

@@ -36,10 +36,11 @@ export default function ClientUpdate() {
         },
       );
       if (!response.ok) {
+        const data = await response.json();
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível carregar o serviço.',
+          text: data.errors[0],
         });
         throw new Error('Network response was not ok');
       }
@@ -76,10 +77,11 @@ export default function ClientUpdate() {
         },
       );
       if (!response.ok) {
+        const data = await response.json();
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível atualizar o Serviço.',
+          text: data.errors[0],
         });
         throw new Error('Network response was not ok');
       }

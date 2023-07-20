@@ -41,10 +41,11 @@ export default function ClientList() {
       });
       // Verificação de erro na requisição
       if (!response.ok) {
+        const data = await response.json();
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível carregar os clientes.',
+          text: data.errors[0],
         });
         throw new Error('Network response was not ok');
       }

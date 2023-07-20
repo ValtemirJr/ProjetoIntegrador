@@ -47,10 +47,11 @@ export default function ClientUpdate() {
       });
       // Verificação de erro na requisição
       if (!response.ok) {
+        const data = await response.json();
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível carregar o cliente.',
+          text: data.errors[0],
         });
         throw new Error('Network response was not ok');
       }
@@ -110,10 +111,11 @@ export default function ClientUpdate() {
         }),
       });
       if (!response.ok) {
+        const data = await response.json();
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível atualizar o cliente.',
+          text: data.errors[0],
         });
         throw new Error('Network response was not ok');
       }

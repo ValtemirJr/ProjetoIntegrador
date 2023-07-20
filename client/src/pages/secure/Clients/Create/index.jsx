@@ -73,10 +73,11 @@ export default function ClientCreate() {
       });
       // Verifica se a resposta da requisição é ok
       if (!response.ok) {
+        const data = await response.json();
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível criar o cliente.',
+          text: data.errors[0],
         });
         throw new Error('Network response was not ok');
       }

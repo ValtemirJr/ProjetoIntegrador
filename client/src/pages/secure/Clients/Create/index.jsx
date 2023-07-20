@@ -148,7 +148,25 @@ export default function ClientCreate() {
   // Função para lidar com o envio do formulário
   const handleSubmit = (event) => {
     event.preventDefault();
-    createClient(client);
+    // Remove os espaços em branco do CPF caso informado
+    const trimmedCPF = client.cpf.trim();
+
+    // Checa se o CPF está vazio ou se não possui 11 dígitos
+    if (trimmedCPF === '') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'CPF não pode ser vazio.',
+      });
+    } else if (!trimmedCPF.match(/^\d+$/) || trimmedCPF.length !== 11) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Erro',
+        text: 'CPF inválido. Formato aceito apenas em números com 11 dígitos.',
+      });
+    } else {
+      createClient(client);
+    }
   };
 
   // Função para lidar com a mudança de dados nos inputs

@@ -158,7 +158,7 @@ class ClientController {
   }
 
   // Checa através do cpf se o cliente já existe
-  async checkClient(req, res) {
+  async checkCPF(req, res) {
     try {
       // Busca o cliente pelo cpf passado na requisição pelo parâmetro da rota url
       const { cpf } = req.params;

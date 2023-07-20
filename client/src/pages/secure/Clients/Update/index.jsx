@@ -202,8 +202,43 @@ export default function ClientUpdate() {
         title: 'Erro',
         text: 'CPF inválido. Formato aceito apenas em números com 11 dígitos.',
       });
-    } else {
-      putClient(id, client);
+
+      // Checa no banco de dados se o CPF já existe para outro cliente
+    } else if (trimmedCPF.length === 11) {
+      const checkCPF = async () => {
+        try {
+          const response = await fetch(
+            `http://localhost:3333/client/checkCPF/${trimmedCPF}`,
+            {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+            },
+          );
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          if (data) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Erro',
+              text: 'CPF já cadastrado.',
+            });
+          } else {
+            putClient(id, client);
+          }
+        } catch (error) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Erro',
+            text: 'Não foi possível verificar o CPF.',
+          });
+        }
+      };
+      checkCPF();
     }
   };
 

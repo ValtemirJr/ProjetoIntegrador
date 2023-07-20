@@ -7,7 +7,7 @@ module.exports = {
       {
         name: 'Edgar Codd',
         email: 'edgar@codd.com',
-        phonenumber: '80608060',
+        phonenumber: '(99) 99999-9999',
         goal: 'Melhorar meu relacionamento',
         nacionality_id: null,
         cpf: '12345678901',
@@ -16,7 +16,7 @@ module.exports = {
       {
         name: 'Jon von Neumann',
         email: 'jon@von-neumann.com',
-        phonenumber: '3264128',
+        phonenumber: '(99) 99999-9999',
         goal: 'Aprimorar minha memória',
         nacionality_id: null,
         cpf: '98765432109',
@@ -25,7 +25,7 @@ module.exports = {
       {
         name: 'Thomas H. Cormen',
         email: 'thomas@cormen.com',
-        phonenumber: '3264128',
+        phonenumber: '(99) 99999-9999',
         goal: 'Quero menos complexidade e mais eficiencia',
         nacionality_id: null,
         cpf: '4569134864',

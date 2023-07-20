@@ -4,6 +4,7 @@ import { PiUserList } from 'react-icons/pi';
 import { RiServiceLine } from 'react-icons/ri';
 import { BsStar } from 'react-icons/bs';
 import { TfiAgenda } from 'react-icons/tfi';
+import { FiLogOut } from 'react-icons/fi';
 import SideNav from './styles';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
 
@@ -33,6 +34,12 @@ export default function Nav() {
         <li>
           <TfiAgenda />
           <Link to="/secure/schedules">Agendamentos</Link>
+        </li>
+        <li>
+          <FiLogOut />
+          <Link to="/" onClick={() => localStorage.clear()}>
+            Sair
+          </Link>
         </li>
       </ul>
     </SideNav>

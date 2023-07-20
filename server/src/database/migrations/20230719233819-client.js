@@ -1,5 +1,4 @@
 module.exports = {
-  // Cria a tabela de clients no banco de dados com os campos abaixo
   up: (queryInterface, Sequelize) => queryInterface.createTable('client', {
     id: {
       type: Sequelize.INTEGER,
@@ -44,9 +43,12 @@ module.exports = {
       allowNull: true,
       type: Sequelize.STRING(255),
     },
-    nacionality: {
-      allowNull: true,
-      type: Sequelize.STRING(20),
+    nacionality_id: {
+      type: Sequelize.INTEGER,
+      references: { model: 'nacionality', key: 'id' },
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
+      allowNull: false,
     },
     goal: {
       allowNull: false,

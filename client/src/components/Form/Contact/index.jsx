@@ -40,10 +40,11 @@ export default function Contact() {
       .then((response) => {
         // Verifica se a resposta da requisição é ok
         if (!response.ok) {
-          // Caso não seja, exibe um alerta de erro
+          const data = response.json();
+          // Caso não seja, exibe um alerta de erro do backend
           Swal.fire({
             title: 'Erro!',
-            text: 'Ocorreu um erro ao enviar sua solicitação! Verique os dados e tente novamente, todos são obrigatórios.',
+            text: data.errors[0],
             icon: 'error',
             confirmButtonText: 'Ok',
           });

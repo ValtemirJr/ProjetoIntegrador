@@ -9,6 +9,7 @@ import schedulingRoutes from './routes/scheduling';
 import nacionalityRoutes from './routes/nacionality';
 import maritalStatusRoutes from './routes/maritalStatus';
 import tokenRoutes from './routes/token';
+import schedulingStatusRoutes from './routes/schedulingStatus';
 
 // Importa a conexão com o banco de dados
 import './database';
@@ -38,6 +39,7 @@ class App {
     this.app.use('/serviceType/', serviceTypeRoutes);
     this.app.use('/service/', serviceRoutes);
     this.app.use('/scheduling/', schedulingRoutes);
+    this.app.use('/schedulingStatus/', schedulingStatusRoutes);
     this.app.use('/nacionality/', nacionalityRoutes);
     this.app.use('/maritalStatus/', maritalStatusRoutes);
     this.app.use('/token/', tokenRoutes);

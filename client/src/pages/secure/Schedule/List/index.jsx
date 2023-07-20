@@ -4,8 +4,6 @@ import { BsFillTrashFill } from 'react-icons/bs';
 import { FiEdit } from 'react-icons/fi';
 import { TfiAgenda } from 'react-icons/tfi';
 import Swal from 'sweetalert2';
-import formatPrice from '../../../../util/formatPrice';
-import formatServiceType from '../../../../util/formatServiceType';
 import Button from '../../../../components/Button';
 import {
   Section,
@@ -16,6 +14,7 @@ import {
   TableRow,
   TableDataCell,
 } from './styles';
+import formatStatusId from '../../../../util/formatStatusId';
 
 // Página de listagem de agendamentos
 export default function ScheduleList() {
@@ -63,7 +62,7 @@ export default function ScheduleList() {
 
   // Função para navegar para a página de edição de agendamentos
   const handleEditServices = (id) => {
-    navigate(`/secure/scheduling/update?id=${id}`);
+    navigate(`/secure/schedules/update?id=${id}`);
   };
 
   //  Função para excluir um agendamento
@@ -129,9 +128,11 @@ export default function ScheduleList() {
       <TableWrapper>
         <TableHeader>
           <TableRow>
-            <TableHeaderCell>Descrição</TableHeaderCell>
-            <TableHeaderCell>Tipo</TableHeaderCell>
-            <TableHeaderCell>Preço</TableHeaderCell>
+            <TableHeaderCell>Data da Consulta</TableHeaderCell>
+            <TableHeaderCell>Data da Requisição</TableHeaderCell>
+            <TableHeaderCell>Cliente</TableHeaderCell>
+            <TableHeaderCell>Serviço</TableHeaderCell>
+            <TableHeaderCell>Status</TableHeaderCell>
             <TableHeaderCell>Ações</TableHeaderCell>
           </TableRow>
         </TableHeader>
@@ -147,11 +148,13 @@ export default function ScheduleList() {
             // Mapeamento dos dados para a tabela de agendamentos
             .map((schedule) => (
               <TableRow key={schedule.id}>
-                <TableDataCell>{schedule.description}</TableDataCell>
+                <TableDataCell>{schedule.consultation_date}</TableDataCell>
+                <TableDataCell>{schedule.date_request}</TableDataCell>
+                <TableDataCell>{schedule.service_id}</TableDataCell>
+                <TableDataCell>{schedule.client_id}</TableDataCell>
                 <TableDataCell>
-                  {formatServiceType(schedule.service_type_id)}
+                  {formatStatusId(schedule.status_id)}
                 </TableDataCell>
-                <TableDataCell>{formatPrice(schedule.price)}</TableDataCell>
                 <TableDataCell>
                   <button
                     type="button"

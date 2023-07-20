@@ -5,33 +5,35 @@ import { TfiAgenda } from 'react-icons/tfi';
 import { FormStyled, Section } from './styles';
 import Button from '../../../../components/Button';
 
-// Página de edição de serviços
+// Página de edição de Agendamentos
 export default function ScheduleUpdate() {
-  // Estado para armazenar os dados do serviço
-  const [service, setService] = useState({
-    id: '',
-    description: '',
-    service_type_id: '',
-    price: '',
+  // Estado para armazenar os dados do Agendamento
+  const [schedules, setSchedules] = useState({
+    consultation_date: '',
+    goal: '',
+    client_id: '',
+    service_id: '',
+    status_id: '',
   });
 
   // Hook para navegar entre as páginas
   const navigate = useNavigate();
-  // Hook para pegar os dados da URL e salvar o ID do serviço
+  // Hook para pegar os dados da URL e salvar o ID do Agendamento
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get('id');
 
-  // Função para buscar um serviço no backend
-  const fetchService = async (serviceId) => {
+  // Função para buscar um Agendamento no backend
+  const fetchSchedule = async (sheduleId) => {
     try {
       const response = await fetch(
-        // Requisição para buscar um serviço no backend enviando o ID como parâmetro
-        `http://localhost:3333/service/${serviceId}`,
+        // Requisição para buscar um Agendamento no backend enviando o ID como parâmetro
+        `http://localhost:3333/scheduling/${sheduleId}`,
         {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         },
       );
@@ -39,39 +41,43 @@ export default function ScheduleUpdate() {
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível carregar o serviço.',
+          text: 'Não foi possível carregar o Agendamento.',
         });
         throw new Error('Network response was not ok');
       }
       // Conversão dos dados para JSON e armazenamento no estado
       const data = await response.json();
-      setService(data);
+      setSchedules(data);
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Erro',
-        text: 'Não foi possível carregar o serviço.',
+        text: 'Não foi possível carregar o Agendamento.',
       });
     }
   };
 
-  // Função para atualizar um serviço no backend
-  const putService = async (serviceId, bodyData) => {
-    const { description, service_type_id, price } = bodyData;
+  // Função para atualizar um Agendamento no backend
+  const putSchedule = async (schedulesId, bodyData) => {
+    const { consultation_date, goal, client_id, service_id, status_id } =
+      bodyData;
 
     try {
       const response = await fetch(
-        // Requisição para atualizar um serviço no backend enviando o ID como parâmetro
-        `http://localhost:3333/service/${serviceId}`,
+        // Requisição para atualizar um Agendamento no backend enviando o ID como parâmetro
+        `http://localhost:3333/scheduling/${schedulesId}`,
         {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
           body: JSON.stringify({
-            description,
-            service_type_id,
-            price,
+            consultation_date,
+            goal,
+            client_id,
+            service_id,
+            status_id,
           }),
         },
       );
@@ -79,24 +85,24 @@ export default function ScheduleUpdate() {
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível atualizar o Serviço.',
+          text: 'Não foi possível atualizar o Agendamento.',
         });
         throw new Error('Network response was not ok');
       }
       // Conversão dos dados para JSON e armazenamento no estado
       const data = await response.json();
-      setService(data);
+      setSchedules(data);
       Swal.fire({
         icon: 'success',
         title: 'Sucesso',
-        text: 'Serviço atualizado com sucesso.',
+        text: 'Agendamento atualizado com sucesso.',
       });
-      navigate('/secure/services');
+      navigate('/secure/schedules');
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Erro',
-        text: 'Não foi possível atualizar o Serviço.',
+        text: 'Não foi possível atualizar o Agendamento.',
       });
     }
   };
@@ -104,83 +110,160 @@ export default function ScheduleUpdate() {
   // Função para enviar os dados do formulário para a função de atualizar
   const handleSubmit = (event) => {
     event.preventDefault();
-    putService(id, service);
+    putSchedule(id, schedules);
   };
 
-  // Função para atualizar os dados do serviço no estado
+  // Função para atualizar os dados do Agendamento no estado
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setService((prevService) => ({
+    setSchedules((prevService) => ({
       ...prevService,
       [name]: value,
     }));
   };
 
-  // Busca o serviço ao carregar a página
-  useEffect(() => {
-    fetchService(id);
-  }, [id]);
-
-  // Função para cancelar a edição e voltar para a listagem de serviços
-  const handleCancel = () => {
-    navigate('/secure/services');
-  };
-
-  const [serviceTypes, setServiceTypes] = useState([]);
-
-  // Função para atuakizar os dados do formulário
+  // Função para atualizar os dados do formulário
   // conforme o usuário seleciona uma opção no select
-  const handleSelectChange = (value) => {
-    setService((prevService) => ({
-      ...prevService,
-      service_type_id: value,
+  const handleServiceChange = (event) => {
+    const { value } = event.target;
+    setSchedules((prevSchedule) => ({
+      ...prevSchedule,
+      service_id: value,
     }));
   };
+
+  // Função para atualizar os dados do formulário
+  // conforme o usuário seleciona uma opção no select
+  const handleClientChange = (event) => {
+    const { value } = event.target;
+    setSchedules((prevSchedule) => ({
+      ...prevSchedule,
+      client_id: value,
+    }));
+  };
+
+  // Função para atualizar os dados do formulário
+  // conforme o usuário seleciona uma opção no select
+  const handleStatusChange = (event) => {
+    const { value } = event.target;
+    setSchedules((prevSchedule) => ({
+      ...prevSchedule,
+      status_id: value,
+    }));
+  };
+
+  // Função para cancelar a edição e voltar para a listagem de Agendamentos
+  const handleCancel = () => {
+    navigate('/secure/schedules');
+  };
+
+  const [service, setService] = useState([]);
+  const [clients, setClient] = useState([]);
+  const [scheduleStatus, setScheduleStatus] = useState([]);
 
   useEffect(() => {
     const fetchServiceTypes = async () => {
       try {
-        const response = await fetch('http://localhost:3333/serviceType');
+        const response = await fetch('http://localhost:3333/service', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
         const data = await response.json();
-        setServiceTypes(data);
+        setService(data);
       } catch (error) {
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível carregar os tipos de serviço.',
+          text: 'Não foi possível carregar os serviços.',
         });
       }
     };
 
+    const fetchClients = async () => {
+      try {
+        const response = await fetch('http://localhost:3333/client', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        const data = await response.json();
+        setClient(data);
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: 'Não foi possível carregar os clientes.',
+        });
+      }
+    };
+
+    const fetchScheduleStatus = async () => {
+      try {
+        const response = await fetch('http://localhost:3333/schedulingStatus', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        const data = await response.json();
+        setScheduleStatus(data);
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: 'Não foi possível carregar os status.',
+        });
+      }
+    };
+
+    fetchClients();
     fetchServiceTypes();
-  }, []);
+    fetchScheduleStatus();
+    fetchSchedule(id);
+  }, [id]);
 
   return (
     <Section>
       <h1>
         <TfiAgenda />
-        Agendamentos - Editar
+        Agendamentos - Cadastro
       </h1>
       <FormStyled>
         <div className="input__group">
-          <label htmlFor="description">Descrição:</label>
+          <label htmlFor="consultation_date">Data da Consulta:</label>
           <input
             type="text"
-            id="description"
-            name="description"
-            value={service.description}
+            id="consultation_date"
+            name="consultation_date"
+            value={schedules.consultation_date}
             onChange={handleInputChange}
           />
         </div>
         <div className="input__group">
-          <label htmlFor="service_type_id">Tipo de Serviço:</label>
+          <label htmlFor="goal">Objetivo:</label>
+          <textarea
+            id="goal"
+            name="goal"
+            value={schedules.goal}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="input__group">
+          <label htmlFor="service_id">Serviço:</label>
           <select
-            id="service_type_id"
-            name="service_type_id"
-            value={service.service_type_id}
-            onChange={(event) => handleSelectChange(event.target.value)}
+            id="service_id"
+            name="service_id"
+            value={schedules.service_id}
+            onChange={handleServiceChange}
           >
-            {serviceTypes.map((type) => (
+            <option value="">Selecione um serviço</option>
+            {service.map((type) => (
               <option key={type.id} value={type.id}>
                 {type.description}
               </option>
@@ -188,14 +271,36 @@ export default function ScheduleUpdate() {
           </select>
         </div>
         <div className="input__group">
-          <label htmlFor="price">Preço:</label>
-          <input
-            type="text"
-            id="price"
-            name="price"
-            value={service.price}
-            onChange={handleInputChange}
-          />
+          <label htmlFor="client_id">Cliente:</label>
+          <select
+            id="client_id"
+            name="client_id"
+            value={schedules.client_id}
+            onChange={handleClientChange}
+          >
+            <option value="">Selecione um cliente</option>
+            {clients.map((client) => (
+              <option key={client.id} value={client.id}>
+                {client.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="input__group">
+          <label htmlFor="status_id">Status:</label>
+          <select
+            id="status_id"
+            name="status_id"
+            value={schedules.status_id}
+            onChange={handleStatusChange}
+          >
+            <option value="">Selecione um status</option>
+            {scheduleStatus.map((status) => (
+              <option key={status.id} value={status.id}>
+                {status.description}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="button__group">
           <Button type="submit" className="button__crud" onClick={handleSubmit}>

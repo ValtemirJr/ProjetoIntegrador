@@ -128,6 +128,7 @@ export default function ServiceList() {
       <TableWrapper>
         <TableHeader>
           <TableRow>
+            <TableHeaderCell>ID</TableHeaderCell>
             <TableHeaderCell>Descrição</TableHeaderCell>
             <TableHeaderCell>Tipo</TableHeaderCell>
             <TableHeaderCell>Preço</TableHeaderCell>
@@ -146,6 +147,7 @@ export default function ServiceList() {
             // Mapeamento dos dados para a tabela de serviços
             .map((service) => (
               <TableRow key={service.id}>
+                <TableDataCell>{service.id}</TableDataCell>
                 <TableDataCell>{service.description}</TableDataCell>
                 <TableDataCell>
                   {formatServiceType(service.service_type_id)}

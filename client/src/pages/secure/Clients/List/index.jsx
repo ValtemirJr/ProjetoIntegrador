@@ -120,6 +120,7 @@ export default function ClientList() {
       <TableWrapper>
         <TableHeader>
           <TableRow>
+            <TableHeaderCell>ID</TableHeaderCell>
             <TableHeaderCell>CPF</TableHeaderCell>
             <TableHeaderCell>Nome</TableHeaderCell>
             <TableHeaderCell>E-mail</TableHeaderCell>
@@ -142,6 +143,7 @@ export default function ClientList() {
             // Caso nõa haja filtro, exibe todos os clientes
             .map((client) => (
               <TableRow key={client.id}>
+                <TableDataCell>{client.id}</TableDataCell>
                 <TableDataCell>{client.cpf}</TableDataCell>
                 <TableDataCell>{client.name}</TableDataCell>
                 <TableDataCell>{client.email}</TableDataCell>

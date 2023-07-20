@@ -5,53 +5,54 @@ import { TfiAgenda } from 'react-icons/tfi';
 import { Section, FormStyled } from './styles';
 import Button from '../../../../components/Button';
 
-// Página de cadastro de serviços
+// Página de cadastro de Agendamentos
 export default function ScheduleCreate() {
-  // Estado para armazenar os dados do serviço
-  const [service, setService] = useState({
-    description: '',
-    service_type_id: '1', // Valor padrão definido para 1
-    price: '',
+  // Estado para armazenar os dados do Agendamento
+  const [schedules, setSchedules] = useState({
+    consultation_date: '',
+    goal: '',
+    client_id: '',
+    service_id: '',
   });
 
   // Hook para navegar entre as páginas
   const navigate = useNavigate();
 
-  // Função para criar um serviço e enviar para o backend
-  const createService = async (bodyData) => {
+  // Função para criar um Agendamento e enviar para o backend
+  const createSchedule = async (bodyData) => {
     try {
-      // Requisição para criar um serviço
-      const response = await fetch('http://localhost:3333/service', {
+      // Requisição para criar um Agendamento
+      const response = await fetch('http://localhost:3333/scheduling', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
-        // Corpo da requisição com os dados do serviço
+        // Corpo da requisição com os dados do Agendamento
         body: JSON.stringify(bodyData),
       });
       if (!response.ok) {
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível criar o serviço.',
+          text: 'Não foi possível criar o Agendamento.',
         });
         throw new Error('Network response was not ok');
       }
       // Armazenamento dos dados no estado
       const data = await response.json();
-      setService(data);
+      setSchedules(data);
       Swal.fire({
         icon: 'success',
         title: 'Sucesso',
-        text: 'Serviço criado com sucesso.',
+        text: 'Agendamento criado com sucesso.',
       });
-      navigate('/secure/services');
+      navigate('/secure/schedules');
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Erro',
-        text: 'Não foi possível criar o serviço.',
+        text: 'Não foi possível criar o Agendamento.',
       });
     }
   };
@@ -59,48 +60,51 @@ export default function ScheduleCreate() {
   // Função para enviar os dados do formulário
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!service.service_type_id) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Erro',
-        text: 'Por favor, selecione um tipo de serviço.',
-      });
-    } else {
-      createService(service);
-    }
+    createSchedule(schedules);
   };
 
   // Função para atualizar os dados do formulário
   // conforme o usuário digita nos inputs
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setService((prevService) => ({
-      ...prevService,
+    setSchedules((prevSchedule) => ({
+      ...prevSchedule,
       [name]: value,
     }));
   };
 
   // Função para atualizar os dados do formulário
   // conforme o usuário seleciona uma opção no select
-  const handleSelectChange = (event) => {
+  const handleServiceChange = (event) => {
     const { value } = event.target;
-    setService((prevService) => ({
-      ...prevService,
-      service_type_id: value,
+    setSchedules((prevSchedule) => ({
+      ...prevSchedule,
+      service_id: value,
+    }));
+  };
+
+  // Função para atualizar os dados do formulário
+  // conforme o usuário seleciona uma opção no select
+  const handleClientChange = (event) => {
+    const { value } = event.target;
+    setSchedules((prevSchedule) => ({
+      ...prevSchedule,
+      client_id: value,
     }));
   };
 
   // Função para cancelar o cadastro e voltar para a listagem
   const handleCancel = () => {
-    navigate('/secure/services');
+    navigate('/secure/schedules');
   };
 
-  const [serviceTypes, setServiceTypes] = useState([]);
+  const [service, setService] = useState([]);
+  const [clients, setClient] = useState([]);
 
   useEffect(() => {
     const fetchServiceTypes = async () => {
       try {
-        const response = await fetch('http://localhost:3333/serviceType', {
+        const response = await fetch('http://localhost:3333/service', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -108,16 +112,37 @@ export default function ScheduleCreate() {
           },
         });
         const data = await response.json();
-        setServiceTypes(data);
+        setService(data);
       } catch (error) {
         Swal.fire({
           icon: 'error',
           title: 'Erro',
-          text: 'Não foi possível carregar os tipos de serviço.',
+          text: 'Não foi possível carregar os serviços.',
         });
       }
     };
 
+    const fetchClients = async () => {
+      try {
+        const response = await fetch('http://localhost:3333/client', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        const data = await response.json();
+        setClient(data);
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Erro',
+          text: 'Não foi possível carregar os clientes.',
+        });
+      }
+    };
+
+    fetchClients();
     fetchServiceTypes();
   }, []);
 
@@ -129,24 +154,34 @@ export default function ScheduleCreate() {
       </h1>
       <FormStyled>
         <div className="input__group">
-          <label htmlFor="description">Descrição:</label>
+          <label htmlFor="consultation_date">Data da Consulta:</label>
           <input
             type="text"
-            id="description"
-            name="description"
-            value={service.description}
+            id="consultation_date"
+            name="consultation_date"
+            value={schedules.consultation_date}
             onChange={handleInputChange}
           />
         </div>
         <div className="input__group">
-          <label htmlFor="service_type_id">Tipo de Serviço:</label>
+          <label htmlFor="goal">Objetivo:</label>
+          <textarea
+            id="goal"
+            name="goal"
+            value={schedules.goal}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="input__group">
+          <label htmlFor="service_id">Serviço:</label>
           <select
-            id="service_type_id"
-            name="service_type_id"
-            value={service.service_type_id}
-            onChange={handleSelectChange}
+            id="service_id"
+            name="service_id"
+            value={schedules.service_id}
+            onChange={handleServiceChange}
           >
-            {serviceTypes.map((type) => (
+            <option value="">Selecione um serviço</option>
+            {service.map((type) => (
               <option key={type.id} value={type.id}>
                 {type.description}
               </option>
@@ -154,14 +189,20 @@ export default function ScheduleCreate() {
           </select>
         </div>
         <div className="input__group">
-          <label htmlFor="price">Preço:</label>
-          <input
-            type="text"
-            id="price"
-            name="price"
-            value={service.price}
-            onChange={handleInputChange}
-          />
+          <label htmlFor="client_id">Cliente:</label>
+          <select
+            id="client_id"
+            name="client_id"
+            value={schedules.client_id}
+            onChange={handleClientChange}
+          >
+            <option value="">Selecione um cliente</option>
+            {clients.map((client) => (
+              <option key={client.id} value={client.id}>
+                {client.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="button__group">
           <Button type="submit" className="button__crud" onClick={handleSubmit}>

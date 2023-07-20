@@ -157,18 +157,18 @@ const TableBody = styled.tbody`
 
 const TableRow = styled.tr`
   display: grid;
-  grid-template-columns: 2.75fr 2fr 3fr 3fr 5fr 2.75fr 2fr;
+  grid-template-columns: 1fr 2.75fr 2fr 3fr 3fr 5fr 2.75fr 2fr;
   align-items: center;
   &:nth-child(even) {
     background-color: ${greyColor};
   }
 
   @media screen and (max-width: 1120px) {
-    grid-template-columns: 2.5fr 1.5fr 2.5fr 2.5fr 4fr 2.5fr 1.5fr;
+    grid-template-columns: 1fr 2.5fr 1.5fr 2.5fr 2.5fr 4fr 2.5fr 1.5fr;
   }
 
   @media screen and (max-width: 768px) {
-    grid-template-columns: 2fr 1fr 2fr 2fr 3fr 2fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr 2fr 2fr 3fr 2fr 1fr;
   }
 `;
 

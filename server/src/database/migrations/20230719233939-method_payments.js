@@ -1,3 +1,4 @@
+// Cria a tabela de métodos de pagamento no banco de dados
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('method_payments', {
     id: {

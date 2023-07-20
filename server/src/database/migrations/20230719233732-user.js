@@ -1,3 +1,4 @@
+// Realiza a criação da tabela de usuários no banco de dados
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('users', {
     id: {

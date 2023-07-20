@@ -4,7 +4,7 @@ import loginRequired from '../middlewares/loginRequired';
 
 const routes = new Router();
 
-// Rotas para o CRUD de tipos de serviços
+// Rotas para buscar os tipos de nacionalidade
 
 routes.get('/', loginRequired, nacionalityController.index);
 

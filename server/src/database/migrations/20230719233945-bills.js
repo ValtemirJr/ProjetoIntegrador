@@ -1,3 +1,4 @@
+// Cria a tabela de contas a pagar no banco de dados
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('bills', {
     id: {

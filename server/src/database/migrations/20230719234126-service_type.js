@@ -1,3 +1,4 @@
+// Cria a tabela de tipos de serviços no banco de dados
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('service_type', {
     id: {

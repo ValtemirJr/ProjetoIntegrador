@@ -4,6 +4,7 @@ class SchedulingController {
   // Cria um agendamento
   async create(req, res) {
     try {
+      // Cria a data em que o cliente solicitou o agendamento
       const date = new Date(Date.now() - 3 * 60 * 60 * 1000).toUTCString();
       req.body.date_request = date;
       req.body.status_id = 1;
@@ -12,22 +13,23 @@ class SchedulingController {
     } catch (error) {
       return res
         .status(400)
-        .json({ error: error.message, message: 'Scheduling was not created' });
+        .json({ error: error.message, message: 'Agendamento não foi criado' });
     }
   }
 
+  // Deleta um agendamento pelo id do parâmetro da rota url
   async delete(req, res) {
     try {
       const scheduling = await Scheduling.findByPk(req.params.id);
       if (!scheduling) {
         return res.status(400).json({
-          errors: ['Scheduling not found'],
+          errors: ['Agendamento não encontrado'],
         });
       }
       await scheduling.destroy();
       return res.status(200).json({
         deleted: true,
-        message: 'Scheduling deleted',
+        message: 'Agendamento deletado',
       });
     } catch (error) {
       if (error.errors) {
@@ -38,11 +40,12 @@ class SchedulingController {
       }
       return res.status(500).json({
         deleted: false,
-        errors: ['An unexpected error occurred.'],
+        errors: ['Erro interno no servidor'],
       });
     }
   }
 
+  // Lista todos os agendamentos
   async index(req, res) {
     try {
       const scheduling = await Scheduling.findAll();
@@ -52,15 +55,16 @@ class SchedulingController {
     }
   }
 
+  // Lista um agendamento pelo id do parâmetro da rota url
   async show(req, res) {
     try {
       const { id } = req.params;
       if (!id) {
-        return res.status(400).json({ errors: ['ID not provided'] });
+        return res.status(400).json({ errors: ['ID não informado'] });
       }
       const scheduling = await Scheduling.findByPk(id);
       if (!scheduling) {
-        return res.status(400).json({ errors: ['Scheduling type not found'] });
+        return res.status(400).json({ errors: ['Tipo de agendamento não encontrado'] });
       }
       return res.json(scheduling);
     } catch (error) {
@@ -68,15 +72,16 @@ class SchedulingController {
     }
   }
 
+  // Atualiza um agendamento pelo id do parâmetro da rota url
   async update(req, res) {
     try {
       const { id } = req.params;
       if (!id) {
-        return res.status(400).json({ errors: ['ID not provided'] });
+        return res.status(400).json({ errors: ['ID não informado'] });
       }
       const scheduling = await Scheduling.findByPk(id);
       if (!scheduling) {
-        return res.status(400).json({ errors: ['Scheduling type not found'] });
+        return res.status(400).json({ errors: ['Tipo de agendamento não encontrado'] });
       }
       const updatedScheduling = await scheduling.update(req.body);
       return res.json(updatedScheduling);

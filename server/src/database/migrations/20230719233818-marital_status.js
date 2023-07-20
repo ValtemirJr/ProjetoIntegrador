@@ -1,3 +1,4 @@
+// Cria a tabela de estados civis no banco de dados
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('marital_status', {
     id: {

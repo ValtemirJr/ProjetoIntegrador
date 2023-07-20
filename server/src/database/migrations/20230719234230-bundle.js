@@ -1,3 +1,4 @@
+// Cria a tabela de pacotes no banco de dados
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('bundle', {
     id: {

@@ -61,12 +61,12 @@ class ServiceController {
       // Pega o id no parâmetro da rota
       const { id } = req.params;
       if (!id) {
-        return res.status(400).json({ errors: ['ID not provided'] });
+        return res.status(400).json({ errors: ['ID não informado'] });
       }
       // Busca o serviço pelo id
       const service = await Service.findByPk(id);
       if (!service) {
-        return res.status(400).json({ errors: ['Service type not found'] });
+        return res.status(400).json({ errors: ['Serviço não encontrado'] });
       }
       // Retorna os dados do serviço
       return res.json(service);
@@ -81,12 +81,12 @@ class ServiceController {
       // Pega o id no parâmetro da rota
       const { id } = req.params;
       if (!id) {
-        return res.status(400).json({ errors: ['ID not provided'] });
+        return res.status(400).json({ errors: ['ID não informado'] });
       }
-      // Busca o serviço pelo id
+      // Busca um serviço pelo id
       const service = await Service.findByPk(id);
       if (!service) {
-        return res.status(400).json({ errors: ['Service type not found'] });
+        return res.status(400).json({ errors: ['Serviço não encontrado'] });
       }
       // Atualiza o serviço
       const updatedService = await service.update(req.body);

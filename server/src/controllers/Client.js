@@ -126,7 +126,7 @@ class ClientController {
         order: [['id', 'DESC']],
       });
       if (!client) {
-        return res.status(400).json({ errors: ['Client not found'] });
+        return res.status(400).json({ errors: ['Cliente não encontrado'] });
       }
       return res.json(client);
     } catch (error) {

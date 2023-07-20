@@ -232,7 +232,7 @@ export default function ScheduleUpdate() {
     <Section>
       <h1>
         <TfiAgenda />
-        Agendamentos - Cadastro
+        Agendamentos - Editar
       </h1>
       <FormStyled>
         <div className="input__group">

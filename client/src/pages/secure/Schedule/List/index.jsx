@@ -130,7 +130,7 @@ export default function ScheduleList() {
         <TableHeader>
           <TableRow>
             <TableHeaderCell>Data da Consulta</TableHeaderCell>
-            <TableHeaderCell>Data da Requisição</TableHeaderCell>
+            <TableHeaderCell>Data da Registro</TableHeaderCell>
             <TableHeaderCell>Serviço</TableHeaderCell>
             <TableHeaderCell>Cliente</TableHeaderCell>
             <TableHeaderCell>Status</TableHeaderCell>

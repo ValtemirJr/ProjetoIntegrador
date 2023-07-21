@@ -22,6 +22,7 @@ O projeto consiste em um sistema de gestão de uma clínica de terapia e estéti
 - Modelo Conceitual: [`docs/Conceptual Model.png`](https://github.com/ValtemirJr/ProjetoIntegrador/blob/main/docs/Conceptual%20Model.png)
 - Modelo Lógico Relacional:
   - Diagrama: [`docs/Relational Logical Model.png`](https://github.com/ValtemirJr/ProjetoIntegrador/blob/main/docs/Relational%20Logical%20Model.png)
+- Modelo Físico está salvo em [`db/Physical_Model.sql`]
 
 ### Estrutura do Projeto 📁
 O projeto foi dividido em duas pastas, sendo elas `server` e `client`. A pasta `server` contém o código do servidor/backend, enquanto a pasta `client` contém o código do cliente/frontend.

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {
+  blackColor,
   bodyFont,
   greyColor,
   primaryColor,
@@ -72,6 +73,18 @@ const Section = styled.section`
         &::placeholder {
           color: ${primaryColor};
         }
+      }
+    }
+
+    select {
+      padding: 0.5rem;
+      margin: 2rem;
+      border: none;
+      border-bottom: 1px solid ${blackColor};
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
       }
     }
 

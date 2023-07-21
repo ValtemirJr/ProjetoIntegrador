@@ -21,6 +21,7 @@ export default function ServiceList() {
   // Estado para armazenar os clientes
   const [services, setServices] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedServiceType, setSelectedServiceType] = useState(null); // New state for the selected service type filter
   // Hook para navegar entre as páginas
   const navigate = useNavigate();
 
@@ -66,7 +67,7 @@ export default function ServiceList() {
     navigate(`/secure/services/update?id=${id}`);
   };
 
-  //  Função para excluir um serviço
+  // Função para excluir um serviço
   const handleDeleteServices = async (id) => {
     try {
       // Requisição para excluir um serviço no backend enviando o ID como parâmetro
@@ -98,6 +99,11 @@ export default function ServiceList() {
     fetchServices();
   }, []);
 
+  // Implementing the function to handle changes in the select input for service type
+  const handleServiceTypeChange = (event) => {
+    setSelectedServiceType(event.target.value);
+  };
+
   return (
     <Section>
       <h1>
@@ -105,17 +111,19 @@ export default function ServiceList() {
         Serviços
       </h1>
       <div className="actions">
-        {/*
-         O filtro de busca filtra os dados
-         da tabela por qualquer campo e coluna
-        da tabela
-         */}
         <input
           type="text"
           value={searchTerm}
           onChange={handleSearchChange}
           placeholder="Buscar serviço..."
         />
+        {/* Select input for filtering by service type */}
+        <select value={selectedServiceType} onChange={handleServiceTypeChange}>
+          <option value="">Todos</option>
+          <option value="1">Terapia</option>
+          <option value="2">Massagem</option>
+          <option value="3">Estética</option>
+        </select>
         <div className="actions__buttons">
           <Button
             type="button"
@@ -138,23 +146,28 @@ export default function ServiceList() {
         </TableHeader>
         <TableBody>
           {services
-            // Filtro de busca nos dados da tabela por qualquer campo e coluna
+            .filter((service) => {
+              // Se o filtro de tipo de serviço selecionado não for nulo ou vazio, retorna true para todos os serviços com o tipo selecionado
+              if (selectedServiceType !== null && selectedServiceType !== '') {
+                return (
+                  service.service_type_id === parseInt(selectedServiceType, 10)
+                );
+              }
+              // Caso contrário, retorna true para todos os serviços
+              return true;
+            })
             .filter((service) =>
-              // Verifica se algum valor do objeto inclui o termo de busca
               Object.values(service).some((value) =>
                 String(value).toLowerCase().includes(searchTerm.toLowerCase()),
               ),
             )
-            // Mapeamento dos dados para a tabela de serviços
             .map((service) => (
               <TableRow key={service.id}>
                 <TableDataCell>{service.id}</TableDataCell>
                 <TableDataCell>{service.description}</TableDataCell>
                 <TableDataCell>
-                  {/* Formatação do tipo de serviço */}
                   {formatServiceType(service.service_type_id)}
                 </TableDataCell>
-                {/* Formatação do preço */}
                 <TableDataCell>{formatPrice(service.price)}</TableDataCell>
                 <TableDataCell>
                   <button

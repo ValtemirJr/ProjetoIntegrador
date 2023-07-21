@@ -3,6 +3,10 @@ import Service from '../models/Service';
 class ServiceController {
   // Cria um serviço para agendar
   async create(req, res) {
+    // Cria o próximo id a ser inserido no banco de dados
+    const nextId = await Service.max('id') + 1;
+    // Adiciona o id no corpo da requisição
+    req.body.id = nextId;
     try {
       // Cria um serviço no banco de dados e retorna os dados do serviço criado
       const service = await Service.create(req.body);

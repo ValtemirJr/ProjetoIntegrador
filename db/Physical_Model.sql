@@ -1,5 +1,3 @@
-CREATE DATABASE CETAC;
-
 -- Tabela forma_pagamento
 CREATE TABLE forma_pagamento (
   cod INTEGER PRIMARY KEY,
@@ -30,8 +28,8 @@ CREATE TABLE cliente (
   ender VARCHAR,
   grau_inst VARCHAR,
   nacionalidade INTEGER NOT NULL,
-  data_nasc VARCHAR,
-  data_criacao VARCHAR
+  data_nasc DATE,
+  data_criacao DATE
 );
 
 -- Tabela nacionalidade
@@ -51,8 +49,8 @@ CREATE TABLE agendamento (
   cod INTEGER PRIMARY KEY,
   cod_cli INTEGER NOT NULL,
   cod_serv INTEGER,
-  data_solicitacao VARCHAR NOT NULL,
-  data_consulta VARCHAR NOT NULL,
+  data_solicitacao DATE NOT NULL,
+  data_consulta DATE NOT NULL,
   obj VARCHAR NOT NULL,
   cod_status INTEGER NOT NULL,
   FOREIGN KEY (cod_cli) REFERENCES cliente (cod),
@@ -112,7 +110,7 @@ CREATE TABLE contas (
   data_venc DATE NOT NULL,
   data_paga DATE,
   valor FLOAT NOT NULL,
-  desc VARCHAR NOT NULL,
+  descricao VARCHAR NOT NULL,
   cod_forma_pag INTEGER NOT NULL,
   cod_tipo_conta INTEGER NOT NULL,
   FOREIGN KEY (cod_forma_pag) REFERENCES forma_pagamento (cod),
@@ -124,7 +122,7 @@ CREATE TABLE recebimentos (
   cod INTEGER PRIMARY KEY,
   cod_ag INTEGER NOT NULL,
   valor FLOAT NOT NULL,
-  data_receb VARCHAR NOT NULL,
+  data_receb DATE NOT NULL,
   cod_forma_pag INTEGER NOT NULL,
   FOREIGN KEY (cod_ag) REFERENCES agendamento (cod),
   FOREIGN KEY (cod_forma_pag) REFERENCES forma_pagamento (cod)

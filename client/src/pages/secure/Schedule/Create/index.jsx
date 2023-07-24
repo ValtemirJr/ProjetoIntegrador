@@ -23,15 +23,18 @@ export default function ScheduleCreate() {
   const createSchedule = async (bodyData) => {
     try {
       // Requisição para criar um Agendamento
-      const response = await fetch('http://localhost:3333/scheduling', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/scheduling`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          // Corpo da requisição com os dados do Agendamento
+          body: JSON.stringify(bodyData),
         },
-        // Corpo da requisição com os dados do Agendamento
-        body: JSON.stringify(bodyData),
-      });
+      );
       if (!response.ok) {
         const data = await response.json();
         Swal.fire({
@@ -125,13 +128,16 @@ export default function ScheduleCreate() {
   useEffect(() => {
     const fetchServiceTypes = async () => {
       try {
-        const response = await fetch('http://localhost:3333/service', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/service`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
           },
-        });
+        );
         const data = await response.json();
         setService(data);
       } catch (error) {
@@ -146,13 +152,16 @@ export default function ScheduleCreate() {
     // Carrega os clientes cadastrados no banco de dados para o select
     const fetchClients = async () => {
       try {
-        const response = await fetch('http://localhost:3333/client', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/client`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
           },
-        });
+        );
         const data = await response.json();
         setClient(data);
       } catch (error) {

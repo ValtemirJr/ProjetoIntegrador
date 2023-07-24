@@ -32,7 +32,7 @@ export default function ClientList() {
   const fetchClients = async () => {
     try {
       // Requisição para buscar os clientes no backend
-      const response = await fetch('http://localhost:3333/client', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/client`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ export default function ClientList() {
   // Função para deletar um cliente
   const handleDeleteClient = async (id) => {
     try {
-      await fetch(`http://localhost:3333/client/${id}`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/client/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

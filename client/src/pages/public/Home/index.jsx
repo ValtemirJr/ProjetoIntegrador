@@ -36,10 +36,10 @@ export default function Home() {
             de uma abordagem centrada no paciente e priorizando o conforto e
             bem-estar, oferecemos cuidados de excelência, com tecnologias de
             ponta e tratamentos de qualidade que abrangem desde a Medicina
-            Tradicional Chinesa, & Facial, até Consultas Psicológicas,
-            Assistência Psicossocial e Tratamento para Dependência Química. Para
-            saber mais, marque uma consulta conosco ou simplesmente venha nos
-            fazer uma visita!
+            Tradicional Chinesa, Estética Corporal & Facial, até Consultas
+            Psicológicas, Assistência Psicossocial e Tratamento para Dependência
+            Química. Para saber mais, marque uma consulta conosco ou
+            simplesmente venha nos fazer uma visita!
           </p>
           <div className="section-button-wrapper__home">
             <Button to="/about" className="section-button__about">

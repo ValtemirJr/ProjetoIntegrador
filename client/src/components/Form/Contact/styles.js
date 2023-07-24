@@ -78,4 +78,39 @@ const SubmitButton = styled.button`
   }
 `;
 
-export { ContactForm, Input, TextArea, SubmitButton };
+const CheckboxLabel = styled.label`
+  align-self: flex-start;
+  margin: 1rem 0;
+  line-height: 1.875em;
+  font-size: 14px;
+  font-family: ${bodyFont};
+  font-weight: 100;
+
+  a {
+    color: ${blackColor};
+    font-weight: 800;
+    margin-left: 0.1rem;
+  }
+
+  a:hover {
+    color: ${blackColor};
+    text-decoration: underline;
+  }
+`;
+
+const CheckboxInput = styled.input`
+  margin-right: 0.5rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+export {
+  ContactForm,
+  Input,
+  TextArea,
+  SubmitButton,
+  CheckboxLabel,
+  CheckboxInput,
+};

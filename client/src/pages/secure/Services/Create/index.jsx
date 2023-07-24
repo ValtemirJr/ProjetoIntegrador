@@ -21,7 +21,7 @@ export default function ServiceCreate() {
   const createService = async (bodyData) => {
     try {
       // Requisição para criar um serviço
-      const response = await fetch('http://localhost:3333/service', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/service`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -101,13 +101,16 @@ export default function ServiceCreate() {
   useEffect(() => {
     const fetchServiceTypes = async () => {
       try {
-        const response = await fetch('http://localhost:3333/serviceType', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/serviceType`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
           },
-        });
+        );
         const data = await response.json();
         setServiceTypes(data);
       } catch (error) {

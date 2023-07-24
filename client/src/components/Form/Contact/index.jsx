@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
-import { ContactForm, Input, TextArea, SubmitButton } from './styles';
+import { Link } from 'react-router-dom';
+import {
+  ContactForm,
+  Input,
+  TextArea,
+  SubmitButton,
+  CheckboxLabel,
+  CheckboxInput,
+} from './styles';
 import formatPhone from '../../../util/formatPhone';
+import postSolicitation from '../../../api/postSolicitation';
 
 // Componente de formulário para contato
 export default function Contact() {
@@ -10,6 +19,7 @@ export default function Contact() {
   const [email, setEmail] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
   const [goal, setGoal] = useState('');
+  const [privacyPolicyChecked, setPrivacyPolicyChecked] = useState(false); // Novo estado para o checkbox
 
   // Função para lidar com a mudança de dados nos inputs
   const handlePhoneChange = (event) => {
@@ -21,6 +31,17 @@ export default function Contact() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (!privacyPolicyChecked) {
+      // Se o checkbox de política de privacidade não estiver marcado, exibe um alerta
+      Swal.fire({
+        title: 'Política de Privacidade',
+        text: 'Por favor, leia e concorde com a Política de Privacidade para prosseguir.',
+        icon: 'info',
+        confirmButtonText: 'Ok',
+      });
+      return; // Impede o envio do formulário
+    }
+
     const formData = {
       name,
       email,
@@ -30,32 +51,7 @@ export default function Contact() {
       marital_status_id: null,
     };
 
-    // Envia os dados do formulário para o backend
-    fetch('http://localhost:3333/client/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => {
-        // Verifica se a resposta da requisição é ok
-        if (!response.ok) {
-          const data = response.json();
-          // Caso não seja, exibe um alerta de erro do backend
-          Swal.fire({
-            title: 'Erro!',
-            text: data.errors[0],
-            icon: 'error',
-            confirmButtonText: 'Ok',
-          });
-
-          throw new Error('Erro ao enviar solicitação');
-        }
-        // Caso seja, retorna a resposta em json
-        return response.json();
-      })
-      // Caso a resposta seja retornada, exibe um alerta de sucesso
+    postSolicitation(formData)
       .then(() => {
         Swal.fire({
           title: 'Sucesso!',
@@ -64,21 +60,20 @@ export default function Contact() {
           confirmButtonText: 'Ok',
         });
       })
-      // Caso ocorra algum erro, exibe um alerta de erro
       .catch(() => {
         Swal.fire({
           title: 'Erro!',
-          text: 'Ocorreu um erro ao enviar sua solicitação! Verique os dados e tente novamente, todos são obrigatórios. Caso o erro persista, entre em contato conosco por telefone ou e-mail.',
+          text: 'Ocorreu um erro ao enviar sua solicitação! Verifique os dados e tente novamente, todos são obrigatórios. Caso o erro persista, entre em contato conosco por telefone ou e-mail.',
           icon: 'error',
           confirmButtonText: 'Ok',
         });
       });
 
-    // Limpa os dados do formulário
     setName('');
     setEmail('');
     setPhonenumber('');
     setGoal('');
+    setPrivacyPolicyChecked(false); // Reseta o checkbox após o envio do formulário
   };
 
   // Retorna o formulário de contato com os inputs e botão de envio
@@ -108,6 +103,17 @@ export default function Contact() {
         value={goal}
         onChange={(e) => setGoal(e.target.value)}
       />
+
+      {/* Checkbox para a política de privacidade */}
+      <CheckboxLabel>
+        <CheckboxInput
+          type="checkbox"
+          checked={privacyPolicyChecked}
+          onChange={(e) => setPrivacyPolicyChecked(e.target.checked)}
+        />
+        Concordo com a <Link to="/privacy-policy">Política de Privacidade</Link>
+      </CheckboxLabel>
+
       <SubmitButton className="section-contact__button" type="submit">
         Enviar
       </SubmitButton>

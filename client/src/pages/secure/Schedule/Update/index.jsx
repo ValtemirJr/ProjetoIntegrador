@@ -29,7 +29,7 @@ export default function ScheduleUpdate() {
     try {
       const response = await fetch(
         // Requisição para buscar um Agendamento no backend enviando o ID como parâmetro
-        `http://localhost:3333/scheduling/${sheduleId}`,
+        `${process.env.REACT_APP_API_URL}/scheduling/${sheduleId}`,
         {
           method: 'GET',
           headers: {
@@ -67,7 +67,7 @@ export default function ScheduleUpdate() {
     try {
       const response = await fetch(
         // Requisição para atualizar um Agendamento no backend enviando o ID como parâmetro
-        `http://localhost:3333/scheduling/${schedulesId}`,
+        `${process.env.REACT_APP_API_URL}/scheduling/${schedulesId}`,
         {
           method: 'PUT',
           headers: {
@@ -188,13 +188,16 @@ export default function ScheduleUpdate() {
     // Função para buscar os serviços no backend
     const fetchServiceTypes = async () => {
       try {
-        const response = await fetch('http://localhost:3333/service', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/service`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
           },
-        });
+        );
         const data = await response.json();
         setService(data);
       } catch (error) {
@@ -209,13 +212,16 @@ export default function ScheduleUpdate() {
     // Função para buscar os clientes no backend
     const fetchClients = async () => {
       try {
-        const response = await fetch('http://localhost:3333/client', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/client`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
           },
-        });
+        );
         const data = await response.json();
         setClient(data);
       } catch (error) {
@@ -230,13 +236,16 @@ export default function ScheduleUpdate() {
     // Função para buscar os status de agendamento no backend
     const fetchScheduleStatus = async () => {
       try {
-        const response = await fetch('http://localhost:3333/schedulingStatus', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/schedulingStatus`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
           },
-        });
+        );
         const data = await response.json();
         setScheduleStatus(data);
       } catch (error) {

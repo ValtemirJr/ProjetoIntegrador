@@ -6,7 +6,8 @@
   background-size: cover;
 }
 
-.section-contact-container {
+.section-contact-container,
+.section-privacy-policy-container {
   position: relative;
   background-image: url('../../assets/images/entry.png');
   background-position: center;

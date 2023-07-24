@@ -38,13 +38,16 @@ export default function ClientUpdate() {
   const fetchClient = async (clientId) => {
     try {
       // Requisição para buscar um cliente no backend enviando o ID como parâmetro
-      const response = await fetch(`http://localhost:3333/client/${clientId}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/client/${clientId}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
         },
-      });
+      );
       // Verificação de erro na requisição
       if (!response.ok) {
         const data = await response.json();
@@ -88,28 +91,31 @@ export default function ClientUpdate() {
 
     try {
       // Requisição para atualizar um cliente enviando o ID como parâmetro
-      const response = await fetch(`http://localhost:3333/client/${clientId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/client/${clientId}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          // Corpo da requisição com os dados do cliente desestruturados
+          body: JSON.stringify({
+            name,
+            email,
+            phonenumber,
+            cpf,
+            occupation,
+            marital_status_id,
+            literacy,
+            address,
+            date_birth,
+            nacionality_id,
+            goal,
+            date_request,
+          }),
         },
-        // Corpo da requisição com os dados do cliente desestruturados
-        body: JSON.stringify({
-          name,
-          email,
-          phonenumber,
-          cpf,
-          occupation,
-          marital_status_id,
-          literacy,
-          address,
-          date_birth,
-          nacionality_id,
-          goal,
-          date_request,
-        }),
-      });
+      );
       if (!response.ok) {
         const data = await response.json();
         Swal.fire({
@@ -140,13 +146,16 @@ export default function ClientUpdate() {
   // Carrega as nacionalidades cadastradas no banco de dados
   const fetchNacionality = async () => {
     try {
-      const response = await fetch('http://localhost:3333/nacionality', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/nacionality`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
         },
-      });
+      );
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -164,13 +173,16 @@ export default function ClientUpdate() {
   // Carrega os estados civis cadastrados no banco de dados
   const fetchMaritalStatus = async () => {
     try {
-      const response = await fetch('http://localhost:3333/maritalStatus', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/maritalStatus`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
         },
-      });
+      );
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -211,7 +223,7 @@ export default function ClientUpdate() {
         try {
           const response = await fetch(
             // manda o cpf e o id do cliente para verificar se o cpf já existe
-            `http://localhost:3333/client/checkCPF/${trimmedCPF}/${id}`,
+            `${process.env.REACT_APP_API_URL}/client/checkCPF/${trimmedCPF}/${id}`,
             {
               method: 'GET',
               headers: {

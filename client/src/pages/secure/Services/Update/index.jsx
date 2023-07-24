@@ -26,7 +26,7 @@ export default function ClientUpdate() {
   const fetchService = async (serviceId) => {
     try {
       const response = await fetch(
-        `http://localhost:3333/service/${serviceId}`,
+        `${process.env.REACT_APP_API_URL}/service/${serviceId}`,
         {
           method: 'GET',
           headers: {
@@ -62,7 +62,7 @@ export default function ClientUpdate() {
 
     try {
       const response = await fetch(
-        `http://localhost:3333/service/${serviceId}`,
+        `${process.env.REACT_APP_API_URL}/service/${serviceId}`,
         {
           method: 'PUT',
           headers: {
@@ -143,13 +143,16 @@ export default function ClientUpdate() {
   useEffect(() => {
     const fetchServiceTypes = async () => {
       try {
-        const response = await fetch('http://localhost:3333/serviceType', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/serviceType`,
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
           },
-        });
+        );
         const data = await response.json();
         setServiceTypes(data);
       } catch (error) {

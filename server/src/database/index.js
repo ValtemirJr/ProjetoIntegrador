@@ -20,6 +20,7 @@ const models = [
   Nacionality,
   MaritalStatus,
 ];
+
 // Inicializa o Sequelize com as configurações do banco de dados
 const connection = new Sequelize(databaseConfig);
 

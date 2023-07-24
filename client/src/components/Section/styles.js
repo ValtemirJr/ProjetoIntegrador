@@ -159,13 +159,108 @@ const SectionStyled = styled.section`
     margin: 2.5rem;
   }
 
-  .section-contact {
+  .section-contact,
+  .section-privacy-policy {
     display: flex;
     justify-content: center;
     align-items: center;
     background: ${greyColor};
     padding: 3rem 0;
     width: 100%;
+  }
+
+  .section-privacy-policy {
+    flex-direction: column;
+
+    h2 {
+      line-height: 1.35em;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 40px;
+      font-family: ${titleFont};
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      text-align: justify;
+      line-height: 1.875em;
+      font-size: 14px;
+      font-family: ${bodyFont};
+      font-weight: 300;
+      margin-bottom: 2rem;
+      align-self: flex-start;
+      padding: 0 5rem;
+    }
+
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    h3 {
+      line-height: 1.35em;
+      text-transform: uppercase;
+      font-size: 22px;
+      font-family: ${titleFont};
+      font-weight: 300;
+      align-self: flex-start;
+      margin-bottom: 1rem;
+      padding: 0 5rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0 5rem;
+      align-self: flex-start;
+
+      li {
+        line-height: 1.875em;
+        font-size: 14px;
+        font-family: ${bodyFont};
+        font-weight: 300;
+      }
+
+      li::before {
+        content: '•';
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+      }
+    }
+
+    @media screen and (max-width: 1080px) {
+      h2 {
+        font-size: 36px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+
+      h3 {
+        font-size: 18px;
+      }
+
+      ul {
+        li {
+          font-size: 14px;
+        }
+
+        li::before {
+          font-size: 14px;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      padding: 2rem;
+
+      p,
+      h3,
+      ul {
+        padding: 0;
+      }
+    }
   }
 
   .section-contact__info {
@@ -194,7 +289,8 @@ const SectionStyled = styled.section`
       font-weight: 300;
     }
   }
-  .section-button__404 {
+  .section-button__404,
+  .section-button__privacy-policy {
     background-color: ${greyColor};
     color: ${primaryColor};
     border: solid 1px ${primaryColor};
@@ -210,8 +306,14 @@ const SectionStyled = styled.section`
     }
   }
 
+  .section-button__privacy-policy {
+    align-self: flex-start;
+    margin: 2rem 5rem 0;
+  }
+
   @media screen and (max-width: 1080px) {
-    .section-contact {
+    .section-contact,
+    .section-privacy-policy {
       flex-direction: column;
       padding: 2rem;
     }

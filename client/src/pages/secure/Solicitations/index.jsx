@@ -26,7 +26,7 @@ export default function Solicitations() {
   const fetchSolicitations = async () => {
     try {
       // Requisição para buscar os clientes no backend
-      const response = await fetch('http://localhost:3333/client', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/client`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ export default function Solicitations() {
   const handleDeleteSolicitation = async (id) => {
     try {
       // Requisição para excluir um cliente no backend enviando o ID como parâmetro
-      await fetch(`http://localhost:3333/client/${id}`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/client/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

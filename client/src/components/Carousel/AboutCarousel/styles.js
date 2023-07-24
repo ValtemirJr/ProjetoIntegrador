@@ -19,6 +19,8 @@ const CarouselSlider = styled(Slider)`
   }
 
   @media (max-width: 767px) {
+    max-width: 90vw;
+    margin: 0 auto;
     .carousel-image {
       max-width: 50%;
       max-height: 50vh;
@@ -46,30 +48,4 @@ const CarouselImage = styled.img`
   }
 `;
 
-const CustomPrevArrow = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 0;
-  z-index: 1;
-  font-size: 30px;
-  color: #fff;
-  cursor: pointer;
-  transform: translateY(-50%);
-  transform: scale(2);
-  margin-left: 15px;
-`;
-
-const CustomNextArrow = styled.div`
-  position: absolute;
-  top: 50%;
-  right: 0;
-  z-index: 1;
-  font-size: 30px;
-  color: #fff;
-  cursor: pointer;
-  transform: translateY(-50%);
-  transform: scale(2);
-  margin-right: 15px;
-`;
-
-export { CarouselSlider, CarouselImage, CustomPrevArrow, CustomNextArrow };
+export { CarouselSlider, CarouselImage };

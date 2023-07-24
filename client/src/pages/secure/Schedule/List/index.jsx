@@ -34,13 +34,16 @@ export default function ScheduleList() {
   const fetchSchedules = async () => {
     try {
       // Requisição para buscar os agendamentos no backend
-      const response = await fetch('http://localhost:3333/scheduling', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/scheduling`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
         },
-      });
+      );
       if (!response.ok) {
         const data = await response.json();
         Swal.fire({
@@ -71,7 +74,7 @@ export default function ScheduleList() {
   const handleDeleteServices = async (id) => {
     try {
       // Requisição para excluir um agendamento no backend enviando o ID como parâmetro
-      await fetch(`http://localhost:3333/scheduling/${id}`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/scheduling/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

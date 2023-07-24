@@ -16,7 +16,23 @@ Projeto desenvolvido para a integração de disciplinas do curso de Ciências da
   - [Tecnologias Utilizadas 🛠️](#tecnologias-utilizadas-)
 ## Descrição do Projeto 📝
 O projeto consiste em um sistema de gestão de uma clínica de terapia e estética, que possui um site para que clientes solicitem agendamentos e uma área administrativa para as funcionárias da clínica gerenciarem os agendamentos, clientes, seções, seviços e pacotes.
+
+Durante o desenvolvimento os seguintes requisitos foram desenvolvidos:
+- Requisitos Funcionais:
+  - Área pública
+    - Solicitações de contato
+  - Área privada
+    - Login de Usuário
+    - Manutenção de Clientes
+    - Manutenção de Serviços
+    - Manutenção de Agendamentos
   
+- Requisitos Não Funcionais:
+  - Usabilidade
+  - Segurança
+  - Compatibilidade
+  - Disponibilidade
+  - Requisitos Legais
 ### Documentação 📚
 - Requisitos de Usuário: [`docs/User Requirements.pdf`](https://github.com/ValtemirJr/ProjetoIntegrador/blob/main/docs/User%20Requirements.pdf)
 - Modelo Conceitual: [`docs/Conceptual Model.png`](https://github.com/ValtemirJr/ProjetoIntegrador/blob/main/docs/Conceptual%20Model.png)
@@ -45,9 +61,10 @@ A pasta `client` contém as seguintes pastas:
   - `assets`: Contém as imagens dos componentes e do carousel.  
   - `components`: Contém os componentes do cliente.
   - `pages`: Contém as páginas do cliente.
-    - `public`: Contém as páginas públicas do cliente.
-    - `secure`: Contém as páginas privadas do cliente.
+    - `public`: Páginas públicas do cliente.
+    - `secure`: Páginas privadas do cliente.
   - `util`: Contém scripts de utilidade do cliente.
+  - `api`: Contém consumidores da API do servidor.
 - `public`: Contém os arquivos públicos do cliente.
 
 ### Configuração do Projeto ⚙️
@@ -60,8 +77,12 @@ Para executar o projeto, é necessário configurar o banco de dados. Para isso, 
 Para executar o projeto, o servidor e o cliente devem ser executados separadamente. 
 
 Para executar o servidor, execute o comando `npm run dev` na pasta `server`, e o servidor será executado na porta `3333` em modo de desenvolvimento.
+Para executar o servidor em modo de produção, execute o comando `npm run start` na pasta `server`.
 
-Para executar o cliente, execute o comando `npm start` na pasta `client` e o cliente será executado na porta `3000` em modo de desenvolvimento.
+Para executar o cliente, execute o comando `npm run start-dev` na pasta `client` e o cliente será executado na porta `3000` em modo de desenvolvimento.
+Para executar o cliente em modo de produção, execute o comando `npm start` na pasta `client`.
+
+Para execução de builds, consulte os arquivos `package.json` das pastas `server` e `client`.
 
 ## Tecnologias Utilizadas 🛠️
 - [Node.js](https://nodejs.org/en/): linguagem de programação utilizada para desenvolver o servidor.
@@ -83,4 +104,5 @@ Para executar o cliente, execute o comando `npm start` na pasta `client` e o cli
   - [React Slick](https://react-slick.neostack.com/), [Slick Carousel](https://kenwheeler.github.io/slick/), [Framer Motion](https://www.framer.com/motion/): utilizado para criar o carrossel de imagens.
   - [React Google Maps API](https://react-google-maps-api-docs.netlify.app/): utilizado para criar o mapa de localização da clínica.
   - [Sweet Alert2](https://sweetalert2.github.io/): utilizado para criar as mensagens de alerta estilizadas.
+  - [env-cmd](https://www.npmjs.com/package/env-cmd): utilizado para carregar as variáveis de ambiente do cliente.
 - [PostgreSQL](https://www.postgresql.org/): SGBD utilizado para armazenar os dados do projeto.

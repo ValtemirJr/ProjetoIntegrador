@@ -5,6 +5,7 @@ import Layout from './components/Layout';
 import Home from './pages/public/Home';
 import About from './pages/public/About';
 import Contact from './pages/public/Contact';
+import PrivacyPolicy from './pages/public/PrivatePolicy';
 import NotFoundPublic from './pages/public/NotFound';
 import NotFoundSecure from './pages/secure/NotFound';
 import Login from './pages/secure/Login';
@@ -33,6 +34,7 @@ function AppRoutes() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="*" element={<NotFoundPublic />} /> {/* Rota 404 */}
           </Route>
           {/* Rotas privadas */}

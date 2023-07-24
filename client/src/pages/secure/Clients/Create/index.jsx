@@ -49,7 +49,7 @@ export default function ClientCreate() {
 
     try {
       // Requisição para criar um cliente
-      const response = await fetch('http://localhost:3333/client', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/client`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -101,13 +101,16 @@ export default function ClientCreate() {
   // Carrega as nacionalidades no select
   const fetchNacionality = async () => {
     try {
-      const response = await fetch('http://localhost:3333/nacionality', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/nacionality`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
         },
-      });
+      );
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -125,13 +128,16 @@ export default function ClientCreate() {
   // Carrega os estados civis no select
   const fetchMaritalStatus = async () => {
     try {
-      const response = await fetch('http://localhost:3333/maritalStatus', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/maritalStatus`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
         },
-      });
+      );
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -168,10 +174,11 @@ export default function ClientCreate() {
 
       // Checa no banco de dados se o CPF já existe para outro cliente
     } else if (trimmedCPF.length === 11) {
+      const lastID = 0;
       const checkCPF = async () => {
         try {
           const response = await fetch(
-            `http://localhost:3333/client/checkCPF/${trimmedCPF}`,
+            `${process.env.REACT_APP_API_URL}/client/checkCPF/${trimmedCPF}/${lastID}`,
             {
               method: 'GET',
               headers: {

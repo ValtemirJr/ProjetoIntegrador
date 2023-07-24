@@ -20,13 +20,16 @@ export default function SecureHome() {
 
       try {
         // Fazer a requisição para verificar o token no backend
-        const response = await fetch('http://localhost:3333/token/check', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/token/check`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ token }),
           },
-          body: JSON.stringify({ token }),
-        });
+        );
 
         const data = await response.json();
 

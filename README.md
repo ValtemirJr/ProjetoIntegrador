@@ -93,7 +93,7 @@ Para execução de builds, consulte os arquivos `package.json` das pastas `serve
   - [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken): utilizado para realizar a autenticação de usuários.
   - [Cors](https://www.npmjs.com/package/cors): utilizado para permitir o acesso ao servidor de outros domínios.
   - [Dotenv](https://www.npmjs.com/package/dotenv): utilizado para carregar as variáveis de ambiente do servidor.
-  - [Pg](https://www.npmjs.com/package/pg) e [Pg-hstore](https://www.npmjs.com/package/pg-hstore): utilizado para realizar a conversão de dados do banco de dados PostgreSQL. utilizado para realizar a conexão com o banco de dados PostgreSQL.
+  - [Pg](https://www.npmjs.com/package/pg) e [Pg-hstore](https://www.npmjs.com/package/pg-hstore): utilizados para realizar a conversão de dados do banco de dados PostgreSQL.
   - [Eslint](https://eslint.org/): utilizado para padronizar o código.
 - [React](https://pt-br.reactjs.org/): biblioteca utilizada para desenvolver o cliente.
   - [React Router Dom](https://reactrouter.com/web/guides/quick-start): utilizado para definir as rotas do cliente.
